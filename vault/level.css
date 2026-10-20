@@ -1,0 +1,39 @@
+.level-hero { display: grid; grid-template-columns: 1.4fr 1fr; gap: 30px; align-items: center; margin-bottom: 30px; }
+.level-ring { display: grid; justify-items: center; gap: 10px; }
+.level-ring .smh-ring { width: 190px; height: 190px; }
+.comp-card { display: grid; gap: 8px; align-content: start; position: relative; }
+.comp-card .status { justify-self: start; }
+.comp-card.done { border-color: #a7dfc6; background: #f1fbf6; }
+.comp-card .score { font: 800 30px/1 Manrope, Arial, sans-serif; color: #3b5bff; }
+.comp-card .score small { font-size: 14px; color: #44507a; }
+.rec-tag {
+  position: absolute;
+  top: -12px;
+  right: 14px;
+  background: #ffcc33;
+  color: #142b68;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  padding: 5px 10px;
+  border-radius: 99px;
+  box-shadow: 0 0 0 0 #ffcc33aa;
+  animation: glow 1.8s ease-in-out infinite;
+}
+@keyframes glow { 50% { box-shadow: 0 0 0 8px #ffcc3300; } }
+.level-reflect { margin: 30px 0 20px; }
+.ref-row { padding: 10px 0; border-top: 1px solid #d9dff5; font-size: 14px; }
+.ref-row small { color: #676e88; }
+@media (prefers-reduced-motion: reduce) { .rec-tag { animation: none; } }
+@media (max-width: 760px) { .level-hero { grid-template-columns: 1fr; } .level-ring .smh-ring { width: 150px; height: 150px; } }
+.level-card { position: relative; }
+.level-card.recommended { border: 2px solid #ffcc33; }
+.level-card.done { border-color: #a7dfc6; background: #f1fbf6; }
+.level-top { display: flex; align-items: center; gap: 12px; margin: 8px 0 4px; }
+.level-top b { font-size: 14px; }
+.boss-card { margin: 22px 0 6px; background: #142b68; color: #fff; border: 0; background-image: radial-gradient(circle at 92% 20%, #3a58c955 0 90px, transparent 91px); }
+.boss-card .status { background: #ffcc33; color: #142b68; }
+.boss-card h3 { color: #fff; }
+.boss-card p { color: #dde4ff; max-width: 640px; }
+.boss-card .button.primary { background: #ffcc33; color: #142b68; border-color: #ffcc33; }
+.boss-card.won .status { background: #4cc9a6; }

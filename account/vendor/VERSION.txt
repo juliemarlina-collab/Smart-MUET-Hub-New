@@ -1,0 +1,3 @@
+Supabase JavaScript SDK 2.118.0
+Source: https://registry.npmjs.org/@supabase/supabase-js/-/supabase-js-2.118.0.tgz
+License: MIT

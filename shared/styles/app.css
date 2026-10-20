@@ -1,0 +1,116 @@
+/* Smart MUET · game layer (XP strip, badges, streak, toasts). Loaded by shared/js/app.js */
+.xp-strip {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 26px;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #d9dff5;
+  border-radius: 24px;
+  padding: 18px 24px;
+  margin: 0 0 35px;
+  box-shadow: 0 6px 0 #e1e7ff;
+}
+.smh-streak { display: grid; grid-template-columns: auto auto; grid-template-rows: auto auto; column-gap: 10px; align-items: center; }
+.smh-streak .smh-flame-slot { grid-row: span 2; }
+.smh-streak b { font: 800 34px/1 Manrope, Arial, sans-serif; color: #e8501f; font-variant-numeric: tabular-nums; }
+.smh-streak small, .smh-xp small, .smh-mini-badges small { font-size: 12px; font-weight: 700; color: #44507a; }
+.smh-flame { display: inline-block; transform: scale(var(--grow, 1)); transform-origin: 50% 90%; transition: transform 0.4s; }
+.smh-flame svg { display: block; }
+.smh-flame .outer { fill: #ff754a; }
+.smh-flame .inner { fill: #ffcc33; }
+.smh-flame:not(.cold) svg { animation: flicker 1.6s ease-in-out infinite; transform-origin: 50% 100%; }
+.smh-flame.cold .outer { fill: #d9dff5; }
+.smh-flame.cold .inner { fill: #e8ecf9; }
+@keyframes flicker { 0%, 100% { transform: scaleY(1) rotate(-1deg); } 50% { transform: scaleY(1.06) rotate(1.5deg); } }
+.smh-xp-top { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.smh-level { font: 800 13px DM, Arial, sans-serif; letter-spacing: 1.2px; text-transform: uppercase; background: #ffcc33; color: #142b68; padding: 4px 10px; border-radius: 99px; }
+.smh-xp-n { font: 800 32px/1 Manrope, Arial, sans-serif; color: #3b5bff; font-variant-numeric: tabular-nums; }
+.smh-bar { height: 12px; background: #d9dff5; border-radius: 99px; overflow: hidden; margin: 10px 0 6px; }
+.smh-bar i { display: block; height: 100%; width: 3%; background: linear-gradient(90deg, #3b5bff, #e0479e); border-radius: 99px; transition: width 0.5s ease; }
+.smh-mini-badges { display: grid; gap: 4px; justify-items: end; }
+.smh-mini-badges .smh-row { display: flex; gap: 4px; min-height: 40px; align-items: center; }
+.smh-mini-badges a { font-size: 13px; font-weight: 700; }
+.smh-badge-art { display: inline-grid; place-items: center; width: var(--size); height: var(--size); flex-shrink: 0; }
+.smh-badge-art img, .smh-badge-art svg { width: 100%; height: 100%; object-fit: contain; }
+
+/* Badge shelf (Me) */
+.smh-shelf { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; margin: 14px 0; }
+.smh-badge-card {
+  background: #fff;
+  border: 1px solid #d9dff5;
+  border-radius: 20px;
+  padding: 16px 12px;
+  text-align: center;
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  position: relative;
+  overflow: hidden;
+}
+.smh-badge-card b { font: 800 15px/1.25 Manrope, Arial, sans-serif; }
+.smh-badge-card small { font-size: 12px; line-height: 1.45; color: #44507a; }
+.smh-badge-card.locked .smh-badge-art { filter: grayscale(1); opacity: 0.38; }
+.smh-badge-card.earned { border-color: #b6c2f2; background: #f7f9ff; }
+.smh-badge-card.earned small { color: #00876f; font-weight: 700; }
+.smh-badge-card.earned::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 35%, #ffffffb0 50%, transparent 65%);
+  transform: translateX(-120%);
+  animation: shine 2.4s ease 0.3s 1 both;
+  pointer-events: none;
+}
+@keyframes shine { to { transform: translateX(120%); } }
+
+/* XP breakdown + streak calendar (Me) */
+.smh-xp-total b { font: 800 30px Manrope, Arial, sans-serif; color: #3b5bff; }
+.smh-xp-table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 8px 0 12px; }
+.smh-xp-table td { padding: 9px 6px; border-top: 1px solid #d9dff5; }
+.smh-xp-table td:nth-child(2) { color: #44507a; text-align: center; }
+.smh-xp-table td:last-child { text-align: right; font-weight: 800; }
+.smh-calendar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; max-width: 360px; margin: 10px 0; }
+.smh-day { aspect-ratio: 1; display: grid; place-items: center; border-radius: 10px; background: #edeff6; font-size: 12px; font-weight: 700; color: #818699; }
+.smh-day.on { background: #ff754a; color: #fff; }
+.smh-day.today { outline: 2px solid #3b5bff; outline-offset: 1px; }
+
+/* Toasts */
+.smh-toasts { position: fixed; z-index: 400; left: 50%; bottom: 96px; transform: translateX(-50%); display: grid; gap: 8px; justify-items: center; pointer-events: none; width: min(92vw, 380px); }
+.smh-toast {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #142b68;
+  color: #fff;
+  border-radius: 18px;
+  padding: 10px 16px;
+  box-shadow: 0 10px 30px #151f4655;
+  font-size: 14px;
+  animation: toast-in 0.35s ease both;
+}
+.smh-toast b { font: 800 15px Manrope, Arial, sans-serif; }
+.smh-toast.xp b.xp { color: #c9f653; font-size: 18px; }
+.smh-toast.level { background: #3b5bff; }
+.smh-toast.badge { background: #fff; color: #142b68; border: 2px solid #ffcc33; padding: 12px 18px; flex-wrap: wrap; justify-content: center; text-align: center; }
+.smh-toast.badge b { width: 100%; }
+.smh-toast.badge .smh-badge-art { animation: flip-in 0.5s ease both; }
+.smh-toast.out { animation: toast-out 0.45s ease both; }
+.smh-toast.still, .smh-toast.still .smh-badge-art { animation: none; }
+.smh-toast.still.out { opacity: 0; }
+@keyframes toast-in { from { opacity: 0; transform: translateY(14px) scale(0.96); } to { opacity: 1; transform: none; } }
+@keyframes toast-out { to { opacity: 0; transform: translateY(-10px); } }
+@keyframes flip-in { from { transform: rotateY(90deg) scale(0.7); } to { transform: none; } }
+
+.no-motion .smh-flame svg, .no-motion .smh-badge-card::after { animation: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  .smh-flame svg, .smh-badge-card::after, .smh-toast, .smh-badge-art { animation: none !important; }
+  .smh-bar i { transition: none; }
+}
+@media (max-width: 760px) {
+  .xp-strip { grid-template-columns: auto 1fr; gap: 14px 18px; padding: 16px; }
+  .smh-mini-badges { grid-column: 1 / -1; justify-items: start; grid-template-columns: auto 1fr auto; align-items: center; gap: 10px; }
+  .smh-streak b { font-size: 28px; }
+  .smh-xp-n { font-size: 26px; }
+  .smh-shelf { grid-template-columns: repeat(2, 1fr); }
+}

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f5f7ff">
+<title>Air Slice · Smart MUET Arcade</title>
+<link rel="icon" href="../shared/assets/logo.svg">
+<link rel="stylesheet" href="../shared/styles/tokens.css">
+<link rel="stylesheet" href="../labs/css/lab.css">
+<link rel="stylesheet" href="css/arcade.css">
+<link rel="stylesheet" href="../shared/styles/navigation.css">
+<script defer src="../shared/js/item-bank.js"></script>
+<script defer src="js/gesture-core.js"></script>
+<script defer src="js/arcade-core.js"></script>
+<script defer src="js/air-slice.js"></script>
+<script defer src="../shared/js/app.js"></script><link rel="stylesheet" href="../shared/styles/shell.css"><script defer src="../shared/js/shell.js"></script><script defer src="../shared/js/navigation.js"></script>
+</head>
+<body data-page-id="arcade-slice" data-app-root="../" class="arcade-page">
+<a class="skip" href="#play">Skip to the game</a>
+<header>
+  <a class="brand" href="../index.html"><img src="../shared/assets/logo.svg" alt=""><span>Smart MUET<small>ARCADE</small></span></a>
+  <nav aria-label="Arcade links"><a href="index.html">Arcade ↗</a><a href="../practice.html">Vault ↗</a><button id="sound" type="button" aria-pressed="false">Sound on</button><button id="motion" type="button" aria-pressed="false">Pause motion</button></nav>
+</header>
+<main id="main" class="arcade-main">
+  <section class="game-intro">
+    <div>
+      <span class="eyebrow">ARCADE / AIR SLICE / LISTENING CLUE + READING SCAN</span><p class="hello">Hello, sharp eyes!</p>
+      <h1>Slice the answer.<br><span>Dodge the trap.</span></h1>
+      <p class="lead">Read the clue, then slice the right option as it flies past. Slice a trap and the game tells you which trap it was: changed plan, word match, too far, not mentioned.</p>
+    </div>
+    <ul class="how" aria-label="How to play"><li><b>Tap</b> the right option, or <b>swipe</b> through it.</li><li><b>Camera:</b> point with your first finger and swipe fast.</li><li><b>Keyboard:</b> Tab to an option and press Enter.</li><li>Paused motion? The options stay still in a row.</li></ul>
+  </section>
+  <div class="game-bar" id="play">
+    <div class="hud" id="hud" aria-live="off"></div>
+    <button id="camera" type="button" class="cam-btn" aria-pressed="false">Try camera mode 🎥</button>
+  </div>
+  <div class="stage" id="stage" role="application" aria-label="Air Slice game area"></div>
+  <p class="cam-status" id="cam-status" role="status" aria-live="polite">Tap, drag or use the keyboard to play. Camera mode is optional.</p>
+  <section class="game-tips"><article class="paper"><span class="eyebrow">WHY IT HELPS YOUR MUET</span><h3>Distractors are designed.</h3><p>MUET options often repeat words from the text or mention a plan that later changes. Naming the trap is the E in CLUE (Eliminate) and the N in SCAN (Nail it with evidence).</p><a href="../labs/listening-lab.html">Listening CLUE Lab ↗</a> <a href="../labs/reading-lab.html">Reading SCAN Lab ↗</a></article></section>
+</main>
+<footer>English Language Unit · Politeknik Port Dickson · Camera mode works on this device only. Nothing is recorded or uploaded.</footer>
+</body>
+</html>

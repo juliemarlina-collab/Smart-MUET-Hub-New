@@ -1,0 +1,83 @@
+/* Smart MUET Hub – icons v2 "Sticker" + bottom nav (shared/css/icons.css)
+   Palette taken from the Welcome / account pages. */
+:root {
+  --smh-paper:  #f5f7ff;   /* cream page */
+  --smh-ink:    #142b68;   /* navy headings */
+  --smh-muted:  #44507a;   /* mauve-grey labels */
+  --smh-cobalt: #3b5bff;   /* "Let's begin." / buttons */
+  --smh-sun:    #ffcc33;   /* yellow circle / sticky note */
+  --smh-coral:  #ff754a;   /* "Hello, future you!" */
+  --smh-mint:   #4cc9a6;   /* "Keep showing up." note */
+  --smh-sky:    #A9C8FF;   /* pale-blue card, a touch stronger */
+  --smh-pink:   #FF9EC7;   /* doodle sticker */
+  --smh-line:   #d9dff5;
+}
+
+/* ── Icon base ───────────────────────────── */
+.ico { width: var(--ico-size, 1.5em); height: var(--ico-size, 1.5em); display: inline-block; vertical-align: middle; flex-shrink: 0; color: var(--smh-ink); overflow: visible; }
+.ico-sm { --ico-size: 1.1em; }
+.ico-lg { --ico-size: 2.5em; --ico-stroke: 2; }
+
+/* Tone per icon (the colour "sticker" behind the ink) */
+.ico-home, .ico-vault, .ico-reading, .ico-xp, .ico-reflect          { --tone: var(--smh-sun); }
+.ico-learn, .ico-ebook, .ico-listening                               { --tone: var(--smh-sky); }
+.ico-lab, .ico-diagnostic, .ico-writing                              { --tone: var(--smh-mint); }
+.ico-review, .ico-arcade, .ico-speaking, .ico-streak                 { --tone: var(--smh-coral); }
+.ico-me, .ico-badge                                                  { --tone: var(--smh-pink); }
+.ico-spark { color: var(--smh-coral); }
+.ico-open  { color: var(--smh-cobalt); }
+
+/* Mono option: add class "ico-mono" to drop the colour fill */
+.ico-mono { --tone-o: 0; }
+
+/* ── Bottom nav ──────────────────────────── */
+.smh-nav {
+  position: fixed; inset: auto 0 0 0; z-index: 50;
+  display: flex; justify-content: space-around; gap: 2px;
+  background: var(--smh-paper);
+  border-top: 1.5px solid var(--smh-line);
+  box-shadow: 0 -6px 20px rgba(30, 34, 53, .05);
+  padding: 8px 6px calc(8px + env(safe-area-inset-bottom));
+}
+.smh-nav a {
+  position: relative; flex: 1; max-width: 92px; min-height: 56px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+  color: var(--smh-muted); text-decoration: none;
+  font: 600 11px/1 "DM Sans", "Plus Jakarta Sans", system-ui, sans-serif; letter-spacing: .01em;
+  -webkit-tap-highlight-color: transparent;
+}
+.smh-nav a .ico {
+  --ico-size: 26px; --tone-o: .45;
+  padding: 5px 13px; box-sizing: content-box; border-radius: 14px;
+  transition: transform .25s cubic-bezier(.34,1.56,.64,1), background .2s;
+}
+.smh-nav a:active .ico { transform: scale(.88); }
+
+/* Active tab = little sticky note with tape */
+.smh-nav a[aria-current="page"] { color: var(--smh-cobalt); font-weight: 700; }
+.smh-nav a[aria-current="page"] .ico {
+  --tone-o: 1;
+  background: #fff4d1;
+  box-shadow: 2px 3px 0 rgba(30, 34, 53, .10);
+  transform: rotate(-4deg);
+}
+.smh-nav a[aria-current="page"]::before {        /* tape strip */
+  content: ""; position: absolute; top: 3px; left: 50%;
+  width: 22px; height: 8px; margin-left: -11px;
+  background: rgba(169, 200, 255, .75); transform: rotate(6deg); border-radius: 1px; z-index: 1;
+}
+.smh-nav a:focus-visible { outline: 2px dashed var(--smh-cobalt); outline-offset: 2px; border-radius: 12px; }
+
+/* Due-count bubble */
+.smh-badge {
+  position: absolute; top: 2px; left: calc(50% + 10px); z-index: 2;
+  min-width: 19px; height: 19px; padding: 0 5px; box-sizing: border-box;
+  border-radius: 10px; background: var(--smh-coral); color: #fff;
+  border: 2px solid var(--smh-paper);
+  font: 700 10px/15px "DM Sans", system-ui, sans-serif; text-align: center;
+  transform: rotate(6deg);
+}
+
+body:has(.smh-nav) { padding-bottom: calc(80px + env(safe-area-inset-bottom)); }
+
+@media (prefers-reduced-motion: reduce) { .smh-nav a .ico { transition: none; } }

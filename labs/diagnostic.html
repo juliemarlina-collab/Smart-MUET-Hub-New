@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f5f7ff">
+<title>10-minute check · Smart MUET</title>
+<link rel="icon" href="../shared/assets/logo.svg">
+<link rel="stylesheet" href="../shared/styles/tokens.css">
+<link rel="stylesheet" href="css/lab.css">
+<link rel="stylesheet" href="css/lab-extra.css">
+<link rel="stylesheet" href="css/review.css">
+<link rel="stylesheet" href="css/diagnostic.css">
+<link rel="stylesheet" href="../shared/styles/navigation.css">
+<script defer src="js/diagnostic.js"></script>
+<script defer src="../shared/js/app.js"></script><link rel="stylesheet" href="../shared/styles/shell.css"><script defer src="../shared/js/shell.js"></script><script defer src="../shared/js/navigation.js"></script>
+</head>
+<body data-page-id="diagnostic" data-app-root="../">
+<a class="skip" href="#main">Skip to the check</a>
+<header>
+  <a class="brand" href="../index.html"><img src="../shared/assets/logo.svg" alt=""><span>Smart MUET<small>10-MINUTE CHECK</small></span></a>
+  <nav aria-label="Check links"><a href="../index.html">Home ↗</a><a href="../me.html">Me ↗</a><button id="motion" aria-pressed="false">Pause motion</button></nav>
+</header>
+<main id="main">
+<section class="review-hero">
+  <div>
+    <span class="eyebrow">PLAN / DIAGNOSE / WHERE SHOULD I START?</span>
+    <p class="hello">Let’s find your starting point!</p>
+    <h1>Ten minutes.<br><span>Your own plan.</span></h1>
+    <p class="lead">Four short sets: Listening, Reading, Writing and Speaking. You get no marks during the check. At the end you see your skill shape, where to start, and a personal 3-week plan.</p>
+  </div>
+  <ol class="set-map" id="set-map" aria-label="The four sets">
+    <li data-set="listening"><b>01</b>Listening<small>3 questions · audio</small></li>
+    <li data-set="reading"><b>02</b>Reading<small>4 questions · short text</small></li>
+    <li data-set="writing"><b>03</b>Writing<small>Fix 3 sentences</small></li>
+    <li data-set="speaking"><b>04</b>Speaking<small>Rate yourself · 4 statements</small></li>
+  </ol>
+</section>
+<p id="storage-warning" class="warning" role="status" hidden></p>
+<div class="workspace" id="workspace">
+
+<section id="intro-panel" aria-labelledby="intro-title">
+  <div class="section-heading"><div><span class="eyebrow">BEFORE YOU BEGIN</span><h2 id="intro-title" tabindex="-1">This is a check,<br>not a test.</h2></div><p>Answer honestly and on your own. If you are not sure, choose your best guess; that is useful information too. The result is a practice guide, not a MUET band.</p></div>
+  <div class="two-col">
+    <article class="paper">
+      <h3>What you need</h3>
+      <ol class="route"><li>About 10 minutes in a quiet place.</li><li>Sound on or headphones for Listening (it uses your device’s voice).</li><li>No dictionary or notes.</li></ol>
+      <button class="primary" id="begin">Start the check ↗</button>
+    </article>
+    <article class="paper yellow" id="previous-card" hidden>
+      <span class="label">YOUR LAST CHECK</span>
+      <h3 id="previous-title"></h3>
+      <p id="previous-copy"></p>
+      <div class="actions"><button class="primary" id="view-previous">See my result and plan ↗</button></div>
+    </article>
+  </div>
+</section>
+
+<section id="quiz-panel" hidden aria-labelledby="set-title">
+  <div class="quiz-top"><span class="eyebrow" id="set-count">SET 1 OF 4</span><progress id="set-progress" max="4" value="0" aria-label="Check progress"></progress></div>
+  <article class="paper">
+    <span class="label" id="set-label"></span>
+    <h2 id="set-title" tabindex="-1"></h2>
+    <p id="set-instructions"></p>
+    <div id="set-context"></div>
+    <div id="set-items"></div>
+    <p id="set-status" class="feedback" role="status"></p>
+    <div class="actions"><button id="set-back">← Back</button><button class="primary" id="set-next">Next set →</button></div>
+  </article>
+</section>
+
+<section id="result-panel" hidden aria-labelledby="result-title">
+  <div class="section-heading"><div><span class="eyebrow">YOUR RESULT</span><h2 id="result-title" tabindex="-1">Your skill shape.</h2></div><p id="result-date">Practice estimate only. It shows where to start, not your MUET band.</p></div>
+  <div class="result-grid">
+    <article class="paper radar-card">
+      <svg id="radar" viewBox="-40 -6 400 332" role="img" aria-labelledby="radar-title radar-desc"><title id="radar-title">Four-skill radar</title><desc id="radar-desc"></desc></svg>
+      <ul class="score-list" id="score-list"></ul>
+    </article>
+    <article class="paper start-card">
+      <span class="label">RECOMMENDED START</span>
+      <h3 id="start-skill"></h3>
+      <p id="start-why"></p>
+      <div class="actions"><a class="button primary" id="start-link" href="#">Begin here ↗</a></div>
+      <p class="small">Speaking is self-rated, so it is less precise than the other three. A lecturer or partner can confirm it in class.</p>
+    </article>
+  </div>
+  <article class="paper">
+    <div class="plan-head"><div><span class="label">MY PERSONAL 3-WEEK PLAN</span><h3>Start with your weakest skill, then build up.</h3></div><p class="small" id="plan-progress"></p></div>
+    <div class="plan" id="plan"></div>
+    <p class="small">This plan replaces the fixed Week 1–3 plan and appears on Home. Tick each step when you finish it. The plan moves from the labs into Vault 1, Vault 2 and Mock 1 for your starting skill.</p>
+  </article>
+  <details class="paper answers"><summary>See the answers and explanations</summary><div id="answer-list"></div></details>
+  <div class="actions"><a class="button primary" href="../index.html">Go to Home ↗</a><button id="retake">Retake the check</button></div>
+</section>
+</div>
+</main>
+<footer><span>Smart MUET · Plan → Learn → Practise → Reflect</span><span>English Language Unit · Politeknik Port Dickson</span></footer>
+<noscript><p>Please enable JavaScript to take the 10-minute check.</p></noscript>
+</body>
+</html>

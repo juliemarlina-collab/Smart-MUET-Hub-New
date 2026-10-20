@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f5f7ff">
+<title>Write & Develop · Smart MUET PEEL Lab</title>
+<link rel="icon" href="../shared/assets/logo.svg">
+<link rel="stylesheet" href="../shared/styles/tokens.css">
+<link rel="stylesheet" href="css/lab.css">
+<link rel="stylesheet" href="css/lab-extra.css">
+<link rel="stylesheet" href="../shared/styles/navigation.css">
+<script defer src="../shared/js/item-bank.js"></script>
+<script defer src="js/lab-core.js"></script>
+<script defer src="js/writing-lab.js"></script>
+<script defer src="../shared/js/app.js"></script><link rel="stylesheet" href="../shared/styles/shell.css"><script defer src="../shared/js/shell.js"></script><script defer src="../shared/js/navigation.js"></script>
+</head>
+<body data-page-id="writinglab" data-app-root="../">
+<a class="skip" href="#main">Skip to lab</a>
+<header>
+  <a class="brand" href="../index.html"><img src="../shared/assets/logo.svg" alt=""><span>Smart MUET<small>THE LEARNING LAB</small></span></a>
+  <nav aria-label="Lab links">
+    <a href="../guides/writing.html">Guide ↗</a><a href="../book/index.html#page=38">Book ↗</a>
+    <button id="view-mode" aria-pressed="false">Use 2D view</button><button id="motion" aria-pressed="false">Pause motion</button>
+  </nav>
+</header>
+<main id="main">
+<section class="hero">
+  <div>
+    <span class="eyebrow">LEARN / WRITING / GUIDED PRACTICE</span>
+    <p class="hello">Hello, thoughtful writer!</p>
+    <h1>Write it.<br><span>Develop it.</span></h1>
+    <p class="lead">Turn a list of ideas into developed paragraphs. Build with PEEL, draft against the clock and review with the MUET criteria.</p>
+    <div class="tags"><span>Point</span><span>Explain</span><span>Example</span><span>Link</span></div>
+    <p class="small">About 30–60 minutes · Your own pace · Drafts save in this browser</p>
+  </div>
+  <div class="scene writing" aria-label="Four PEEL building blocks">
+    <div class="scene-label">ONE IDEA, FULLY DEVELOPED ↗</div>
+    <div class="blocks"><button class="block p1" data-model="0"><b>P</b><span>Make one clear point</span></button><button class="block r" data-model="1"><b>E</b><span>Show why or how</span></button><button class="block e" data-model="2"><b>E</b><span>Make it concrete</span></button><button class="block p2" data-model="3"><b>L</b><span>Return to the question</span></button></div>
+    <span class="scene-note">Tap a block to explore the model.</span>
+  </div>
+</section>
+<nav class="steps" aria-label="Learning steps">
+  <button data-step="0" aria-current="step"><span>01</span>Start here</button><button data-step="1"><span>02</span>I do · Model</button><button data-step="2"><span>03</span>We do · Drills</button><button data-step="3"><span>04</span>You do · Write</button><button data-step="4"><span>05</span>Check &amp; improve</button><button data-step="5"><span>06</span>Reflect &amp; next</button>
+</nav>
+<p id="storage-warning" class="warning" role="status" hidden></p>
+<div class="workspace" id="workspace">
+
+<section data-panel="0" aria-labelledby="start-title">
+  <div class="section-heading"><div><span class="eyebrow">01 / START HERE</span><h2 id="start-title">Fewer ideas.<br>Better developed.</h2></div><p>By the end, you will plan and write a developed paragraph or response, check its length and review it using the four MUET writing criteria.</p></div>
+  <div class="start-grid">
+    <article class="paper">
+      <span class="label">YOUR MISSION</span>
+      <h3>Should polytechnics make community service compulsory?</h3>
+      <p>In the model, we develop one body paragraph. Later, you will choose a Task 1 email or a Task 2 essay and write your own response.</p>
+      <label for="goal">Before you begin, choose your focus</label><select id="goal"><option>Develop each point with explanation</option><option>Use specific examples</option><option>Organise paragraphs clearly</option><option>Reach the word count in time</option></select>
+      <button class="primary" data-next="1">Show me how ↗</button>
+    </article>
+    <article class="yellow paper">
+      <h3>Your route through the lab</h3>
+      <ol class="route"><li><b>Notice</b> how one paragraph is developed.</li><li><b>Practise</b> ordering, explaining and choosing the right tone.</li><li><b>Write</b> a response with a planner, timer and word count.</li><li><b>Review</b> with the MUET criteria and reflect.</li></ol>
+      <p class="small">PEEL here means Point, Explain, Example, Link. It supports Task 2 body paragraphs; it is not a fixed template for every sentence or for a Task 1 email.</p>
+      <a href="../guides/writing.html">Read the Writing guide ↗</a>
+    </article>
+  </div>
+</section>
+
+<section data-panel="1" hidden aria-labelledby="model-title">
+  <div class="section-heading"><div><span class="eyebrow">02 / I DO · WORKED EXAMPLE</span><h2 id="model-title">See the point grow<br>into a paragraph.</h2></div><p>1. Tap each PEEL letter. 2. Read what each sentence does. 3. Read the full paragraph and notice how the example supports the explanation.</p></div>
+  <div class="model-grid">
+    <div><div class="model-tabs" aria-label="Explore PEEL"><button data-model="0">P · Point</button><button data-model="1">E · Explain</button><button data-model="2">E · Example</button><button data-model="3">L · Link</button></div><article class="model-card" id="model-card" aria-live="polite"></article></div>
+    <article class="paper">
+      <span class="label">TASK 2 BODY PARAGRAPH / ILLUSTRATIVE MODEL</span><h3>Community service builds teamwork</h3><div class="passage"><p id="full-model"></p></div><p class="tip">Notice: the example names a real activity (a Port Dickson beach clean-up) and shows <i>how</i> teamwork happens, so it proves the point instead of repeating it.</p>
+      
+    </article>
+  </div>
+  <button class="primary" data-next="2">Let’s try it together →</button>
+</section>
+
+<section data-panel="2" hidden aria-labelledby="guided-title">
+  <div class="section-heading"><div><span class="eyebrow">03 / WE DO · THREE GUIDED DRILLS</span><h2 id="guided-title">Order it. Develop it.<br>Pitch it right.</h2></div><p>Try all three drills. Read the explanation after each check; you can change your answer and check again.</p></div>
+  <article class="paper drill"><span class="label">DRILL 1 / BUILD THE PARAGRAPH</span><h3>Put this paragraph about smartphones in class in PEEL order.</h3><p>Choose a sentence card, then choose its place. Tap or use Tab and Enter; dragging is optional.</p><div id="sentence-bank" class="sentence-bank" aria-label="Sentence cards"></div><p id="selection-status" role="status">Choose a sentence to place.</p><div id="peel-slots" class="slots"></div><button class="primary" id="check-order">Check my paragraph</button><button id="reset-order">Reset cards</button><p id="order-feedback" class="feedback" role="status"></p></article><div class="two-col"><article class="paper drill"><span class="label">DRILL 2 / DEVELOP THE POINT</span><h3>Point: “Learning a second language can improve students’ job prospects.” Which sentence <i>explains</i> it best?</h3><fieldset><legend class="sr-only">Choose the explanation</legend><label><input type="radio" name="explain" value="0"> Languages are very important nowadays.</label><label><input type="radio" name="explain" value="1"> Many employers serve customers across the region, so staff who communicate in more than one language can take on wider responsibilities.</label><label><input type="radio" name="explain" value="2"> I personally enjoy learning new languages.</label></fieldset><button class="primary" id="check-explain">Check my choice</button><p id="explain-feedback" class="feedback" role="status"></p></article><article class="paper drill"><span class="label">DRILL 3 / TASK 1 TONE</span><h3>You are replying to your club adviser, Puan Salmah. Choose the best opening.</h3><label for="opening">My opening</label><select id="opening"><option value="">Choose an opening</option><option value="a">Hey Puan Salmah! What’s up?</option><option value="b">Dear Puan Salmah, thank you for your email about the leadership workshop.</option><option value="c">Yo, got your message about the thing.</option></select><button class="primary" id="check-opening">Check my tone</button><p id="opening-feedback" class="feedback" role="status"></p></article></div>
+  <p id="drill-progress" class="progress-note" role="status">0 of 3 drills checked.</p>
+  <button class="primary" data-next="3">Try it on your own →</button>
+</section>
+
+<section data-panel="3" hidden aria-labelledby="youdo-title">
+  <div class="section-heading"><div><span class="eyebrow">04 / YOU DO · INDEPENDENT PRACTICE</span><h2 id="youdo-title">Your task.<br>Your draft.</h2></div><p>1. Choose a task and read the prompt. 2. Plan with the PEEL planner (or the notes for Task 1). 3. Start the timer. 4. Write. Your plan and draft save separately for each task.</p></div>
+  <div class="split"><article class="paper"><label for="task-choice">Choose a writing task</label><select id="task-choice"><option value="t2a">Task 2 · Internships before graduating</option><option value="t2b">Task 2 · Online vs face-to-face learning</option><option value="t1">Task 1 · Reply to Puan Salmah (email)</option></select><div class="prompt-box" id="task-prompt" aria-live="polite"></div><button id="hint-toggle" aria-expanded="true">Hide PEEL hints</button><div id="hint-box" class="tip"></div><h3>My planner</h3><div class="peel-plan" id="planner"></div><p id="plan-status" class="small" role="status">Your plan saves in this browser as you type.</p></article><article class="paper"><div class="timer"><span class="label">FOCUS TIME / PRACTICE PRESETS</span><label for="timer-mode">Choose your round</label><select id="timer-mode"></select><div class="timer-ring"><span id="time" role="timer" aria-label="Time remaining">50:00</span></div><div class="actions"><button class="primary" id="timer-start">Start timer</button><button id="timer-reset">Reset</button></div><p id="timer-status" role="status"></p></div><label for="draft">My draft</label><textarea id="draft" rows="16" maxlength="12000" placeholder="Write your response here."></textarea><div class="counter"><span id="word-count">0 words</span><progress id="word-bar" max="250" value="0" aria-label="Words towards the minimum"></progress><span id="word-target">/ 250</span></div><div class="actions"><button class="primary" id="review-draft">Quick check my draft ↗</button><button id="download-draft">Download this draft ↓</button></div><p id="draft-feedback" class="feedback" role="status"></p></article></div>
+  <button class="primary" data-next="4">Review my work →</button>
+</section>
+
+<section data-panel="4" hidden aria-labelledby="check-title">
+  <div class="section-heading"><div><span class="eyebrow">05 / CHECK &amp; IMPROVE</span><h2 id="check-title">Review like an examiner.<br>Revise one thing.</h2></div><p>Reread your draft against the four MUET criteria: task fulfilment, organisation, structure and lexis. Ticks are your own judgement, not an automated mark or band.</p></div>
+  <article class="paper"><span class="label">SENTENCE UPGRADE</span><h3>Make one weak sentence stronger.</h3><p class="small">Example. Basic: “Internships are good. Students learn many things.” Developed: “Internships let students apply classroom theory to real problems, such as using a costing method on an actual project budget.”</p><div class="two-col"><div><label for="upgrade-before">Copy one sentence from my draft</label><textarea id="upgrade-before" rows="3" maxlength="800"></textarea></div><div><label for="upgrade-after">My developed version</label><textarea id="upgrade-after" rows="3" maxlength="800"></textarea></div></div></article>
+  <div class="two-col">
+    <article class="paper">
+      <h3>My writing checklist</h3>
+      <div id="self-checks"></div>
+      
+      <label for="improvement">One change for my next attempt</label><textarea id="improvement" rows="3" maxlength="1000" placeholder="For example: add an explanation sentence after each topic sentence."></textarea>
+      <button class="primary" data-next="3">Return and try again ↗</button>
+    </article>
+    <article class="teal paper">
+      <span class="label">COMPARE TWO ATTEMPTS</span>
+      <h3>Redraft one paragraph.</h3>
+      <ol class="route"><li>Choose your weakest paragraph.</li><li>Rewrite it in Step 04 with one improvement.</li><li>Explain what is better now.</li></ol>
+      <label for="comparison">What changed when I tried again?</label><textarea id="comparison" rows="4" maxlength="1500" placeholder="My second paragraph now explains why, because…"></textarea>
+      <button class="primary" data-next="5">Save my reflection →</button>
+    </article>
+  </div>
+</section>
+
+<section data-panel="5" hidden aria-labelledby="reflect-title">
+  <div class="section-heading"><div><span class="eyebrow">06 / REFLECT &amp; NEXT</span><h2 id="reflect-title">Keep the learning.<br>Take the next step.</h2></div><p>Think about your own attempt. Save a short reflection so you know what to work on next.</p></div>
+  <div class="two-col">
+    <form class="paper" id="reflection-form">
+      <label for="technique">Which technique helped most?</label><select id="technique"><option value="">Choose your technique</option></select>
+      <label for="next-change">What will you do differently next time?</label><textarea id="next-change" required rows="3" maxlength="1000" placeholder="One specific action…"></textarea>
+      <label for="confidence">My confidence now: <output id="confidence-value">3</output> / 5</label><input id="confidence" type="range" min="1" max="5" value="3">
+      <p class="small">1 = need support · 3 = developing · 5 = comfortable trying independently</p>
+      <button class="primary" type="submit">Save my reflection ✓</button>
+      <p id="reflection-status" role="status"></p>
+    </form>
+    <article class="purple paper">
+      <span class="label">MY LEARNING RECORD</span>
+      <h3>A small step counts.</h3>
+      <p id="summary">Your checked drills and reflections will appear here.</p>
+      <div class="actions"><button id="export-record">Export my lab record ↓</button><button id="reset-lab">Reset this lab</button></div>
+      <p class="small">Answers, drafts and reflections stay in this browser. Missed items are saved for a later “Review again” set. Export before clearing browser data.</p>
+      <h3>Continue learning</h3>
+      <a href="../guides/writing.html">Revisit the Writing guide ↗</a>
+      <a href="../book/index.html#page=38">Read the Writing chapter ↗</a>
+      <a href="../book/index.html#page=42">Play the chapter game ↗</a>
+      <a href="../me.html">See my progress on Me ↗</a>
+    </article>
+  </div>
+  <div class="paper" id="reflection-history"><h3>My reflection timeline</h3><div id="history-list"></div></div>
+</section>
+</div>
+<div class="step-footer"><button id="previous">← Previous step</button><span id="step-status" role="status">Step 1 of 6</span><button class="primary" id="next">Next step →</button></div>
+</main>
+<footer><span>Smart MUET · Learn → Practise → Reflect</span><span>English Language Unit · Politeknik Port Dickson</span></footer>
+<dialog id="reset-dialog">
+  <h2>Reset this Writing Lab?</h2>
+  <p>This removes its answers, drafts, checks and reflections from this browser. Export anything you want to keep first. Other Smart MUET modules are unaffected.</p>
+  <button id="cancel-reset">Keep my work</button><button id="confirm-reset">Reset lab</button>
+</dialog>
+<noscript><p>Please enable JavaScript for the lab, or open the <a href="../guides/writing.html">Writing guide</a>.</p></noscript>
+</body>
+</html>

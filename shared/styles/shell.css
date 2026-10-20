@@ -1,0 +1,759 @@
+/* Smart MUET Hub · shared shell (header, page band, footer, type scale).
+   Loaded on every page by shared/js/navigation.js. One frame for all pages; content inside stays page-specific. */
+
+@font-face{font-family:Poppins;src:url('../fonts/poppins-600.woff2') format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:Poppins;src:url('../fonts/poppins-700.woff2') format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:Poppins;src:url('../fonts/poppins-800.woff2') format('woff2');font-weight:800;font-display:swap}
+/* Headings across the Hub use Manrope by name; point the bold weights at Poppins so every page shares one display face. */
+@font-face{font-family:Manrope;src:url('../fonts/poppins-700.woff2') format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:Manrope;src:url('../fonts/poppins-800.woff2') format('woff2');font-weight:800;font-display:swap}
+
+:root{
+  --s-paper:#f5f7ff; --s-card:#fff; --s-ink:#142b68; --s-soft:#44507a; --s-line:#d9dff5;
+  --s-cobalt:#3b5bff; --s-yellow:#ffcc33; --s-plum:#e0479e; --s-mint:#4cc9a6; --s-pink:#e0479e; --s-orange:#ff754a;
+  --s-display:Poppins,Manrope,"Segoe UI",Arial,sans-serif; --s-body:DM,"DM Sans",Arial,sans-serif;
+  --s-gutter:max(16px,4vw);
+  /* frame colours · light is the default; "dark" is a learner setting (Theme button in the header) */
+  --f-bar:#ffffff; --f-fg:#142b68; --f-soft:#44507a; --f-line:#142b682e; --f-edge:#d9dff5;
+  --f-on:#3b5bff; --f-on-fg:#ffffff; --f-hover:#142b68;
+  --f-foot:#3b5bff; --f-foot-fg:#ffffff; --f-foot-soft:#dfe2ff; --f-foot-line:#ffffff33;
+  --f-hero:#e6ebff; --f-hero-fg:#142b68; --f-hero-soft:#4a4e5c; --f-accent:#3b5bff;
+  --f-tile:#ffffff; --f-tile-line:#d2d8f0; --f-chip-line:#142b682e;
+}
+html[data-smh-theme="dark"]{
+  --f-bar:#142b68; --f-fg:#ffffff; --f-soft:#b8bbc8; --f-line:#ffffff3d; --f-edge:#142b68;
+  --f-on:#ffffff; --f-on-fg:#142b68; --f-hover:#ffffff;
+  --f-foot:#142b68; --f-foot-fg:#ffffff; --f-foot-soft:#b8bbc8; --f-foot-line:#ffffff1f;
+  --f-hero:#142b68; --f-hero-fg:#ffffff; --f-hero-soft:#d2d5df; --f-accent:#ffcc33;
+  --f-tile:#ffffff12; --f-tile-line:#ffffff24; --f-chip-line:#ffffff2e;
+}
+
+/* ---------- readable type everywhere ---------- */
+html.smh-shell body{font-size:17px;line-height:1.65}
+html.smh-shell main p:not([class*="small"]):not([class*="eyebrow"]):not([class*="note"]):not(.hello):not(.red-hello):not(.handwritten):not(.lead),
+html.smh-shell main li,
+html.smh-shell main label{font-size:max(16px,1em)}
+html.smh-shell .eyebrow,html.smh-shell [class*="eyebrow"]{font-size:max(12px,1em)!important;letter-spacing:.12em}
+html.smh-shell .small,html.smh-shell small{font-size:max(13px,.85em)}
+
+/* ---------- hide the old per-page frames ---------- */
+html.smh-shell body>header:not(.smh-header),html.smh-shell .smh-location,html.smh-shell body>footer:not(.smh-footer){display:none!important}
+html.smh-shell.smh-focus .smh-nav{display:none!important}
+html.smh-shell.smh-focus body{padding-bottom:0!important}
+
+[hidden]{display:none!important}
+html.smh-shell{scroll-padding-top:150px}
+/* neutralise page-level element rules (header{…}, footer{…}, nav{…}) so the shell looks the same everywhere */
+html.smh-shell .smh-header,html.smh-shell .smh-footer,html.smh-shell .smh-band{display:block!important;margin:0;padding:0!important;border-radius:0!important;box-shadow:none!important;width:auto!important;max-width:none!important;height:auto!important;min-height:0!important;text-align:left!important}
+html.smh-shell .smh-header{border:0!important}
+html.smh-shell .smh-footer{margin-top:48px}
+html.smh-shell .smh-menu,html.smh-shell .smh-crumbs{position:static!important;background:none!important;border:0!important;box-shadow:none!important;padding:0!important;margin:0!important;width:auto!important;height:auto!important}
+
+/* ---------- header ---------- */
+.smh-header{position:sticky;top:0;z-index:150;background:var(--f-bar);color:var(--f-fg);box-shadow:0 1px 0 var(--f-edge)!important;font-family:var(--s-body)}
+.smh-header .in{max-width:1320px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:12px var(--s-gutter)}
+.smh-logo{display:flex;align-items:center;gap:10px;color:var(--f-fg)!important;text-decoration:none!important;margin-right:auto;min-width:0}
+.smh-logo img{width:38px;height:38px;flex:none;background:#fff;border-radius:50%;padding:3px;box-sizing:border-box}
+.smh-logo b{font:800 18px/1.05 var(--s-display);letter-spacing:-.02em;white-space:nowrap}
+.smh-logo small{display:block;font:700 11px/1.3 var(--s-body);letter-spacing:.14em;text-transform:uppercase;color:var(--f-soft);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.smh-menu{display:flex;gap:6px}
+.smh-menu a{color:var(--f-fg)!important;text-decoration:none!important;border:1px solid var(--f-line);border-radius:99px;padding:9px 16px;font:700 15px/1 var(--s-body);white-space:nowrap}
+.smh-menu a:hover{border-color:var(--f-hover)}
+.smh-menu a[aria-current="page"]{background:var(--f-on);color:var(--f-on-fg)!important;border-color:var(--f-on)}
+.smh-cta{display:inline-flex;align-items:center;gap:8px;min-height:44px;background:var(--s-yellow);color:var(--s-ink)!important;text-decoration:none!important;border-radius:99px;padding:0 18px;font:700 15px/1 var(--s-body);white-space:nowrap}
+.smh-cta:hover{filter:brightness(1.06);box-shadow:0 0 0 2px var(--f-hover)}
+.smh-exit{display:inline-flex;align-items:center;gap:8px;min-height:44px;border:1px solid var(--f-line);border-radius:99px;padding:0 16px;color:var(--f-fg)!important;text-decoration:none!important;font:700 15px/1 var(--s-body);white-space:nowrap}
+.smh-exit:hover{border-color:var(--f-hover)}
+.smh-theme{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:44px;min-height:44px;border:1px solid var(--f-line);border-radius:99px;background:none;color:var(--f-fg);padding:0 12px;font:700 14px/1 var(--s-body);cursor:pointer}
+.smh-theme:hover{border-color:var(--f-hover)}
+.smh-theme svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+@media (max-width:640px){.smh-theme span{display:none}.smh-theme{padding:0}}
+@media (max-width:1060px){.smh-menu{display:none}}
+@media (max-width:640px){
+  .smh-logo small{display:none}.smh-logo b{font-size:16px}
+  .smh-tools>*{padding:0 10px!important}
+  .smh-tools .smh-tool-label{display:none}
+  .smh-cta{padding:0 14px;font-size:14px}
+}
+
+/* ---------- page band: one tidy line under the header, the same on every page ---------- */
+.smh-band{background:var(--f-bar);color:var(--f-fg);border-bottom:1px solid var(--f-edge)!important;font-family:var(--s-body)}
+html[data-paper] .smh-band{border-bottom:4px solid var(--paper)!important}
+.smh-band .in{max-width:1320px;margin:0 auto;padding:10px var(--s-gutter);display:flex;flex-wrap:nowrap;align-items:center;gap:10px}
+.smh-crumbs{flex:1 1 auto;min-width:0;display:flex!important;flex-wrap:nowrap;align-items:center;gap:7px;overflow:hidden;white-space:nowrap;font:700 14px/1.3 var(--s-body);color:var(--f-soft)}
+.smh-crumbs a{color:var(--f-soft)!important;text-decoration:none!important;flex:none}
+.smh-crumbs a:hover{color:var(--f-fg)!important;text-decoration:underline!important}
+.smh-crumbs span[aria-hidden]{color:var(--f-soft);opacity:.55;flex:none}
+.smh-crumbs b{color:var(--f-fg);min-width:0;overflow:hidden;text-overflow:ellipsis}
+.smh-tools{flex:none;display:flex;gap:6px;align-items:center}
+.smh-tools>*{color:var(--f-fg)!important;background:transparent!important;border:1px solid var(--f-line)!important;border-radius:99px!important;min-height:36px;padding:0 12px!important;font:700 13px/1 var(--s-body)!important;display:inline-flex!important;align-items:center;gap:6px;cursor:pointer;white-space:nowrap;box-shadow:none!important;margin:0!important}
+.smh-tools>*:hover{border-color:var(--f-hover)!important}
+.smh-tools>[aria-pressed="true"]{background:var(--f-fg)!important;color:var(--f-bar)!important}
+.smh-band .code{flex:none;font:700 12px/1 var(--s-body);letter-spacing:.12em;text-transform:uppercase;background:var(--paper,#3b5bff);color:var(--paper-fg,#fff);border-radius:99px;padding:8px 12px;white-space:nowrap}
+html:not([data-paper]) .smh-band .code{background:transparent;color:var(--f-fg);border:1px solid var(--f-line)}
+@media (max-width:640px){
+  .smh-band .in{flex-wrap:wrap;row-gap:8px;padding-top:9px;padding-bottom:9px}
+  .smh-crumbs{font-size:13px}
+  /* phone: show only the last two steps of the trail; the logo already goes Home */
+  .smh-crumbs>*:not(:nth-last-child(-n+3)){display:none}
+  .smh-tools{order:3;flex:1 1 100%;overflow-x:auto;scrollbar-width:none}
+  .smh-tools::-webkit-scrollbar{display:none}
+}
+
+/* ---------- footer ---------- */
+.smh-footer{background:var(--f-foot);color:var(--f-foot-soft);font:400 15px/1.6 var(--s-body);margin-top:48px}
+.smh-footer .in{max-width:1320px;margin:0 auto;padding:30px var(--s-gutter) 34px;display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:24px}
+.smh-footer b{display:block;color:var(--f-foot-fg);font:800 18px var(--s-display);margin-bottom:6px}
+.smh-footer h2{font:700 12px var(--s-body);letter-spacing:.14em;text-transform:uppercase;color:var(--f-foot-soft);opacity:.85;margin:0 0 8px}
+.smh-footer a{display:block;color:#fff!important;text-decoration:none!important;padding:4px 0;font-weight:700}
+.smh-footer a:hover{color:var(--s-yellow)!important}
+.smh-footer .fine{grid-column:1/-1;border-top:1px solid #ffffff1f;padding-top:14px;font-size:14px}
+@media (max-width:760px){.smh-footer .in{grid-template-columns:1fr 1fr}.smh-footer .in>div:first-child{grid-column:1/-1}}
+
+/* focus visibility */
+.smh-header a:focus-visible,.smh-header button:focus-visible,.smh-band a:focus-visible,.smh-footer a:focus-visible{outline:3px solid var(--s-orange);outline-offset:3px}
+.smh-skip{position:fixed;left:12px;top:-80px;z-index:200;background:var(--s-yellow);color:var(--s-ink);padding:12px 18px;border-radius:12px;font:700 15px var(--s-body)}
+.smh-skip:focus{top:12px}
+
+/* =====================================================================
+   Standard components · the same on every page
+   ===================================================================== */
+
+/* paper colours, matched to the eBook chapters */
+/* eBook cover colours: Listening blue · Speaking green · Reading yellow · Writing fuchsia.
+   --paper-text is the same colour, darkened where needed so small text stays readable on cream. */
+:root{--p-listening:#ffcc33;--p-speaking:#4cc9a6;--p-reading:#ff754a;--p-writing:#e0479e;--paper:#3b5bff;--paper-fg:#fff;--paper-text:#3b5bff}
+html[data-paper="listening"]{--paper:var(--p-listening);--paper-fg:#142b68;--paper-text:#b98800}
+html[data-paper="speaking"]{--paper:var(--p-speaking);--paper-fg:#142b68;--paper-text:#1b8f6f}
+html[data-paper="reading"]{--paper:var(--p-reading);--paper-fg:#142b68;--paper-text:#e2511f}
+html[data-paper="writing"]{--paper:var(--p-writing);--paper-fg:#fff;--paper-text:#b8247a}
+
+/* one display face everywhere (vault pages used Sora) */
+html.smh-shell body{font-family:var(--s-body)}
+html.smh-shell :is(h1,h2,h3){font-family:var(--s-display)}
+
+/* the handwritten greeting ("Hello, confident you!") */
+html.smh-shell main :is(.hello,.red-hello,.handwritten){
+  font:italic 800 clamp(30px,3.6vw,46px)/1.25 var(--s-display)!important;
+  color:#e2511f!important;letter-spacing:-.025em!important;text-transform:none!important;
+  rotate:-3deg;transform-origin:left;display:block;position:relative;isolation:isolate;
+  width:fit-content;max-width:100%;margin:18px 0 28px!important}
+html.smh-shell main :is(.hello,.red-hello,.handwritten)::after{
+  content:""!important;position:absolute;left:8%;bottom:-8px;width:70%;height:6px;
+  background:#ffcc33!important;border-radius:4px;rotate:-2deg;z-index:-1}
+
+/* the big two-line page heading under the greeting */
+html.smh-shell main h1.smh-h1{
+  font-family:var(--s-display)!important;font-weight:800!important;
+  font-size:clamp(42px,6vw,78px)!important;line-height:1.02!important;letter-spacing:-.04em!important;
+  color:var(--s-ink)}
+html.smh-shell main h1.smh-h1 :is(em,span){font-style:normal;color:var(--s-cobalt)!important}
+html[data-paper] main h1.smh-h1 :is(em,span){color:var(--paper-text)!important}
+html.smh-shell main h1.smh-h1 + :is(p,.lead){font-size:clamp(17px,1.6vw,19px)!important;line-height:1.6;color:var(--s-soft);max-width:46ch}
+
+/* small capital labels above headings */
+html.smh-shell main .eyebrow{font:700 13px/1.3 var(--s-body)!important;letter-spacing:.14em!important;text-transform:uppercase}
+html[data-paper] main .eyebrow{color:var(--paper-text)}
+
+/* buttons: one size, one shape */
+html.smh-shell main :is(.button,.pill,.primary,.back,.cam-btn,.submit-button,.h-btn){
+  font-family:var(--s-body)!important;font-weight:700!important;font-size:16px!important;
+  min-height:48px;border-radius:99px!important;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+html.smh-shell main :is(.button.primary,a.primary,button.primary,.submit-button){background:var(--s-cobalt);border-color:var(--s-cobalt);color:#fff}
+html[data-paper] main :is(.button.primary,a.primary,button.primary){background:var(--paper)!important;border-color:var(--paper)!important;color:var(--paper-fg)!important}
+
+/* practice papers (Vault, Mock) colour their headings by paper too */
+html.smh-focus[data-paper] main h1 :is(em,span){color:var(--paper-text)!important}
+
+/* Arcade uses the eBook's Game Zone colours: yellow with purple */
+html[data-paper="arcade"]{--paper:#ffcc33;--paper-fg:#142b68}
+html[data-paper="arcade"] main h1.smh-h1 :is(em,span),html.smh-focus[data-paper="arcade"] main h1 :is(em,span){color:#3b5bff!important}
+html[data-paper="arcade"] main .eyebrow{color:#3b5bff}
+html[data-paper="arcade"] main :is(.button.primary,a.primary,button.primary){background:#3b5bff!important;border-color:#3b5bff!important;color:#fff!important}
+
+/* =====================================================================
+   Folders + tips · the same component on Learn, Vault, Labs and Arcade
+   <div class="smh-folders"> <details class="smh-folder f-listening"> …
+   <section class="smh-tips"> sticky notes "how to try it"
+   ===================================================================== */
+.smh-sec{max-width:1320px;margin:0 auto;padding:44px var(--s-gutter) 8px}
+.smh-sec-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:10px 30px;margin-bottom:8px}
+.smh-sec-head h2{font:800 clamp(30px,4.4vw,50px)/1.04 var(--s-display)!important;letter-spacing:-.035em!important;margin:8px 0 0!important;color:var(--s-ink)}
+.smh-sec-head p{max-width:46ch;color:var(--s-soft);margin:0}
+.smh-folders{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:34px 18px;align-items:start;padding-top:22px}
+.smh-folders.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:1000px){.smh-folders,.smh-folders.three{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.smh-folders,.smh-folders.three{grid-template-columns:1fr}}
+.smh-folder{--fc:#3b5bff;--ff:#fff;position:relative;isolation:isolate;background:var(--fc);color:var(--ff);border-radius:6px 26px 26px 26px;font-family:var(--s-body)}
+.smh-folder::before{content:"";position:absolute;top:-17px;left:0;width:46%;height:24px;background:var(--fc);border-radius:14px 14px 0 0;z-index:-1}
+.smh-folder>summary{list-style:none;cursor:pointer;padding:22px 20px 20px;min-height:178px;display:flex;flex-direction:column;gap:6px;position:relative}
+.smh-folder>summary::-webkit-details-marker{display:none}
+.smh-folder>summary .ft{font:700 12px/1.3 var(--s-body);letter-spacing:.12em;text-transform:uppercase;opacity:.9}
+.smh-folder>summary h3{font:800 clamp(26px,2.6vw,32px)/1.02 var(--s-display)!important;letter-spacing:-.03em!important;margin:14px 0 0!important;color:inherit!important}
+.smh-folder>summary h3 small{display:block;font:700 15px/1.3 var(--s-body)!important;letter-spacing:0;margin-top:6px;opacity:.92}
+.smh-folder>summary .st{align-self:flex-start;margin-top:auto;font:700 12px/1 var(--s-body);letter-spacing:.06em;text-transform:uppercase;background:#ffffff2e;border-radius:99px;padding:7px 11px}
+.smh-folder>summary .st:empty{display:none}
+.smh-folder>summary i{position:absolute;right:18px;bottom:16px;font-style:normal;font-size:24px;line-height:1;transition:rotate .2s}
+.smh-folder[open]>summary i{rotate:90deg}
+.smh-folder>summary:focus-visible{outline:3px solid var(--s-ink);outline-offset:4px;border-radius:6px 26px 26px 26px}
+.smh-folder .fb{padding:0 20px 22px;display:grid;gap:12px}
+.smh-folder .fb>p{margin:0;font-size:16px;line-height:1.55}
+.smh-folder .trick{background:#ffffff26;border-radius:16px;padding:14px 16px}
+.smh-folder .trick b{display:block;font:700 12px/1.3 var(--s-body);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
+.smh-folder .trick ol,.smh-folder .trick ul{margin:0;padding-left:20px;display:grid;gap:5px}
+.smh-folder .trick li{font-size:15px!important;line-height:1.45}
+.smh-folder .score{font:800 28px/1 var(--s-display);margin:0}
+.smh-folder .score small{font:700 14px var(--s-body)}
+html.smh-shell main .smh-folder :is(.button,.button.primary){justify-self:start;background:#fff!important;color:#142b68!important;border:0!important;padding:0 22px;text-decoration:none!important}
+html.smh-shell main .smh-folder a:not(.button){color:inherit!important;text-decoration:underline;text-underline-offset:4px;font-weight:700}
+.smh-folder .rec-tag{position:absolute;top:-30px;right:12px;z-index:2}
+.smh-folder.done>summary .st{background:#fff;color:#142b68}
+.f-listening{--fc:#ffcc33;--ff:#142b68}.f-speaking{--fc:#4cc9a6;--ff:#142b68}.f-reading{--fc:#ff754a;--ff:#142b68}.f-writing{--fc:#e0479e;--ff:#fff}
+.f-yellow{--fc:#ffcc33;--ff:#142b68}.f-purple{--fc:#3b5bff;--ff:#fff}.f-ink{--fc:#142b68;--ff:#fff}.f-mint{--fc:#4cc9a6;--ff:#142b68}.f-cream{--fc:#fff6dd;--ff:#142b68}
+:is(.f-listening,.f-speaking,.f-reading,.f-yellow,.f-mint,.f-cream) .trick{background:#ffffff80}
+:is(.f-listening,.f-speaking,.f-reading,.f-yellow,.f-mint,.f-cream)>summary .st{background:#ffffffb0}
+.f-cream{box-shadow:inset 0 0 0 1px #142b681f}
+html.smh-shell main .f-ink :is(.button,.button.primary),html.smh-shell main .f-purple :is(.button,.button.primary){background:#ffcc33!important}
+html.smh-shell main .f-yellow :is(.button,.button.primary),html.smh-shell main .f-cream :is(.button,.button.primary){background:#142b68!important;color:#fff!important}
+@media (prefers-reduced-motion:reduce){.smh-folder>summary i{transition:none}}
+
+/* tips & tricks: sticky notes on a lilac board */
+.smh-tips{max-width:1320px;margin:40px auto 10px;padding:0 var(--s-gutter)}
+.smh-tips .board{background:#e4e8f5;border-radius:28px;display:grid;grid-template-columns:.85fr 1.15fr;gap:40px;padding:40px}
+@media(max-width:860px){.smh-tips .board{grid-template-columns:1fr;gap:20px;padding:28px 20px}}
+.smh-tips h2{font:800 clamp(30px,4vw,46px)/1.04 var(--s-display)!important;letter-spacing:-.035em!important;margin:10px 0 12px!important;color:#142b68}
+.smh-tips .board>div:first-child p{color:#44507a}
+.smh-tips .notes{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start;padding:14px 0}
+@media(max-width:560px){.smh-tips .notes{grid-template-columns:1fr}}
+.smh-note{position:relative;padding:24px 20px;box-shadow:6px 8px 0 #23273712;rotate:-3deg;color:#142b68;background:#fffaf0}
+.smh-note::before{content:"";position:absolute;top:-9px;left:36%;width:64px;height:22px;background:#d5ad4370;rotate:5deg}
+.smh-note>span{font:700 12px/1.2 var(--s-body);letter-spacing:.1em;text-transform:uppercase}
+.smh-note h3{font:800 28px/1.05 var(--s-display)!important;letter-spacing:-.03em!important;margin:14px 0 8px!important;color:#142b68!important}
+.smh-note p{margin:0;font-size:16px;line-height:1.5}
+.smh-note:nth-child(2){rotate:3deg;margin-top:26px;background:#ffcc33}
+.smh-note:nth-child(3){grid-column:1/-1;rotate:-1deg;background:#4cc9a6}
+.smh-note:nth-child(4){rotate:2deg;background:#ffd0e8}
+.smh-tips .notes:has(.smh-note:nth-child(4)) .smh-note:nth-child(3){grid-column:auto}
+@media(max-width:560px){.smh-note,.smh-note:nth-child(n){rotate:0deg;margin-top:0;grid-column:auto}}
+html[data-smh-theme="dark"] .smh-sec-head h2{color:#fff}
+html[data-smh-theme="dark"] .smh-sec-head p{color:#d2d5df}
+/* inside pages whose <main> already has side padding */
+main .smh-sec{padding-left:0;padding-right:0}
+main .smh-tips{padding:0}
+.smh-folder .level-top{display:flex;align-items:center;gap:10px;margin:6px 0 0}
+.smh-folder .level-top b{font-size:14px}
+.smh-folder .level-top .smh-ring{width:58px!important;height:58px!important}
+.smh-folder.recommended{outline:4px solid #142b68;outline-offset:4px}
+.smh-folder.level-card{border:0!important}
+.smh-folder.level-card.done,.smh-folder.comp-card.done{background:var(--fc)!important}
+
+/* =====================================================================
+   Vault 1 · Vault 2 · Mock 1 paper pages: same palette, fonts and folder style as the rest of the Hub
+   ===================================================================== */
+html.smh-paperpage{--blue:#3b5bff;--violet:#3b5bff;--pink:#e0479e;--cyan:#1b8f6f;--gold:#ffcc33;--lime:#4cc9a6;--orange:#ff754a;--red:#e2511f;
+  --ink:#142b68;--muted:#44507a;--line:1.5px solid #142b6826;--shadow:0 3px 0 #142b6814;--fh:Poppins,Manrope,Arial,sans-serif;--fb:"DM Sans",Arial,sans-serif}
+html.smh-paperpage body{background:color-mix(in srgb,var(--paper) 12%,#f5f7ff)!important}
+html.smh-paperpage .app{background:transparent!important}
+html.smh-paperpage .top .brand img{display:none}
+html.smh-paperpage .top .brand small{color:var(--paper)!important;font-size:12px!important;letter-spacing:.12em}
+html[data-paper="reading"].smh-paperpage .top .brand small{color:var(--paper-text)!important}
+html.smh-paperpage .hero{border:0!important;border-top:12px solid var(--paper)!important;border-radius:6px 26px 26px 26px!important;box-shadow:0 3px 0 #142b6814!important}
+html.smh-paperpage .hero:after{display:none}
+html.smh-paperpage .tag{background:var(--paper)!important;color:var(--paper-fg)!important}
+html.smh-paperpage .part{border:0!important;border-radius:6px 22px 22px 22px!important;box-shadow:0 3px 0 #142b6814!important;margin-bottom:16px!important;background:#fff}
+html.smh-paperpage .part-head{background:var(--paper)!important;color:var(--paper-fg)!important;border-radius:6px 22px 0 0}
+html.smh-paperpage .part:not(.open) .part-head{border-radius:6px 22px 22px 22px}
+html.smh-paperpage .part-head :is(b,span,.chev){color:var(--paper-fg)!important}
+html.smh-paperpage .part-title span{opacity:.85}
+html.smh-paperpage .part-num{border:0!important;background:#fff!important;color:#142b68!important}
+html.smh-paperpage .part-body{border-top:0!important}
+html.smh-paperpage .tech{background:#142b68!important;border:0!important;box-shadow:none!important;border-radius:22px!important}
+html.smh-paperpage .techgrid div{border:0!important}
+html.smh-paperpage .techgrid div:nth-child(1){background:#3b5bff!important;color:#fff!important}
+html.smh-paperpage .techgrid div:nth-child(2){background:#ffcc33!important;color:#142b68!important}
+html.smh-paperpage .techgrid div:nth-child(3){background:#1b8f6f!important;color:#fff!important}
+html.smh-paperpage .techgrid div:nth-child(4){background:#e0479e!important;color:#fff!important}
+html.smh-paperpage :is(.part-submit,.final-submit){background:var(--paper)!important;color:var(--paper-fg)!important;border:0!important;box-shadow:none!important;border-radius:99px!important;font-size:15px!important;font-family:var(--s-body)!important}
+html.smh-paperpage .back{box-shadow:none!important;border:1.5px solid #142b6833!important}
+
+/* ---------- Practice page: three big folders with item rows ---------- */
+.pf-grid .smh-folder>summary{min-height:200px}
+.pf-list{display:grid;gap:8px}
+.pf-row{position:relative;display:grid;grid-template-columns:14px 1fr auto auto;align-items:center;gap:12px;background:#fff;color:#142b68!important;text-decoration:none!important;border-radius:16px;padding:12px 14px;min-height:60px;transition:transform .15s}
+.pf-row:hover{transform:translateX(4px)}
+.pf-row .dot{width:14px;height:14px;border-radius:50%;background:var(--rc,#3b5bff)}
+.pf-row .txt b,.pf-row .txt h3{display:block;font:800 16px/1.25 var(--s-display)!important;margin:0!important;color:#142b68!important;letter-spacing:-.01em!important}
+.pf-row .txt small{display:block;font:500 14px/1.35 var(--s-body);color:#44507a;margin-top:2px}
+.pf-row .go{font-weight:800;font-size:18px}
+.pf-row .pill-st{font:700 12px/1 var(--s-body);background:#eef0f8;border-radius:99px;padding:6px 9px;white-space:nowrap}
+.pf-row .pill-st:empty{display:none}
+.pf-row .level-top{grid-column:2;margin:0 0 4px!important;display:flex;align-items:center;gap:8px}
+.pf-row .level-top .smh-ring{width:34px!important;height:34px!important}
+.pf-row .level-top b{font-size:12px!important}
+.pf-row .txt{display:flex;flex-direction:column}
+.pf-row.level-card .txt{order:0}
+.pf-row .rec-tag{position:absolute;top:-10px;right:14px;font-size:10px}
+.pf-row.recommended{outline:3px solid #ffcc33;outline-offset:2px}
+.r-listening{--rc:#ffcc33}.r-speaking{--rc:#4cc9a6}.r-reading{--rc:#ff754a}.r-writing{--rc:#e0479e}.r-mint{--rc:#4cc9a6}.r-cream{--rc:#e9bf12}
+.r-yellow{--rc:#ffcc33}.r-purple{--rc:#3b5bff}.r-ink{--rc:#142b68}
+@media (prefers-reduced-motion:reduce){.pf-row{transition:none}.pf-row:hover{transform:none}}
+
+/* =====================================================================
+   Header v2 · one design on every page (logo + name, pill nav group, raised buttons)
+   ===================================================================== */
+.smh-header .in{gap:14px;padding:14px var(--s-gutter)}
+.smh-logo{gap:12px}
+.smh-logo img{width:clamp(44px,4.2vw,56px)!important;height:clamp(44px,4.2vw,56px)!important;padding:0!important;background:none!important;border-radius:12px!important}
+.smh-logo b{font:800 clamp(20px,2.1vw,28px)/1 var(--s-display)!important;letter-spacing:-.03em!important}
+.smh-logo small{font-size:clamp(10px,.9vw,12px)!important;margin-top:5px!important}
+/* the nav sits in one rounded tray; the current page is a filled pill */
+html.smh-shell .smh-menu{gap:2px!important;padding:5px!important;border:2px solid var(--f-fg)!important;border-radius:99px!important;background:var(--f-bar)!important}
+html.smh-shell .smh-menu a{border:0!important;padding:10px clamp(14px,1.4vw,22px)!important;font:600 clamp(15px,1.1vw,17px)/1 var(--s-body)!important;border-radius:99px!important}
+.smh-menu a:hover{background:color-mix(in srgb,var(--f-fg) 8%,transparent)}
+.smh-menu a[aria-current="page"]{background:#3b5bff!important;color:#fff!important}
+/* raised buttons: outline + solid offset shadow, pressed on tap */
+.smh-cta,.smh-exit,.smh-theme{border:2px solid var(--f-fg)!important;box-shadow:0 4px 0 var(--f-fg)!important;min-height:48px!important;font-size:clamp(15px,1.1vw,17px)!important;transition:transform .1s,box-shadow .1s}
+.smh-cta{padding:0 22px!important}
+.smh-exit,.smh-theme{background:var(--f-bar)!important}
+.smh-theme{min-width:48px!important}
+:is(.smh-cta,.smh-exit,.smh-theme):hover{filter:none;transform:translateY(-1px);box-shadow:0 5px 0 var(--f-fg)!important}
+:is(.smh-cta,.smh-exit,.smh-theme):active{transform:translateY(3px);box-shadow:0 1px 0 var(--f-fg)!important}
+@media (prefers-reduced-motion:reduce){:is(.smh-cta,.smh-exit,.smh-theme){transition:none}}
+.smh-header{box-shadow:0 2px 0 var(--f-edge)!important}
+@media (max-width:1180px) and (min-width:1061px){.smh-logo small{display:none}}
+@media (max-width:640px){
+  .smh-header .in{gap:8px;padding:10px 14px}
+  .smh-logo b{font-size:17px!important}
+  .smh-logo{gap:8px}
+  .smh-cta{padding:0 14px!important;font-size:14px!important;min-height:44px!important}
+  .smh-theme,.smh-exit{min-height:44px!important}
+  .smh-theme{min-width:44px!important}
+}
+@media (max-width:385px){.smh-logo b{font-size:15px!important}.smh-logo img{width:38px!important;height:38px!important}.smh-cta{padding:0 11px!important;font-size:13px!important}.smh-header .in{gap:6px;padding:10px 10px}}
+
+/* bottom app bar: bigger icons and labels (phone and tablet) */
+html.smh-shell .smh-nav{padding:8px 6px calc(10px + env(safe-area-inset-bottom))!important;border-top:2px solid #142b68!important}
+html.smh-shell .smh-nav a{max-width:130px!important;min-height:66px!important;font:700 13px/1 var(--s-body)!important;gap:6px!important}
+html.smh-shell .smh-nav a .ico{--ico-size:32px!important;padding:6px 16px!important}
+html.smh-shell .smh-nav a[aria-current="page"]{color:#3b5bff!important}
+html.smh-shell .smh-nav a[aria-current="page"] .ico{background:#e6ebff!important}
+html.smh-shell body:has(.smh-nav){padding-bottom:calc(96px + env(safe-area-inset-bottom))!important}
+@media (min-width:1061px){html.smh-shell .smh-nav{display:none!important}html.smh-shell body:has(.smh-nav){padding-bottom:0!important}}
+
+/* =====================================================================
+   Type scale that grows with the screen: phone · tablet · laptop · PC
+   ===================================================================== */
+html.smh-shell body{font-size:clamp(16px,15px + .3vw,19px)!important;line-height:1.65}
+html.smh-shell main p:not([class*="small"]):not([class*="eyebrow"]):not([class*="note"]):not(.hello):not(.red-hello):not(.handwritten),
+html.smh-shell main li,html.smh-shell main label{font-size:max(16px,1em)}
+html.smh-shell main h2:not([class]){font-size:clamp(28px,3.6vw,46px)}
+html.smh-shell main h3:not([class]){font-size:clamp(20px,1.8vw,26px)}
+html.smh-shell .smh-crumbs{font-size:clamp(13px,1vw,15px)!important}
+html.smh-shell main :is(.button,.pill,.primary,.back,.cam-btn,.submit-button,.h-btn){font-size:clamp(15px,1.1vw,17px)!important}
+@media (min-width:1600px){html.smh-shell .smh-header .in,html.smh-shell .smh-band .in{max-width:1480px}}
+
+/* ---------- Header v3: name stacked beside the logo at the same height, Back button ---------- */
+html.smh-shell .smh-logo{gap:10px}
+html.smh-shell .smh-logo img{width:var(--logo,58px)!important;height:var(--logo,58px)!important}
+html.smh-shell .smh-name{display:flex;flex-direction:column;justify-content:center;height:var(--logo,58px)}
+html.smh-shell .smh-name b{display:block;font:800 calc(var(--logo,58px) * .46)/.98 var(--s-display)!important;letter-spacing:-.035em!important;white-space:nowrap}
+html.smh-shell .smh-name b+b{color:#3b5bff}
+html[data-smh-theme="dark"] .smh-name b+b{color:#ffcc33}
+.smh-header{--logo:clamp(48px,4.4vw,60px)}
+.smh-back{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:48px;min-width:48px;padding:0 18px 0 12px;border-radius:99px;background:var(--f-bar);color:var(--f-fg)!important;text-decoration:none!important;font:700 clamp(15px,1.1vw,17px)/1 var(--s-body);border:2px solid var(--f-fg);box-shadow:0 4px 0 var(--f-fg);transition:transform .1s,box-shadow .1s;white-space:nowrap}
+.smh-back svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.smh-back:hover{transform:translateY(-1px);box-shadow:0 5px 0 var(--f-fg)}
+.smh-back:active{transform:translateY(3px);box-shadow:0 1px 0 var(--f-fg)}
+.smh-back:focus-visible{outline:3px solid var(--s-orange);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){.smh-back{transition:none}}
+@media (max-width:640px){.smh-back span{display:none}.smh-back{padding:0}.smh-crumbs{flex:1 1 0!important}}
+@media (max-width:640px){
+  .smh-header{--logo:44px}
+  .smh-back{min-height:44px;min-width:44px}
+  .smh-header .in{gap:6px!important}
+}
+@media (max-width:385px){.smh-header{--logo:38px}}
+/* theme button: in the header on tablet and computer; on phone hub pages it sits in the band */
+.smh-foot-theme{display:none}
+@media (max-width:640px){
+  html.smh-shell:not(.smh-focus) body:not([data-page-id="home"]) .smh-header .smh-theme:not(.smh-theme-foot){display:none}
+  html.smh-shell:not(.smh-focus) body:not([data-page-id="home"]) .smh-foot-theme{display:block;grid-column:1/-1}
+  .smh-foot-theme .smh-theme{color:#fff!important;border-color:#fff!important;box-shadow:0 3px 0 #fff!important;background:transparent!important;padding:0 16px!important}
+  .smh-foot-theme .smh-theme span{display:inline!important}
+}
+
+/* =====================================================================
+   Stickers: hero picture beside the heading (Practice, Me), centred guide heroes, no yellow blob
+   ===================================================================== */
+.smh-hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(20px,4vw,56px);align-items:center}
+.smh-hero-sticker{width:100%;height:auto;max-height:340px;object-fit:contain;filter:drop-shadow(0 14px 18px #142b6822);animation:smh-float 6s ease-in-out infinite}
+@keyframes smh-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@media (max-width:860px){.smh-hero-grid{grid-template-columns:1fr}.smh-hero-sticker{max-width:520px;margin:0 auto;max-height:260px}}
+@media (prefers-reduced-motion:reduce){.smh-hero-sticker{animation:none}}
+
+/* Learn guide heroes: no yellow blob; the sticker sits in the middle of the card */
+html.smh-shell .hero-collage::before{display:none!important}
+html.smh-shell .hero-collage{display:flex!important;align-items:center;justify-content:center;padding:84px 24px 76px!important;min-height:0!important;aspect-ratio:4/3.1}
+html.smh-shell .hero-collage img{width:86%!important;max-width:560px;max-height:none!important;height:auto;margin:0 auto;filter:drop-shadow(0 16px 18px #142b6826)}
+html.smh-shell .hero-collage .floating-label{left:16px!important;top:-14px!important}
+html.smh-shell .hero-collage .corner-note{right:16px!important;bottom:14px!important}
+@media (max-width:700px){html.smh-shell .hero-collage{aspect-ratio:auto;padding:76px 16px 70px!important}html.smh-shell .hero-collage img{width:92%!important}}
+
+/* Home: the four paper cards show their sticker large and centred */
+html.smh-shell .h-card{min-height:340px;padding:18px 20px 22px}
+html.smh-shell .h-card img{width:100%!important;max-width:none!important;aspect-ratio:16/10!important;object-fit:contain;align-self:center!important;margin:0 0 10px!important;
+  background:#ffffffd9;border-radius:18px;padding:12px;box-sizing:border-box;filter:drop-shadow(0 8px 10px #142b682e);transition:transform .25s}
+html.smh-shell .h-card:hover img{transform:rotate(-3deg) scale(1.04)}
+html.smh-shell .h-card .code{margin-top:4px}
+@media (prefers-reduced-motion:reduce){html.smh-shell .h-card img{transition:none}html.smh-shell .h-card:hover img{transform:none}}
+
+/* =====================================================================
+   Photo heroes: real photo in a white frame on a paper-colour card, with the paper's sticker
+   (Learn guides, Practice, Me). Faces stay clear: label top-left, sticker bottom-right.
+   ===================================================================== */
+html.smh-shell .hero-collage{position:relative!important;display:block!important;aspect-ratio:auto!important;min-height:0!important;max-width:620px;width:100%;
+  padding:22px 26px 46px 14px!important;margin:8px auto 0;background:transparent!important;border-radius:0!important;overflow:visible!important;isolation:isolate}
+html.smh-shell .hero-collage::before{display:block!important;content:""!important;position:absolute;inset:44px 0 18px 40px;background:var(--paper,#3b5bff)!important;border-radius:30px!important;rotate:3deg;z-index:-1}
+html.smh-shell .hero-collage::after{content:"";position:absolute;top:10px;left:42%;width:96px;height:26px;background:#f5d77acc;rotate:-4deg;z-index:2;border-radius:2px}
+html.smh-shell .hero-collage>img:not(.smh-photo-sticker){display:block;width:100%!important;height:auto!important;aspect-ratio:3/2;object-fit:cover!important;max-height:none!important;
+  background:#fff;border:10px solid #fff!important;border-radius:24px!important;box-shadow:0 18px 32px #142b6833!important;rotate:-2deg;animation:none!important;filter:none!important}
+html.smh-shell .smh-photo-sticker{position:absolute;right:-8px;bottom:-8px;width:44%;max-width:270px;height:auto;z-index:3;filter:drop-shadow(0 10px 12px #142b6840)!important;animation:smh-float 6s ease-in-out infinite}
+html.smh-shell .hero-collage .floating-label{display:block!important;position:absolute;left:-8px!important;top:-6px!important;z-index:4;background:#fff;border:2px solid #142b68;box-shadow:4px 5px 0 #142b68;rotate:-5deg;padding:10px 14px!important;font:700 11px/1.3 var(--s-body)!important;letter-spacing:.1em;color:#142b68}
+html.smh-shell .hero-collage .floating-label b{display:block;font:800 19px/1.2 var(--s-display)!important;letter-spacing:-.02em;text-transform:none}
+html.smh-shell .hero-collage .hero-star{display:block!important;position:absolute;right:6px;top:-18px;font-size:58px;z-index:4;color:#e2511f}
+html.smh-shell .hero-collage .corner-note{display:none!important}
+@media (max-width:700px){
+  html.smh-shell .hero-collage{padding:20px 16px 40px 8px!important}
+  html.smh-shell .hero-collage>img:not(.smh-photo-sticker){border-width:7px!important}
+  html.smh-shell .smh-photo-sticker{width:46%;right:-4px;bottom:-6px}
+  html.smh-shell .hero-collage .floating-label{padding:8px 11px!important;font-size:10px!important}
+  html.smh-shell .hero-collage .floating-label b{font-size:16px!important}
+  html.smh-shell .hero-collage .hero-star{font-size:44px;top:-14px}
+}
+@media (prefers-reduced-motion:reduce){html.smh-shell .smh-photo-sticker{animation:none}}
+/* Practice and Me: the photo sits beside the heading */
+.smh-hero-grid .hero-collage{margin-top:0}
+html.smh-shell .hero-collage img.smh-photo-sticker{width:44%!important;max-width:250px!important;margin:0!important;rotate:0deg;border:0!important;background:none!important;aspect-ratio:auto!important;object-fit:contain!important}
+@media (max-width:700px){html.smh-shell .hero-collage img.smh-photo-sticker{width:42%!important;max-width:180px!important}}
+/* sticker sits on the bottom-right corner of the frame, mostly outside the photo, so it never hides the picture */
+html.smh-shell .hero-collage{padding-right:44px!important;padding-bottom:70px!important}
+html.smh-shell .hero-collage img.smh-photo-sticker{width:30%!important;height:auto!important;max-height:none!important;max-width:190px!important;right:-6px!important;bottom:-4px!important;top:auto!important;left:auto!important}
+@media (max-width:700px){
+  html.smh-shell .hero-collage{padding-right:30px!important;padding-bottom:56px!important}
+  html.smh-shell .hero-collage img.smh-photo-sticker{width:32%!important;max-width:140px!important;right:-4px!important;bottom:-2px!important}
+}
+/* Practice: two photos placed apart on a diagonal (girl top-right, boy bottom-left), never side by side;
+   the label sits in the free top-left corner and the sticker in the free bottom-right corner */
+html.smh-shell .smh-photo-pair{position:relative;width:100%;aspect-ratio:1/.84}
+html.smh-shell .hero-collage .smh-photo-pair img{position:absolute;width:56%!important;max-width:none!important;height:auto!important;margin:0!important;animation:none!important;aspect-ratio:4/3;object-fit:cover;background:#fff;border:8px solid #fff;border-radius:20px;box-shadow:0 16px 28px #142b6830}
+html.smh-shell .hero-collage .smh-photo-pair img:first-child{top:0;right:2%;rotate:3deg}
+html.smh-shell .hero-collage .smh-photo-pair img+img{bottom:0;left:2%;rotate:-3deg}
+@media (max-width:700px){html.smh-shell .smh-photo-pair{aspect-ratio:1/1.02}html.smh-shell .hero-collage .smh-photo-pair img{border-width:6px;width:60%!important}}
+
+/* Learn overview "A little structure" board: a progress sticker fills the empty space under the text */
+.brochure-sticker{display:block;width:100%;max-width:380px;height:auto;margin:34px 0 0 -6px;filter:drop-shadow(0 12px 14px #142b6826);animation:smh-float 6s ease-in-out infinite;rotate:-4deg}
+@media (max-width:700px){.brochure-sticker{max-width:260px;margin:18px auto 4px}}
+@media (prefers-reduced-motion:reduce){.brochure-sticker{animation:none}}
+
+/* =====================================================================
+   Me page: MUET results tracker, badges board, XP + streak cards, records, print
+   ===================================================================== */
+.p-listening{--pc:#ffcc33;--pf:#142b68}.p-speaking{--pc:#4cc9a6;--pf:#142b68}.p-reading{--pc:#ff754a;--pf:#142b68}.p-writing{--pc:#e0479e;--pf:#fff}.p-book{--pc:#3b5bff;--pf:#fff}
+.me-tag{display:inline-block;font:700 11px/1 var(--s-body);letter-spacing:.14em;text-transform:uppercase;background:#142b68;color:#fff;border-radius:99px;padding:6px 10px}
+.me-profile{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0 6px}
+.me-profile label{display:grid;gap:6px;font:700 13px var(--s-body);letter-spacing:.06em;text-transform:uppercase;color:#44507a}
+.me-profile :is(input,select){font:600 16px var(--s-body);min-height:48px;border:2px solid #142b68;border-radius:14px;padding:0 14px;background:#fff;color:#142b68;text-transform:none;letter-spacing:0}
+.me-summary{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin:16px 0}
+.me-tile{background:#142b68;color:#fff;border-radius:18px;padding:14px 16px;display:grid;gap:6px;align-content:start}
+.me-tile span{font:700 11px/1.3 var(--s-body);letter-spacing:.12em;text-transform:uppercase;color:#cbcfe0}
+.me-tile b{font:800 clamp(17px,1.5vw,21px)/1.15 var(--s-display)}
+.me-tile:nth-child(2){background:#3b5bff}.me-tile:nth-child(4){background:#ffcc33;color:#142b68}.me-tile:nth-child(4) span{color:#44507a}
+.me-levels{display:grid;gap:18px;margin-top:8px}
+.me-level{--fc:#ffcc33;--ff:#142b68;position:relative;background:#fff;border-radius:6px 26px 26px 26px;box-shadow:0 3px 0 #142b6814;border-top:12px solid var(--fc);padding:18px 20px 16px}
+.me-level::before{content:"";position:absolute;top:-28px;left:0;width:38%;height:22px;background:var(--fc);border-radius:14px 14px 0 0}
+.me-level-head{display:flex;justify-content:space-between;align-items:start;gap:14px}
+.me-level-head h3{font:800 clamp(20px,2vw,26px)/1.15 var(--s-display)!important;margin:10px 0 0!important}
+.me-total{text-align:right}.me-total b{display:block;font:800 clamp(30px,3.4vw,44px)/1 var(--s-display);color:#142b68}.me-total span{font:700 14px var(--s-body);color:#44507a}
+.me-papers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:14px 0 12px}
+.me-paper{position:relative;overflow:hidden;background:color-mix(in srgb,var(--pc) 14%,#fff);border-radius:16px;padding:12px 14px 16px;display:grid;gap:2px;border:2px solid var(--pc)}
+.me-paper span{font:700 12px/1.3 var(--s-body);letter-spacing:.06em;text-transform:uppercase}
+.me-paper b{font:800 30px/1 var(--s-display);margin-top:4px}
+.me-paper small{font:600 13px var(--s-body);color:#44507a}
+.me-paper i,.me-rec i{position:absolute;left:0;bottom:0;height:6px;width:var(--w,0%);background:var(--pc);transition:width .6s}
+.me-level-foot{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px}
+.me-level-foot b{font:700 16px var(--s-body)}
+.me-chip{font:700 12px var(--s-body);letter-spacing:.08em;text-transform:uppercase;border:2px solid #142b68;border-radius:99px;padding:6px 11px}
+.me-go{margin-left:auto;font:700 15px var(--s-body);color:#142b68!important;text-decoration:underline!important;text-underline-offset:4px}
+.me-chart{margin:20px 0 6px;background:#fff;border-radius:22px;padding:16px 18px;display:grid;gap:10px;box-shadow:0 3px 0 #142b6814}
+.me-bar{display:grid;grid-template-columns:90px 1fr minmax(120px,auto);align-items:center;gap:12px;font:700 14px var(--s-body)}
+.me-track{height:16px;background:#e6ebff;border-radius:99px;overflow:hidden}
+.me-track i{display:block;height:100%;width:var(--w,0%);background:var(--fc);border-radius:99px;box-shadow:inset 0 0 0 1px #142b6833;transition:width .6s}
+.me-note{font-size:14px!important;color:#44507a;margin-top:10px}
+.me-board{background:#e4e8f5;border-radius:28px;padding:22px}
+.me-board .smh-badge-card{background:#fff;border:0;border-radius:18px;box-shadow:0 3px 0 #142b6814;padding:16px 12px;text-align:center;display:grid;justify-items:center;gap:6px}
+.me-board .smh-badge-card.earned{background:#fff4d1;box-shadow:0 0 0 3px #ffcc33,0 3px 0 #142b6814}
+.me-two{display:grid;grid-template-columns:1.2fr 1fr;gap:18px}
+.me-card{position:relative;background:#fff;border-radius:6px 26px 26px 26px;padding:20px;box-shadow:0 3px 0 #142b6814;border-top:12px solid #3b5bff}
+.me-card h3{font:800 26px/1.1 var(--s-display)!important;margin:10px 0 8px!important}
+.me-streak{border-top-color:#ff754a}.me-streak .me-tag{background:#ff754a}.me-xp .me-tag{background:#3b5bff}
+.me-card .smh-xp-total b{color:#3b5bff;font:800 34px var(--s-display)}
+.me-card .smh-xp-table td{font-size:14px}
+.me-card .smh-calendar{max-width:none;gap:6px}
+.me-card .smh-day{border-radius:10px;min-height:38px;display:grid;place-items:center;font:700 13px var(--s-body);background:#eef0f8}
+.me-card .smh-day.on{background:#ff754a;color:#fff}
+.me-card .smh-day.today{outline:2px solid #142b68}
+.me-records{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.me-rec{position:relative;overflow:hidden;background:var(--pc);color:var(--pf);border-radius:6px 22px 22px 22px;padding:16px 16px 20px;display:grid;gap:4px}
+.me-rec .me-tag{background:#ffffff33;color:inherit;justify-self:start}
+.me-rec b{font:800 32px/1 var(--s-display);margin-top:8px}
+.me-rec small{font:600 13px/1.35 var(--s-body);opacity:.92}
+.me-rec i{background:#ffffffaa}
+.me-rec:is(.p-listening,.p-speaking,.p-reading) i{background:#142b6855}
+.me-history .history .card{background:#fff;border-radius:18px;padding:14px 16px;margin:0 0 10px;border:0;box-shadow:0 3px 0 #142b6814}
+.me-actions-end{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.me-print-head{display:none}
+@media (max-width:1000px){.me-summary{grid-template-columns:repeat(3,minmax(0,1fr))}.me-records{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:700px){
+  .me-profile{grid-template-columns:1fr}
+  .me-summary{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .me-papers{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .me-two{grid-template-columns:1fr}
+  .me-records{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .me-bar{grid-template-columns:70px 1fr;}.me-bar b{grid-column:1/-1;font-size:13px}
+  .me-go{margin-left:0}
+}
+@media (prefers-reduced-motion:reduce){.me-paper i,.me-rec i,.me-track i{transition:none}}
+html[data-smh-theme="dark"] .me-profile label{color:#d2d5df}
+
+/* Print / Save as PDF: a clean one-document record for the lecturer */
+@media print{
+  @page{size:A4;margin:14mm}
+  html.smh-shell body{background:#fff!important;padding:0!important;font-size:11pt!important}
+  html.smh-shell :is(.smh-header,.smh-band,.smh-footer,.smh-nav,.smh-skip,.smh-toast,.smh-xp-strip),html.smh-shell .smh-hero-grid .hero-collage,html.smh-shell .smh-hero-grid .actions,html.smh-shell :is(.me-go,.me-actions-end,.notice,#storage-status){display:none!important}
+  html.smh-shell .smh-hero-grid{display:block!important}
+  html.smh-shell main{padding-top:0!important}
+  .me-print-head{display:flex!important;align-items:center;gap:12px;border-bottom:3px solid #142b68;padding-bottom:8px;margin-bottom:10px}
+  .me-print-head img{width:40px;height:40px}.me-print-head b{display:block;font:800 16pt var(--s-display)}.me-print-head span{font-size:10pt;color:#444}
+  .smh-hero-grid{display:block}.smh-hero-grid .hello,.smh-hero-grid h1,.smh-hero-grid p{display:none!important}
+  .smh-sec{padding:10px 0 0!important}
+  html.smh-shell .smh-hero-grid .eyebrow{display:none!important}
+  .me-level::before{display:none}.me-level{border-top-width:8px}
+  .me-board .smh-shelf{grid-template-columns:repeat(6,1fr)!important}.me-board .smh-badge-card small{display:none}
+  .me-card .smh-xp-table td{padding:4px 6px!important;font-size:9pt!important}
+  .smh-sec-head p{display:none}
+  .smh-sec-head h2{font-size:18pt!important}
+  .me-profile :is(input,select){border:0;border-bottom:1px solid #999;border-radius:0;min-height:0;padding:2px 0;-webkit-appearance:none;appearance:none}
+  .me-level,.me-card,.me-chart,.me-board{box-shadow:none!important;border:1px solid #bbb;break-inside:avoid}
+  .me-summary{grid-template-columns:repeat(6,1fr)}.me-papers{grid-template-columns:repeat(4,1fr)}.me-records{grid-template-columns:repeat(3,1fr)}.me-two{grid-template-columns:1fr 1fr}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;animation:none!important}
+}
+.me-board .smh-badge-card.locked .smh-badge-art{filter:grayscale(.85);opacity:.55}
+@media print{.smh-sec-head{break-after:avoid}.me-records,.me-two{break-inside:avoid}}
+.p-games{--pc:#ff754a;--pf:#142b68}
+@media (min-width:1001px){.me-records{grid-template-columns:repeat(3,minmax(0,1fr))}}
+/* calmer footer: deep ink instead of bright blue */
+
+
+html.smh-shell main :is(.f-listening,.f-speaking) a:not(.button){color:#142b68!important}
+
+/* =====================================================================
+   Theme standard v4 · the same on every page
+   - one page background, white header and white footer (no black or blue bands)
+   - one hero rhythm: same top space, no duplicate labels above the heading
+   - paper colours follow the eBook: Listening yellow, Speaking green, Reading orange, Writing fuchsia
+   ===================================================================== */
+:root{--s-bg:#f7f6f3;--f-foot:#ffffff;--f-foot-fg:#142b68;--f-foot-soft:#44507a;--f-foot-line:#142b681a}
+html[data-smh-theme="dark"]{--s-bg:#111218;--f-foot:#142b68;--f-foot-fg:#fff;--f-foot-soft:#b8bbc8;--f-foot-line:#ffffff1f}
+html.smh-shell:not(.smh-focus) body{background:var(--s-bg)!important}
+/* white footer */
+html.smh-shell .smh-footer{border-top:1px solid var(--f-foot-line)!important;margin-top:56px!important;box-shadow:0 60vh 0 60vh var(--f-foot)!important}
+.smh-footer a{color:var(--f-foot-fg)!important}
+.smh-footer a:hover{color:#3b5bff!important}
+.smh-footer h2{color:var(--f-foot-soft)!important}
+.smh-footer .fine{border-top-color:var(--f-foot-line)!important}
+.smh-footer b{color:var(--f-foot-fg)!important}
+/* duplicate labels above hero headings: the breadcrumb, chapter tabs or header already say where you are */
+html.smh-shell :is(.smh-hero-grid>div,.guide-hero>div,.lobby-hero>div,.level-hero>div)>.eyebrow:first-child{display:none!important}
+html.smh-shell main#main>.eyebrow:first-child{display:none!important}
+/* busy extras removed for a calmer page */
+html.smh-shell .ticker{display:none!important}
+html.smh-shell .guide-switch{display:none!important}
+/* one hero rhythm */
+html.smh-shell :is(.guide-hero,.smh-hero-grid,.lobby-hero,.level-hero){padding-top:clamp(24px,3vw,40px)!important}
+html.smh-shell .guide-hero{padding-bottom:clamp(32px,4vw,56px)!important}
+html.smh-shell :is(.smh-hero-grid,.lobby-hero,.level-hero){margin-bottom:clamp(24px,3vw,40px)!important}
+html.smh-shell main :is(.hello,.red-hello,.handwritten){margin-top:0!important}
+/* Welcome: the breadcrumb already says Know MUET */
+html.smh-shell main.app-shell>.section-heading{display:none!important}
+/* no black panels: the darkest accent is the eBook blue */
+.f-ink{--fc:#3b5bff!important;--ff:#fff!important}
+html.smh-shell main .f-ink :is(.button,.button.primary){background:#ffcc33!important;color:#142b68!important}
+.me-tile{background:#3b5bff!important}.me-tile:nth-child(2){background:#3b5bff!important}.me-tile:nth-child(4){background:#ffcc33!important}
+.r-ink{--rc:#3b5bff}
+
+/* =====================================================================
+   Theme v5 · header in yellow, one main colour per page
+   ===================================================================== */
+/* logo: "Hub" in bright yellow with an ink outline, like the eBook cover lettering */
+html.smh-shell .smh-name b+b{color:#ffcc33!important;-webkit-text-stroke:1.5px #142b68;paint-order:stroke fill;text-shadow:2px 2px 0 #142b68}
+/* the current page in the nav: yellow, same as the Continue button */
+html.smh-shell .smh-menu a[aria-current="page"]{background:#ffcc33!important;color:#142b68!important}
+/* the strip under the header: only game tools (no breadcrumb, no code chip) */
+.smh-band .smh-crumbs,.smh-band .code{display:none!important}
+.smh-band .in{justify-content:flex-end!important}
+/* main colour tokens */
+html.smh-shell{--main:#3b5bff;--main-fg:#fff;--main-text:#3b5bff}
+html[data-main="blue"]{--main:#3b5bff;--main-fg:#fff;--main-text:#3b5bff}
+html[data-main="purple"]{--main:#3b5bff;--main-fg:#fff;--main-text:#3b5bff}
+html[data-main="fuchsia"],html[data-main="writing"]{--main:#e0479e;--main-fg:#fff;--main-text:#b8247a}
+html[data-main="yellow"],html[data-main="listening"]{--main:#ffcc33;--main-fg:#142b68;--main-text:#b98800}
+html[data-main="speaking"]{--main:#4cc9a6;--main-fg:#142b68;--main-text:#1b8f6f}
+html[data-main="reading"]{--main:#ff754a;--main-fg:#142b68;--main-text:#e2511f}
+/* 1 · one frame behind the hero picture */
+html.smh-shell:not([data-page-id]) .hero-collage::before,html.smh-shell .hero-collage::before{background:var(--main)!important}
+/* 2 · the hero heading accent */
+html.smh-shell main :is(.guide-hero,.smh-hero-grid,.lobby-hero,.level-hero,.hero) h1 :is(em,span),html.smh-shell main h1.smh-h1 :is(em,span){color:var(--main-text)!important}
+/* 3 · every main button on the page */
+html.smh-shell main :is(.button.primary,a.primary,button.primary,.pill.primary,.submit-button):not(.smh-folder *):not(.qz *){background:var(--main)!important;border-color:var(--main)!important;color:var(--main-fg)!important}
+html.smh-shell main .eyebrow{color:var(--main-text)}
+html.smh-shell .guide-hero .session-label{display:none!important}
+/* Learn guides: the 6-step route uses the page's main colour */
+html.smh-shell .step-nav button[aria-current=step]{background:var(--main)!important;border-color:var(--main)!important;color:var(--main-fg)!important}
+html.smh-shell .step-nav button[aria-current=step]>span{color:var(--main-fg)!important;opacity:.8}
+html.smh-shell .lesson-shell progress::-webkit-progress-value{background:var(--main)}
+html.smh-shell .lesson-shell progress::-moz-progress-bar{background:var(--main)}
+html.smh-shell .instruction{border-left-color:var(--main)!important}
+html.smh-shell .step-heading>.eyebrow,html.smh-shell .lesson-top .eyebrow{color:var(--main-text)!important}
+html.smh-shell .lesson-shell{box-shadow:8px 9px 0 color-mix(in srgb,var(--main) 25%,transparent)!important}
+
+/* =====================================================================
+   Style v6 · "Navy frame" (from the Smart MUET Hub Style canvas)
+   Palette: Royal Navy #142B68 · Electric Blue #3B5BFF · Sunshine Yellow #FFCC33
+            Vibrant Coral #FF754A · Fresh Mint #4CC9A6 · Soft Cloud #F5F7FF
+   Type: Anton (big headings, capitals) + DM Sans (everything else)
+   Rules: navy header + navy footer on every page · one main colour per page
+          (Home blue, Learn = paper colour, Practice coral, Me mint) · yellow only for
+          the current menu item, Continue, stars and progress.
+   ===================================================================== */
+@font-face{font-family:Anton;src:url('../fonts/anton-400.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:"DM Sans";src:url('../fonts/dmsans-400.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:"DM Sans";src:url('../fonts/dmsans-500.woff2') format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:"DM Sans";src:url('../fonts/dmsans-700.woff2') format('woff2');font-weight:600 700;font-display:swap}
+@font-face{font-family:"DM Sans";src:url('../fonts/dmsans-800.woff2') format('woff2');font-weight:800 900;font-display:swap}
+:root{
+  --navy:#142b68;--blue:#3b5bff;--sun:#ffcc33;--coral:#ff754a;--mint:#4cc9a6;--cloud:#f5f7ff;--fuchsia:#e0479e;
+  --s-ink:#142b68;--s-soft:#44507a;--s-line:#d9dff5;--s-paper:#f5f7ff;--s-bg:#f5f7ff;
+  --s-cobalt:#3b5bff;--s-yellow:#ffcc33;--s-orange:#ff754a;--s-mint:#4cc9a6;
+  --s-body:"DM Sans",DM,Arial,sans-serif;
+  --s-anton:Anton,"Arial Narrow",Impact,sans-serif;
+  /* header + footer: navy */
+  --f-bar:#142b68;--f-fg:#ffffff;--f-soft:#c9d3f5;--f-line:#ffffff55;--f-edge:#142b68;--f-hover:#ffffff;
+  --f-foot:#142b68;--f-foot-fg:#ffffff;--f-foot-soft:#c9d3f5;--f-foot-line:#ffffff24;
+  --p-listening:#ffcc33;--p-speaking:#4cc9a6;--p-reading:#ff754a;--p-writing:#e0479e
+}
+html[data-smh-theme="dark"]{--s-bg:#0d1a42;--f-bar:#0b1638;--f-foot:#0b1638;--f-edge:#0b1638}
+html[data-paper="listening"]{--paper-text:#9a6b00}
+html[data-paper="speaking"]{--paper-text:#1b8f6f}
+html[data-paper="reading"]{--paper-text:#d9481f}
+html[data-paper="writing"]{--paper:#e0479e;--paper-fg:#fff;--paper-text:#b8247a}
+html[data-main="blue"]{--main:#3b5bff;--main-fg:#fff;--main-text:#3b5bff}
+html[data-main="coral"]{--main:#ff754a;--main-fg:#142b68;--main-text:#d9481f}
+html[data-main="mint"]{--main:#4cc9a6;--main-fg:#142b68;--main-text:#1b8f6f}
+html[data-main="navy"]{--main:#142b68;--main-fg:#fff;--main-text:#3b5bff}
+html[data-main="writing"],html[data-main="fuchsia"]{--main:#e0479e;--main-fg:#fff;--main-text:#b8247a}
+html[data-main="listening"],html[data-main="yellow"]{--main:#ffcc33;--main-fg:#142b68;--main-text:#9a6b00}
+html[data-main="speaking"]{--main:#4cc9a6;--main-fg:#142b68;--main-text:#1b8f6f}
+html[data-main="reading"]{--main:#ff754a;--main-fg:#142b68;--main-text:#d9481f}
+html.smh-shell{font-synthesis:none}
+html.smh-shell body{font-family:var(--s-body);color:var(--navy)}
+html.smh-shell:not(.smh-focus) body{background:var(--s-bg)!important}
+
+/* ---------- big headings: Anton, capitals ---------- */
+html.smh-shell main :is(h1,h2):not(.smh-folder *):not(.qz *):not(.sr-only):not([class*="visually"]){
+  font-family:var(--s-anton)!important;font-weight:400!important;letter-spacing:.005em!important;text-transform:uppercase;line-height:1!important}
+html.smh-shell main h1.smh-h1{font-size:clamp(46px,6.6vw,92px)!important;line-height:.94!important;color:var(--navy)}
+html.smh-shell .smh-sec-head h2{font:400 clamp(34px,4.6vw,58px)/1 var(--s-anton)!important;letter-spacing:.005em!important;text-transform:uppercase}
+html.smh-shell main h3{font-family:var(--s-body)!important;font-weight:800!important;letter-spacing:-.01em!important}
+html.smh-shell .smh-folder>summary h3{font:400 clamp(28px,2.8vw,36px)/1 var(--s-anton)!important;letter-spacing:.01em!important;text-transform:uppercase}
+html.smh-shell main .eyebrow{font:800 12px/1.3 var(--s-body)!important;letter-spacing:.16em!important}
+/* the handwritten greeting becomes a small yellow tag, so the big heading leads */
+html.smh-shell main :is(.hello,.red-hello,.handwritten){font:800 15px/1.2 var(--s-body)!important;letter-spacing:.04em!important;color:var(--navy)!important;rotate:0deg;background:var(--sun);border-radius:99px;padding:8px 16px;margin:0 0 16px!important}
+html.smh-shell main :is(.hello,.red-hello,.handwritten)::after{display:none!important}
+
+/* ---------- header: navy, logo + stacked name, nav tray with icons, yellow current item ---------- */
+html.smh-shell .smh-header{background:var(--f-bar)!important;color:#fff;box-shadow:0 4px 18px #142b6833!important}
+html.smh-shell .smh-header .in{padding-top:12px;padding-bottom:12px;gap:14px}
+html.smh-shell .smh-logo,html.smh-shell .smh-logo *{color:#fff!important}
+html.smh-shell .smh-logo img{background:#fff!important;border-radius:14px!important;padding:3px!important}
+html.smh-shell .smh-name b{font:400 calc(var(--logo,58px) * .44)/.95 var(--s-anton)!important;letter-spacing:.01em!important;text-transform:uppercase}
+html.smh-shell .smh-name b+b{color:var(--sun)!important;-webkit-text-stroke:0!important;text-shadow:none!important}
+html.smh-shell .smh-menu{background:#ffffff1a!important;border:0!important;padding:5px!important;gap:2px!important}
+html.smh-shell .smh-menu a{display:inline-flex!important;align-items:center;gap:8px;color:#fff!important;padding:10px clamp(12px,1.2vw,18px)!important;font:700 clamp(15px,1.1vw,16px)/1 var(--s-body)!important}
+html.smh-shell .smh-menu a svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+html.smh-shell .smh-menu a:hover{background:#ffffff1f!important}
+html.smh-shell .smh-menu a[aria-current="page"]{background:var(--sun)!important;color:var(--navy)!important;font-weight:800!important}
+html.smh-shell :is(.smh-cta,.smh-exit,.smh-theme,.smh-back){box-shadow:none!important;transform:none}
+html.smh-shell .smh-cta{background:var(--sun)!important;color:var(--navy)!important;border:2px solid var(--sun)!important;font-weight:800!important}
+html.smh-shell .smh-cta:hover{background:#ffd75c!important}
+html.smh-shell :is(.smh-exit,.smh-theme,.smh-back){background:transparent!important;color:#fff!important;border:2px solid #ffffff73!important}
+html.smh-shell :is(.smh-exit,.smh-theme,.smh-back):hover{border-color:#fff!important;background:#ffffff14!important}
+html.smh-shell .smh-band{background:var(--cloud)!important;border-bottom:1px solid var(--s-line)!important}
+html.smh-shell .smh-band,html.smh-shell .smh-band .smh-tools>*{color:var(--navy)!important}
+html.smh-shell .smh-band .smh-tools>*{border-color:#142b6840!important}
+@media (max-width:1240px) and (min-width:1061px){html.smh-shell .smh-menu a svg{display:none}}
+
+/* ---------- footer: navy ---------- */
+html.smh-shell .smh-footer{background:var(--f-foot)!important;color:var(--f-foot-soft)!important;border-top:0!important;box-shadow:0 60vh 0 60vh var(--f-foot)!important}
+html.smh-shell .smh-footer :is(a,b){color:#fff!important}
+html.smh-shell .smh-footer a:hover{color:var(--sun)!important}
+html.smh-shell .smh-footer h2{color:var(--sun)!important;opacity:1}
+html.smh-shell .smh-footer .smh-foot-name{font:400 28px/1 var(--s-anton)!important;letter-spacing:.01em;text-transform:uppercase;margin-bottom:10px}
+html.smh-shell .smh-footer .smh-foot-name span{color:var(--sun)}
+html.smh-shell .smh-footer p{color:var(--f-foot-soft)}
+html.smh-shell .smh-footer .fine{border-top-color:#ffffff24!important}
+
+/* ---------- phone/tablet app bar: bigger icons, yellow pill on the current tab ---------- */
+html.smh-shell .smh-nav{background:#fff!important;border-top:1px solid var(--s-line)!important;box-shadow:0 -8px 24px #142b681a!important;padding:8px 6px calc(12px + env(safe-area-inset-bottom))!important}
+html.smh-shell .smh-nav a{max-width:120px!important;min-height:70px!important;color:var(--navy)!important;font:600 13px/1 var(--s-body)!important;gap:5px!important}
+html.smh-shell .smh-nav a .ico{--ico-size:32px!important;--tone-o:.9!important;width:32px;height:32px;padding:6px 16px!important;border-radius:99px!important;background:transparent!important;box-shadow:none!important;transform:none!important;color:var(--navy)}
+html.smh-shell .smh-nav a[aria-current="page"]{color:var(--navy)!important;font-weight:800!important}
+html.smh-shell .smh-nav a[aria-current="page"] .ico{background:var(--sun)!important;--tone:#fff!important}
+html.smh-shell .smh-nav a[aria-current="page"]::before{display:none!important}
+.ico-home,.ico-ebook,.ico-diagnostic{--tone:#bfd0ff}
+.ico-learn,.ico-listening,.ico-xp,.ico-badge,.ico-reflect{--tone:#ffe08a}
+.ico-lab,.ico-vault,.ico-arcade,.ico-reading,.ico-streak{--tone:#ffc2ad}
+.ico-me,.ico-review,.ico-speaking{--tone:#b8eedd}
+.ico-writing{--tone:#f6b8db}
+html.smh-shell body:has(.smh-nav){padding-bottom:calc(100px + env(safe-area-inset-bottom))!important}
+
+/* ---------- buttons: pill, bold, main colour ---------- */
+html.smh-shell main :is(.button,.pill,.primary,.back,.submit-button,.h-btn){font-weight:800!important;min-height:50px}
+html.smh-shell main :is(.button,.pill):not(.primary):not(.smh-folder *):not(.qz *){border-color:var(--navy)}
+
+/* ---------- hero picture: white frame, main-colour card behind (down-right), navy label top-left, sticker bottom-right ---------- */
+html.smh-shell .hero-collage::before{inset:28px 0 40px 28px!important;border-radius:28px!important;rotate:0deg!important;transform:none!important;background:var(--main)!important}
+html.smh-shell .hero-collage::after{display:none!important}
+html.smh-shell .hero-collage>img:not(.smh-photo-sticker){border:8px solid #fff!important;border-radius:26px!important;box-shadow:0 14px 30px #142b682e!important;rotate:0deg!important;transform:none!important}
+html.smh-shell .hero-collage .floating-label{background:var(--navy)!important;color:#fff!important;border:0!important;box-shadow:none!important;border-radius:99px!important;padding:9px 16px!important;left:14px!important;top:12px!important;rotate:0deg!important;transform:none!important;font:800 11px/1.2 var(--s-body)!important;letter-spacing:.12em!important}
+html.smh-shell .hero-collage .floating-label b{display:inline!important;font:800 13px/1.2 var(--s-body)!important;color:var(--sun)!important;letter-spacing:.04em!important;text-transform:uppercase}
+html.smh-shell .hero-collage .hero-star{display:none!important}
+html.smh-shell .hero-collage img.smh-photo-sticker{rotate:8deg!important}
+html.smh-shell .hero-collage .smh-photo-pair img{border:8px solid #fff!important;border-radius:24px!important}
+
+/* ---------- cards: white, soft line, rounder ---------- */
+html.smh-shell main :is(.card,.panel,.me-card,.lesson-shell){border-radius:24px}
+/* folder colours in the v6 palette: navy · coral · yellow · mint */
+.f-ink{--fc:#142b68!important;--ff:#fff!important}
+.f-purple{--fc:#ff754a!important;--ff:#142b68!important}
+.f-mint{--fc:#4cc9a6!important;--ff:#142b68!important}
+.f-purple .trick{background:#ffffff80}.f-purple>summary .st{background:#ffffffb0}
+html.smh-shell main .f-purple :is(.button,.button.primary){background:#142b68!important;color:#fff!important}
+/* Learn skill tabs: each tab in its paper colour, the open one underlined in navy */
+html.smh-shell .chapter-nav.all-guides a{border:0!important;font-weight:700!important;color:#142b68!important}
+html.smh-shell .chapter-nav.all-guides a[href="index.html"]{background:#e6ebff!important}
+html.smh-shell .chapter-nav.all-guides a[href="listening.html"]{background:#ffcc33!important}
+html.smh-shell .chapter-nav.all-guides a[href="speaking.html"]{background:#4cc9a6!important}
+html.smh-shell .chapter-nav.all-guides a[href="reading.html"]{background:#ff754a!important}
+html.smh-shell .chapter-nav.all-guides a[href="writing.html"]{background:#e0479e!important;color:#fff!important}
+html.smh-shell .chapter-nav.all-guides a[aria-current="page"]{font-weight:800!important;box-shadow:inset 0 -4px 0 #142b68!important}
+html.smh-shell .chapter-nav.all-guides a[href="index.html"][aria-current="page"]{background:#3b5bff!important;color:#fff!important}

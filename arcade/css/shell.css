@@ -1,0 +1,173 @@
+/* Smart MUET Hub · shared shell (header, page band, footer, type scale).
+   Loaded on every page by shared/js/navigation.js. One frame for all pages; content inside stays page-specific. */
+
+@font-face{font-family:Poppins;src:url('../fonts/poppins-600.woff2') format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:Poppins;src:url('../fonts/poppins-700.woff2') format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:Poppins;src:url('../fonts/poppins-800.woff2') format('woff2');font-weight:800;font-display:swap}
+/* Headings across the Hub use Manrope by name; point the bold weights at Poppins so every page shares one display face. */
+@font-face{font-family:Manrope;src:url('../fonts/poppins-700.woff2') format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:Manrope;src:url('../fonts/poppins-800.woff2') format('woff2');font-weight:800;font-display:swap}
+
+:root{
+  --s-paper:#f5f7ff; --s-card:#fff; --s-ink:#142b68; --s-soft:#44507a; --s-line:#d9dff5;
+  --s-cobalt:#3b5bff; --s-yellow:#ffcc33; --s-plum:#e0479e; --s-mint:#4cc9a6; --s-pink:#e0479e; --s-orange:#ff754a;
+  --s-display:Poppins,Manrope,"Segoe UI",Arial,sans-serif; --s-body:DM,"DM Sans",Arial,sans-serif;
+  --s-gutter:max(16px,4vw);
+  /* frame colours · light is the default; "dark" is a learner setting (Theme button in the header) */
+  --f-bar:#ffffff; --f-fg:#142b68; --f-soft:#44507a; --f-line:#142b682e; --f-edge:#d9dff5;
+  --f-on:#3b5bff; --f-on-fg:#ffffff; --f-hover:#142b68;
+  --f-foot:#3b5bff; --f-foot-fg:#ffffff; --f-foot-soft:#dfe2ff; --f-foot-line:#ffffff33;
+  --f-hero:#e6ebff; --f-hero-fg:#142b68; --f-hero-soft:#4a4e5c; --f-accent:#3b5bff;
+  --f-tile:#ffffff; --f-tile-line:#d2d8f0; --f-chip-line:#142b682e;
+}
+html[data-smh-theme="dark"]{
+  --f-bar:#142b68; --f-fg:#ffffff; --f-soft:#b8bbc8; --f-line:#ffffff3d; --f-edge:#142b68;
+  --f-on:#ffffff; --f-on-fg:#142b68; --f-hover:#ffffff;
+  --f-foot:#142b68; --f-foot-fg:#ffffff; --f-foot-soft:#b8bbc8; --f-foot-line:#ffffff1f;
+  --f-hero:#142b68; --f-hero-fg:#ffffff; --f-hero-soft:#d2d5df; --f-accent:#ffcc33;
+  --f-tile:#ffffff12; --f-tile-line:#ffffff24; --f-chip-line:#ffffff2e;
+}
+
+/* ---------- readable type everywhere ---------- */
+html.smh-shell body{font-size:17px;line-height:1.65}
+html.smh-shell main p:not([class*="small"]):not([class*="eyebrow"]):not([class*="note"]):not(.hello):not(.red-hello):not(.handwritten):not(.lead),
+html.smh-shell main li,
+html.smh-shell main label{font-size:max(16px,1em)}
+html.smh-shell .eyebrow,html.smh-shell [class*="eyebrow"]{font-size:max(12px,1em)!important;letter-spacing:.12em}
+html.smh-shell .small,html.smh-shell small{font-size:max(13px,.85em)}
+
+/* ---------- hide the old per-page frames ---------- */
+html.smh-shell body>header:not(.smh-header),html.smh-shell .smh-location,html.smh-shell body>footer:not(.smh-footer){display:none!important}
+html.smh-shell.smh-focus .smh-nav{display:none!important}
+html.smh-shell.smh-focus body{padding-bottom:0!important}
+
+[hidden]{display:none!important}
+html.smh-shell{scroll-padding-top:150px}
+/* neutralise page-level element rules (header{…}, footer{…}, nav{…}) so the shell looks the same everywhere */
+html.smh-shell .smh-header,html.smh-shell .smh-footer,html.smh-shell .smh-band{display:block!important;margin:0;padding:0!important;border-radius:0!important;box-shadow:none!important;width:auto!important;max-width:none!important;height:auto!important;text-align:left!important}
+html.smh-shell .smh-header{border:0!important}
+html.smh-shell .smh-footer{margin-top:48px}
+html.smh-shell .smh-menu,html.smh-shell .smh-crumbs{position:static!important;background:none!important;border:0!important;box-shadow:none!important;padding:0!important;margin:0!important;width:auto!important;height:auto!important}
+
+/* ---------- header ---------- */
+.smh-header{position:sticky;top:0;z-index:150;background:var(--f-bar);color:var(--f-fg);box-shadow:0 1px 0 var(--f-edge)!important;font-family:var(--s-body)}
+.smh-header .in{max-width:1320px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:12px var(--s-gutter)}
+.smh-logo{display:flex;align-items:center;gap:10px;color:var(--f-fg)!important;text-decoration:none!important;margin-right:auto;min-width:0}
+.smh-logo img{width:38px;height:38px;flex:none;background:#fff;border-radius:50%;padding:3px;box-sizing:border-box}
+.smh-logo b{font:800 18px/1.05 var(--s-display);letter-spacing:-.02em;white-space:nowrap}
+.smh-logo small{display:block;font:700 11px/1.3 var(--s-body);letter-spacing:.14em;text-transform:uppercase;color:var(--f-soft);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.smh-menu{display:flex;gap:6px}
+.smh-menu a{color:var(--f-fg)!important;text-decoration:none!important;border:1px solid var(--f-line);border-radius:99px;padding:9px 16px;font:700 15px/1 var(--s-body);white-space:nowrap}
+.smh-menu a:hover{border-color:var(--f-hover)}
+.smh-menu a[aria-current="page"]{background:var(--f-on);color:var(--f-on-fg)!important;border-color:var(--f-on)}
+.smh-cta{display:inline-flex;align-items:center;gap:8px;min-height:44px;background:var(--s-yellow);color:var(--s-ink)!important;text-decoration:none!important;border-radius:99px;padding:0 18px;font:700 15px/1 var(--s-body);white-space:nowrap}
+.smh-cta:hover{filter:brightness(1.06);box-shadow:0 0 0 2px var(--f-hover)}
+.smh-tools{display:flex;gap:6px;align-items:center}
+.smh-tools>*{color:var(--s-ink)!important;background:#ffffffb3!important;border:1px solid #142b6833!important;border-radius:99px!important;min-height:40px;padding:0 12px!important;font:700 13px/1 var(--s-body)!important;display:inline-flex!important;align-items:center;gap:6px;cursor:pointer;white-space:nowrap}
+.smh-exit{display:inline-flex;align-items:center;gap:8px;min-height:44px;border:1px solid var(--f-line);border-radius:99px;padding:0 16px;color:var(--f-fg)!important;text-decoration:none!important;font:700 15px/1 var(--s-body);white-space:nowrap}
+.smh-exit:hover{border-color:var(--f-hover)}
+.smh-theme{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:44px;min-height:44px;border:1px solid var(--f-line);border-radius:99px;background:none;color:var(--f-fg);padding:0 12px;font:700 14px/1 var(--s-body);cursor:pointer}
+.smh-theme:hover{border-color:var(--f-hover)}
+.smh-theme svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+@media (max-width:640px){.smh-theme span{display:none}.smh-theme{padding:0}}
+@media (max-width:1060px){.smh-menu{display:none}}
+@media (max-width:640px){
+  .smh-logo small{display:none}.smh-logo b{font-size:16px}
+  .smh-tools>*{padding:0 10px!important}
+  .smh-tools .smh-tool-label{display:none}
+  .smh-cta{padding:0 14px;font-size:14px}
+}
+
+/* ---------- page band (replaces "← My learning route") ---------- */
+.smh-band{background:var(--s-card);border-bottom:1px solid var(--s-line);font-family:var(--s-body)}
+.smh-band .in{max-width:1320px;margin:0 auto;padding:12px var(--s-gutter);display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px}
+.smh-crumbs{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font:700 14px/1.3 var(--s-body);color:var(--s-soft)}
+.smh-crumbs a{color:var(--s-cobalt)!important;text-decoration:none!important}
+.smh-crumbs a:hover{text-decoration:underline!important}
+.smh-crumbs span[aria-hidden]{color:#b3b6c2}
+.smh-crumbs b{color:var(--s-ink)}
+.smh-band .code{margin-left:auto;font:700 12px var(--s-body);letter-spacing:.14em;text-transform:uppercase;background:var(--s-paper);border:1px solid var(--s-line);border-radius:99px;padding:6px 12px;color:var(--s-ink)}
+.smh-focus .smh-band{background:var(--s-yellow);border-color:#e9bf12}
+.smh-focus .smh-band .code{background:#fff}
+
+/* ---------- footer ---------- */
+.smh-footer{background:var(--f-foot);color:var(--f-foot-soft);font:400 15px/1.6 var(--s-body);margin-top:48px}
+.smh-footer .in{max-width:1320px;margin:0 auto;padding:30px var(--s-gutter) 34px;display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:24px}
+.smh-footer b{display:block;color:var(--f-foot-fg);font:800 18px var(--s-display);margin-bottom:6px}
+.smh-footer h2{font:700 12px var(--s-body);letter-spacing:.14em;text-transform:uppercase;color:var(--f-foot-soft);opacity:.85;margin:0 0 8px}
+.smh-footer a{display:block;color:#fff!important;text-decoration:none!important;padding:4px 0;font-weight:700}
+.smh-footer a:hover{color:var(--s-yellow)!important}
+.smh-footer .fine{grid-column:1/-1;border-top:1px solid #ffffff1f;padding-top:14px;font-size:14px}
+@media (max-width:760px){.smh-footer .in{grid-template-columns:1fr 1fr}.smh-footer .in>div:first-child{grid-column:1/-1}}
+
+/* focus visibility */
+.smh-header a:focus-visible,.smh-header button:focus-visible,.smh-band a:focus-visible,.smh-footer a:focus-visible{outline:3px solid var(--s-orange);outline-offset:3px}
+.smh-skip{position:fixed;left:12px;top:-80px;z-index:200;background:var(--s-yellow);color:var(--s-ink);padding:12px 18px;border-radius:12px;font:700 15px var(--s-body)}
+.smh-skip:focus{top:12px}
+
+/* =====================================================================
+   Standard components · the same on every page
+   ===================================================================== */
+
+/* paper colours, matched to the eBook chapters */
+:root{--p-listening:#3b5bff;--p-speaking:#1b8f6f;--p-reading:#ff754a;--p-writing:#e0479e;--paper:#3b5bff;--paper-fg:#fff}
+html[data-paper="listening"]{--paper:var(--p-listening);--paper-fg:#fff}
+html[data-paper="speaking"]{--paper:var(--p-speaking);--paper-fg:#fff}
+html[data-paper="reading"]{--paper:var(--p-reading);--paper-fg:#142b68}
+html[data-paper="writing"]{--paper:var(--p-writing);--paper-fg:#fff}
+
+/* one display face everywhere (vault pages used Sora) */
+html.smh-shell body{font-family:var(--s-body)}
+html.smh-shell :is(h1,h2,h3){font-family:var(--s-display)}
+
+/* the handwritten greeting ("Hello, confident you!") */
+html.smh-shell main :is(.hello,.red-hello,.handwritten){
+  font:italic 800 clamp(30px,3.6vw,46px)/1.25 var(--s-display)!important;
+  color:#e2511f!important;letter-spacing:-.025em!important;text-transform:none!important;
+  rotate:-3deg;transform-origin:left;display:block;position:relative;isolation:isolate;
+  width:fit-content;max-width:100%;margin:18px 0 28px!important}
+html.smh-shell main :is(.hello,.red-hello,.handwritten)::after{
+  content:""!important;position:absolute;left:8%;bottom:-8px;width:70%;height:6px;
+  background:#ffcc33!important;border-radius:4px;rotate:-2deg;z-index:-1}
+
+/* the big two-line page heading under the greeting */
+html.smh-shell main h1.smh-h1{
+  font-family:var(--s-display)!important;font-weight:800!important;
+  font-size:clamp(42px,6vw,78px)!important;line-height:1.02!important;letter-spacing:-.04em!important;
+  color:var(--s-ink)}
+html.smh-shell main h1.smh-h1 :is(em,span){font-style:normal;color:var(--s-cobalt)!important}
+html[data-paper] main h1.smh-h1 :is(em,span){color:var(--paper)!important}
+html[data-paper="reading"] main h1.smh-h1 :is(em,span){color:#e8601a!important}
+html.smh-shell main h1.smh-h1 + :is(p,.lead){font-size:clamp(17px,1.6vw,19px)!important;line-height:1.6;color:var(--s-soft);max-width:46ch}
+
+/* small capital labels above headings */
+html.smh-shell main .eyebrow{font:700 13px/1.3 var(--s-body)!important;letter-spacing:.14em!important;text-transform:uppercase}
+html[data-paper] main .eyebrow{color:var(--paper)}
+html[data-paper="reading"] main .eyebrow{color:#c4500f}
+
+/* buttons: one size, one shape */
+html.smh-shell main :is(.button,.pill,.primary,.back,.cam-btn,.submit-button,.h-btn){
+  font-family:var(--s-body)!important;font-weight:700!important;font-size:16px!important;
+  min-height:48px;border-radius:99px!important;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+html.smh-shell main :is(.button.primary,a.primary,button.primary,.submit-button){background:var(--s-cobalt);border-color:var(--s-cobalt);color:#fff}
+html[data-paper] main :is(.button.primary,a.primary,button.primary){background:var(--paper)!important;border-color:var(--paper)!important;color:var(--paper-fg)!important}
+
+/* the strip under the header takes the paper colour */
+html[data-paper] .smh-band{box-shadow:inset 6px 0 0 var(--paper)}
+html[data-paper] .smh-band .code{background:var(--paper);color:var(--paper-fg);border-color:var(--paper)}
+html.smh-focus[data-paper] .smh-band{background:var(--paper);border-color:var(--paper);box-shadow:none}
+html.smh-focus[data-paper] .smh-band .smh-crumbs,html.smh-focus[data-paper] .smh-band .smh-crumbs b{color:var(--paper-fg)}
+html.smh-focus[data-paper] .smh-band .smh-crumbs a{color:var(--paper-fg)!important;text-decoration:underline!important;text-underline-offset:3px}
+html.smh-focus[data-paper] .smh-band .smh-crumbs span[aria-hidden]{color:var(--paper-fg);opacity:.6}
+html.smh-focus[data-paper] .smh-band .code{background:#fff;color:#142b68;border-color:#fff}
+/* practice papers (Vault, Mock) colour their headings by paper too */
+html.smh-focus[data-paper] main h1 :is(em,span){color:var(--paper)!important}
+html.smh-focus[data-paper="reading"] main h1 :is(em,span){color:#e8601a!important}
+html.smh-paperpage body{background:var(--paper)!important}
+
+/* Arcade uses the eBook's Game Zone colours: yellow with purple */
+html[data-paper="arcade"]{--paper:#ffcc33;--paper-fg:#142b68}
+html[data-paper="arcade"] main h1.smh-h1 :is(em,span),html.smh-focus[data-paper="arcade"] main h1 :is(em,span){color:#3b5bff!important}
+html[data-paper="arcade"] main .eyebrow{color:#3b5bff}
+html[data-paper="arcade"] .smh-band .code{background:#ffcc33;color:#142b68;border-color:#e9bf12}
+html[data-paper="arcade"] main :is(.button.primary,a.primary,button.primary){background:#3b5bff!important;border-color:#3b5bff!important;color:#fff!important}

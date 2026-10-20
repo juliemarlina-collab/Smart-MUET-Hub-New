@@ -1,0 +1,70 @@
+/* Smart MUET Hub · certificate page and printable certificate (A4 landscape) */
+.ct-seal-wrap{position:relative;display:grid;place-items:center;min-height:300px}
+.ct-seal{width:min(280px,70vw);aspect-ratio:1;border-radius:50%;background:#ffcc33;color:#142b68;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;box-shadow:0 0 0 10px #ffcc3333,0 0 0 22px #ffcc331a;font:800 13px/1.2 "DM Sans",DM,Arial,sans-serif;letter-spacing:.18em}
+.ct-seal b{font-size:90px;line-height:1}
+.ct-seal-wrap img{position:absolute;right:0;bottom:6px;width:46%;max-width:220px;rotate:8deg}
+.ct-stats{grid-template-columns:repeat(2,minmax(0,1fr));max-width:360px}
+
+.ct-list{list-style:none;margin:20px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.ct-row{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;background:#fff;border-radius:18px;padding:14px 16px;min-height:84px;color:#142b68!important;text-decoration:none!important;box-shadow:inset 0 0 0 2px #d9dff5}
+a.ct-row:hover{box-shadow:inset 0 0 0 2px #142b68}
+.ct-mark{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:#e6ebff;font:800 16px "DM Sans",DM,Arial,sans-serif}
+.ct-txt b{display:block;font-size:16px}.ct-txt small{display:block;color:#44507a;font-size:14px;line-height:1.35}
+.ct-prog{font:800 12px "DM Sans",DM,Arial,sans-serif;border-radius:99px;padding:6px 10px;background:#f5f7ff;white-space:nowrap}
+.ct-item.ok .ct-row{background:#ddf6ee;box-shadow:inset 0 0 0 2px #4cc9a6}
+.ct-item.ok .ct-mark{background:#4cc9a6;color:#142b68}
+.ct-item.ok .ct-prog{background:#4cc9a6}
+@media (max-width:1000px){.ct-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.ct-list{grid-template-columns:1fr}}
+
+.ct-form{display:flex;flex-wrap:wrap;gap:12px;align-items:end;margin:18px 0}
+.ct-form label{display:grid;gap:6px;font:800 12px "DM Sans",DM,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#44507a;flex:1 1 220px}
+.ct-form input{min-height:48px;border:2px solid #d9dff5;border-radius:12px;padding:8px 12px;font:600 16px "DM Sans",DM,Arial,sans-serif;color:#142b68;letter-spacing:0;text-transform:none}
+.ct-print{border:0;cursor:pointer}
+
+/* ---------- the certificate ---------- */
+.cert{position:relative;box-sizing:border-box;max-width:1100px;margin:0 auto;aspect-ratio:297/210;background:#142b68;border-radius:18px;padding:16px;box-shadow:0 20px 40px #142b682e;container-type:inline-size;color:#142b68}
+.cert-in{position:relative;height:100%;box-sizing:border-box;background:#fff;border-radius:10px;border:3px solid #ffcc33;padding:3.2cqw 5cqw 2cqw;display:flex;flex-direction:column;align-items:center;text-align:center;overflow:hidden}
+.cert-in::before,.cert-in::after{content:"";position:absolute;width:22cqw;height:22cqw;border-radius:50%;opacity:.16;pointer-events:none}
+.cert-in::before{left:-8cqw;top:-8cqw;background:#3b5bff}
+.cert-in::after{right:-8cqw;bottom:-8cqw;background:#ff754a}
+.cert-top{display:flex;align-items:center;gap:1.4cqw;align-self:stretch;justify-content:center}
+.cert-logo{width:5.4cqw;height:5.4cqw}
+.cert-top b{display:block;font:400 2.6cqw/1 Anton,"Arial Narrow",sans-serif;text-transform:uppercase;text-align:left}
+.cert-top small{display:block;font:700 1.1cqw/1.3 "DM Sans",DM,Arial,sans-serif;color:#44507a;text-align:left}
+.cert-k{margin:2.4cqw 0 0;font:800 1.5cqw "DM Sans",DM,Arial,sans-serif;letter-spacing:.3em;text-transform:uppercase;color:#3b5bff}
+.cert-title{margin:.2cqw 0 0!important;font:400 6.4cqw/1 Anton,"Arial Narrow",sans-serif!important;text-transform:uppercase;letter-spacing:.02em!important;color:#142b68}
+.cert-pre{margin:1.6cqw 0 0;font:500 1.6cqw "DM Sans",DM,Arial,sans-serif;color:#44507a}
+.cert-name{margin:.4cqw 0 0;max-width:80cqw;font:400 4.6cqw/1.1 Anton,"Arial Narrow",sans-serif;text-transform:uppercase;color:#142b68;border-bottom:.3cqw solid #ffcc33;padding:0 3cqw .4cqw}
+.cert-class{margin:.6cqw 0 0;font:700 1.5cqw "DM Sans",DM,Arial,sans-serif;color:#44507a;min-height:1.6cqw}
+.cert-body{margin:1.2cqw auto 0;max-width:72cqw;font:500 1.55cqw/1.5 "DM Sans",DM,Arial,sans-serif!important;color:#142b68}
+.cert-stats{display:flex;gap:1.2cqw;margin-top:1.6cqw}
+.cert-stats div{background:#f5f7ff;border-radius:1cqw;padding:.8cqw 1.6cqw;min-width:12cqw}
+.cert-stats small{display:block;font:800 .95cqw "DM Sans",DM,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#44507a}
+.cert-stats b{display:block;font:400 2.4cqw/1.1 Anton,"Arial Narrow",sans-serif;color:#142b68}
+.cert-stats div:nth-child(2){background:#ffcc33}
+.cert-papers{display:flex;gap:.8cqw;margin-top:1.2cqw}
+.cert-papers img{width:4.2cqw;height:4.2cqw;object-fit:contain}
+.cert-foot{margin-top:auto;align-self:stretch;display:grid;grid-template-columns:1fr auto 1fr;align-items:end;gap:3cqw;padding:0 8cqw}
+.cert-foot div{display:flex;flex-direction:column;align-items:center}
+.cert-line{display:block;width:100%;border-top:.2cqw solid #142b68;margin-bottom:.5cqw}
+.cert-foot b{font:800 1.3cqw "DM Sans",DM,Arial,sans-serif}
+.cert-foot small{font:600 1cqw "DM Sans",DM,Arial,sans-serif;color:#44507a;margin-bottom:.4cqw}
+.cert-id{letter-spacing:.08em}
+.cert-seal{width:9cqw;height:9cqw;border-radius:50%;background:#ffcc33;display:grid!important;place-items:center;box-shadow:0 0 0 .6cqw #fff,0 0 0 1cqw #ffcc33}
+.cert-seal span{font-size:4.6cqw;line-height:1;color:#142b68}
+.cert-note{margin:.8cqw 0 0;font:600 .95cqw "DM Sans",DM,Arial,sans-serif;color:#44507a}
+.cert.sample .cert-in>*{position:relative;z-index:1}
+.cert.sample .cert-in::after{content:"SAMPLE";position:absolute;inset:auto;width:auto;height:auto;right:50%;bottom:50%;transform:translate(50%,50%) rotate(-18deg);background:none;border-radius:0;opacity:.09;font:400 16cqw/1 Anton,"Arial Narrow",sans-serif;color:#142b68;z-index:2}
+.ct-confetti{position:fixed;inset:0;pointer-events:none;z-index:300}
+
+@media print{
+  @page{size:A4 landscape;margin:8mm}
+  html,body,html.smh-shell body,html.smh-shell body:has(.smh-nav){background:#fff!important;padding:0!important;margin:0!important}
+  body>*:not(main){display:none!important}
+  main>*:not(#certificate){display:none!important}
+  #certificate{padding:0!important;margin:0!important;max-width:none!important}
+  #certificate>*:not(#cert){display:none!important}
+  #cert{width:281mm;height:190mm;aspect-ratio:auto;max-width:none;margin:0;box-shadow:none;border-radius:0;padding:4mm;break-inside:avoid}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}

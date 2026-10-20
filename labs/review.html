@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f5f7ff">
+<title>Review again · Smart MUET</title>
+<link rel="icon" href="../shared/assets/logo.svg">
+<link rel="stylesheet" href="../shared/styles/tokens.css">
+<link rel="stylesheet" href="css/lab.css">
+<link rel="stylesheet" href="css/lab-extra.css">
+<link rel="stylesheet" href="css/review.css">
+<link rel="stylesheet" href="../shared/styles/navigation.css">
+<script defer src="../shared/js/item-bank.js"></script>
+<script defer src="js/review.js"></script>
+<script defer src="../shared/js/app.js"></script><link rel="stylesheet" href="../shared/styles/shell.css"><script defer src="../shared/js/shell.js"></script><script defer src="../shared/js/navigation.js"></script>
+</head>
+<body data-page-id="review" data-app-root="../">
+<a class="skip" href="#main">Skip to review</a>
+<header>
+  <a class="brand" href="../index.html"><img src="../shared/assets/logo.svg" alt=""><span>Smart MUET<small>REVIEW AGAIN</small></span></a>
+  <nav aria-label="Review links"><a href="../practice.html">Vault ↗</a><a href="../me.html">Me ↗</a><button id="motion" aria-pressed="false">Pause motion</button></nav>
+</header>
+<main id="main">
+<section class="review-hero">
+  <div>
+    <span class="eyebrow">VAULT / REVIEW AGAIN / SPACED PRACTICE</span>
+    <p class="hello">Welcome back!</p>
+    <h1>Missed it once.<br><span>Meet it again.</span></h1>
+    <p class="lead">Questions you miss in the labs come back after 3 days. Get one right and it is cleared. Miss it again and it returns in 7 days.</p>
+  </div>
+  <div class="stat-row" aria-label="My review queue">
+    <div class="stat due"><b id="stat-due">0</b><span>due now</span></div>
+    <div class="stat"><b id="stat-later">0</b><span>coming later</span></div>
+    <div class="stat"><b id="stat-cleared">0</b><span>cleared so far</span></div>
+    <div class="stat"><b id="stat-sets">0</b><span>sets completed</span></div>
+  </div>
+</section>
+<p id="storage-warning" class="warning" role="status" hidden></p>
+<div class="workspace" id="workspace">
+
+<section id="start-panel" aria-labelledby="start-title">
+  <div class="section-heading"><div><span class="eyebrow">YOUR NEXT SET</span><h2 id="start-title">Five questions.<br>About five minutes.</h2></div><p>Choose a skill or review everything. Read each explanation, even when you are right. Retrieval after a gap is what makes it stick.</p></div>
+  <div class="chips" id="skill-filter" role="group" aria-label="Choose a skill"></div>
+  <article class="paper" id="start-card">
+    <h3 id="start-heading">Loading your queue…</h3>
+    <p id="start-copy"></p>
+    <div class="actions"><button class="primary" id="start-due" hidden>Start my review set ↗</button><button id="start-early" hidden>Practise early ↗</button></div>
+    <div id="empty-links" class="actions" hidden><a class="button" href="listening-lab.html">Listening lab ↗</a><a class="button" href="speaking-lab.html">Speaking lab ↗</a><a class="button" href="reading-lab.html">Reading lab ↗</a><a class="button" href="writing-lab.html">Writing lab ↗</a></div>
+  </article>
+  <article class="paper" id="queue-card">
+    <h3>My queue</h3>
+    <p class="small">Items are saved from the labs on this browser. Dates use your device clock.</p>
+    <div id="queue-list"></div>
+  </article>
+</section>
+
+<section id="quiz-panel" hidden aria-labelledby="quiz-title">
+  <div class="quiz-top">
+    <span class="eyebrow" id="quiz-count">QUESTION 1 OF 5</span>
+    <progress id="quiz-progress" max="5" value="0" aria-label="Set progress"></progress>
+  </div>
+  <article class="paper review-card" id="review-card">
+    <span class="label" id="item-source"></span>
+    <div id="item-context"></div>
+    <h2 id="quiz-title" tabindex="-1"></h2>
+    <fieldset id="item-options"><legend class="sr-only">Choose your answer</legend></fieldset>
+    <p id="item-feedback" class="feedback" role="status"></p>
+    <div id="item-transcript" hidden></div>
+    <div class="actions"><button class="primary" id="check-item">Check my answer</button><button class="primary" id="next-item" hidden>Next question →</button></div>
+  </article>
+  <button id="quit-set">← Stop and return</button>
+</section>
+
+<section id="done-panel" hidden aria-labelledby="done-title">
+  <div class="section-heading"><div><span class="eyebrow">SET COMPLETE</span><h2 id="done-title" tabindex="-1">Nice work.<br>Look what came back.</h2></div><p id="done-copy"></p></div>
+  <div class="two-col">
+    <article class="paper"><h3>This set</h3><div id="done-list"></div></article>
+    <form class="paper teal" id="reflect-form">
+      <span class="label">REFLECT</span>
+      <h3>Before you go</h3>
+      <p class="small">Which technique helped most?</p>
+      <div class="chips" id="reflect-tech" role="group" aria-label="Technique"></div>
+      <label for="reflect-text">What will you do differently next time?</label>
+      <textarea id="reflect-text" rows="3" maxlength="600" placeholder="One specific action…"></textarea>
+      <label for="reflect-conf">My confidence now: <output id="reflect-conf-value">3</output> / 5</label>
+      <input id="reflect-conf" type="range" min="1" max="5" value="3">
+      <button class="primary" type="submit">Save my reflection ✓</button>
+      <p id="reflect-status" role="status"></p>
+    </form>
+  </div>
+  <div class="actions"><button class="primary" id="again">Start another set ↗</button><a class="button" href="../practice.html">Back to Practice ↗</a><a class="button" href="../me.html">See my progress ↗</a></div>
+</section>
+</div>
+</main>
+<footer><span>Smart MUET · Learn → Practise → Reflect → Review</span><span>English Language Unit · Politeknik Port Dickson</span></footer>
+<noscript><p>Please enable JavaScript to use Review again.</p></noscript>
+</body>
+</html>

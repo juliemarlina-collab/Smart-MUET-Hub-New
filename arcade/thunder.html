@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Thunder Lock · Smart MUET Arcade</title>
+  <meta name="theme-color" content="#142b68">
+  <link rel="icon" href="../shared/assets/logo.svg">
+  <link rel="stylesheet" href="css/thunder-base.css">
+  <link rel="stylesheet" href="../shared/styles/tokens.css">
+  <link rel="stylesheet" href="../shared/styles/navigation.css">
+  <link rel="stylesheet" href="../shared/styles/shell.css">
+  <script defer src="../shared/js/app.js"></script>
+  <script defer src="../shared/js/shell.js"></script>
+  <script defer src="../shared/js/navigation.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+  <style>
+    .thunder-stage {
+      background: radial-gradient(circle at center, #1E3A8A 0%, #142B68 75%);
+      border-radius: 24px;
+      padding: 28px;
+      color: #FFF;
+      position: relative;
+      min-height: 520px;
+      box-shadow: var(--shadow-navy);
+      overflow: hidden;
+    }
+    .webcam-pip {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 160px;
+      height: 120px;
+      border: 4px solid var(--yellow);
+      border-radius: 16px;
+      overflow: hidden;
+      background: #000;
+      z-index: 10;
+    }
+    .webcam-pip video { width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); }
+    .pip-tag {
+      position: absolute;
+      bottom: 4px;
+      left: 6px;
+      background: var(--coral);
+      color: #FFF;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 99px;
+    }
+    .monsters-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+    }
+    @media (max-width: 768px) { .monsters-grid { grid-template-columns: 1fr; } }
+    .target-orb {
+      background: rgba(255, 255, 255, 0.12);
+      border: 4px solid rgba(255, 255, 255, 0.25);
+      border-radius: 20px;
+      padding: 28px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .target-orb.aimed {
+      border-color: var(--yellow);
+      background: rgba(255, 204, 51, 0.22);
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(255, 204, 51, 0.6);
+    }
+    .target-orb.hit-correct { background: var(--mint); color: var(--navy); border-color: #FFF; }
+    .target-orb.hit-wrong { background: var(--coral); color: #FFF; border-color: #FFF; }
+    #hand-cursor {
+      position: fixed;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 204, 51, 0.85);
+      border: 3px solid #FFF;
+      pointer-events: none;
+      z-index: 999;
+      display: none;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 20px #FFCC33;
+    }
+  
+    html.smh-shell body{background:#142b68!important;color:#fff}
+    .tl-bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;max-width:1100px;margin:20px auto 0;padding:0 16px}
+    .tl-k{display:block;font:800 12px/1 "DM Sans",Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#ffcc33}
+    .tl-title{display:block;font:400 44px/1 Anton,"Arial Narrow",sans-serif;text-transform:uppercase;color:#fff}
+    .tl-bar small{color:#d5ddf7}
+  </style>
+</head>
+<body data-page-id="arcade-thunder" data-app-root="../" style="--page-main: var(--navy);">
+
+<div id="hand-cursor"></div>
+
+<header class="site-header"><a href="index.html">← Arcade</a></header>
+
+<main class="container" id="main">
+  <div class="tl-bar">
+    <div><span class="tl-k">Arcade · open hand game</span><b class="tl-title">Thunder Lock</b><small>PREP &amp; PEEL order, linking words and vocabulary</small></div>
+    <div class="xp-pill">Score <b id="tl-score">0</b> · Lives <b id="tl-lives">❤️❤️❤️</b></div>
+  </div>
+  <div class="thunder-stage">
+    <div class="webcam-pip">
+      <video id="webcam-video" playsinline></video>
+      <span class="pip-tag" id="cam-status">CLICK OR ENABLE CAM</span>
+    </div>
+
+    <div style="max-width: 680px; margin: 0 auto; text-align: center; padding-top: 10px;">
+      <span class="badge badge-star" id="tl-category">MUET BAND 3.0+ COHESION & VOCABULARY</span>
+      <h1 class="h-display" style="color:var(--yellow); font-size:36px; margin:10px 0;" id="tl-question">Loading challenge...</h1>
+      <p style="font-size:15px; opacity:0.9;">🖐️ Move open palm (or mouse) to aim at a card · ✊ Clench fist (or click) to launch lightning!</p>
+    </div>
+
+    <div class="monsters-grid" id="tl-targets"></div>
+
+    <div class="feedback-box" id="tl-feedback" style="max-width:720px; margin:24px auto 0;">
+      <b id="tl-fb-head"></b>
+      <p id="tl-fb-body" style="margin-top:4px;"></p>
+      <button type="button" class="btn btn-blue btn-sm" style="margin-top:10px;" onclick="nextThunderQ()">Next Lightning Round →</button>
+    </div>
+
+    <div style="text-align:center; margin-top:24px;">
+      <button type="button" class="btn btn-yellow btn-sm" onclick="startCamera()">📷 Enable Webcam Hand Tracking (MediaPipe)</button>
+    </div>
+  </div>
+</main>
+
+<script>
+  const questions = [
+    { cat: 'LISTENING 800/1 · CLUE SIGNPOST', q: '“We first planned to cycle. In the end, though, we took the train.” How did they travel?', opts: ['By bicycle', 'By train', 'By bus'], ans: 1, exp: '“In the end, though” replaces the first plan. Listen past the first answer you hear.' },
+    { cat: 'LISTENING 800/1 · NUMBER PARAPHRASE', q: '“The course runs for a fortnight.” How long is the course?', opts: ['One week', 'Two weeks', 'Four weeks'], ans: 1, exp: 'A fortnight means two weeks. MUET often paraphrases numbers and time.' },
+    { cat: 'SPEAKING 800/2 · PREP ORDER', q: 'Which part of PREP comes straight after your Point?', opts: ['Example', 'Reason', 'Point again'], ans: 1, exp: 'Point, Reason, Example, Point again. Give the reason before the example.' },
+    { cat: 'SPEAKING 800/2 · GROUP INTERACTION', q: 'Which phrase shows you are building on a group member’s idea?', opts: ['That is wrong.', 'Adding to what Farid said, …', 'Anyway, my point is …'], ans: 1, exp: 'Naming the speaker and adding to their idea earns interaction marks.' },
+    { cat: 'SPEAKING 800/2 · EXAMPLE', q: 'Which example is the most specific?', opts: ['For example, many people do it.', 'For example, my class saved RM300 by sharing notes online.', 'For example, it is useful.'], ans: 1, exp: 'Specific examples use a real person, place or number.' },
+    { cat: 'READING 800/3 · REFERENCE', q: '“Fees rose by 10%. This increase worried many parents.” What does “This increase” refer to?', opts: ['Parents', 'The 10% rise in fees', 'Worry'], ans: 1, exp: 'Reference words point back to the idea just before them.' },
+    { cat: 'READING 800/3 · LIMITING WORD', q: '“Only a few students passed the first attempt.” Which is true?', opts: ['Most students passed', 'Some students, but not many, passed', 'Nobody passed'], ans: 1, exp: '“Only a few” means a small number, not none and not most.' },
+    { cat: 'READING 800/3 · WRITER’S VIEW', q: '“The writer attributes the drop in sales to higher prices.” This means the writer thinks …', opts: ['higher prices caused the drop', 'sales caused higher prices', 'prices did not change'], ans: 0, exp: '“Attribute X to Y” means Y caused X.' },
+    { cat: 'WRITING 800/4 · PEEL', q: 'In PEEL, what does the final L do?', opts: ['Lists more ideas', 'Links back to the question', 'Leaves the paragraph open'], ans: 1, exp: 'The Link sentence ties the paragraph back to the essay question.' },
+    { cat: 'WRITING 800/4 · CONTRAST', q: '“Online classes are flexible. __________, they can feel lonely.”', opts: ['However', 'Therefore', 'For example'], ans: 0, exp: 'The second idea contrasts with the first, so “However” fits.' },
+    { cat: 'WRITING 800/4 · EMAIL TONE', q: 'Your friend asks for advice by email. Which opening fits Task 1?', opts: ['Dear Sir/Madam,', 'Hi Lina, thanks for your message about the trip.', 'To whom it may concern,'], ans: 1, exp: 'Match the reader. A friend gets a friendly opening.' },
+    { cat: 'WRITING 800/4 · PEEL COHESIVE DEVICE', q: 'The campus Wi-Fi was upgraded last month. __________, students can now stream lecture videos seamlessly.', opts: ['Consequently', 'Nevertheless', 'Whereas'], ans: 0, exp: '"Consequently" connects the positive action (upgraded Wi-Fi) to its direct result.' },
+    { cat: 'SPEAKING 800/2 · VOCABULARY UPGRADE', q: 'Upgrade the bold words: "Part-time jobs help diploma students “get” practical communication skills."', opts: ['acquire', 'abolish', 'hesitate'], ans: 0, exp: '"Acquire" is a strong Band 3.5/4.0 collocation with "skills" or "knowledge".' },
+    { cat: 'READING 800/3 · CONTEXTUAL CLUE', q: '"The speaker’s “ambiguous” reply left the audience unsure whether the project was approved." What does ambiguous mean?', opts: ['Clear and definite', 'Open to more than one interpretation / unclear', 'Extremely angry'], ans: 1, exp: 'Because the audience was "unsure", "ambiguous" means unclear or having multiple meanings.' },
+    { cat: 'LISTENING 800/1 · CLUE SIGNPOST', q: 'Which signpost phrase warns you that a speaker is about to contradict an earlier assumption?', opts: ['In addition to that,', 'Contrary to popular belief,', 'For instance,'], ans: 1, exp: '"Contrary to popular belief" signals a shift away from the initial distractor.' }
+  ];
+
+  let qIdx = 0, score = 0, lives = 3, locked = false, aimedIdx = -1;
+
+  function renderThunderQ() {
+    locked = false;
+    const item = questions[qIdx % questions.length];
+    document.getElementById('tl-category').textContent = item.cat;
+    document.getElementById('tl-question').textContent = item.q;
+    document.getElementById('tl-feedback').style.display = 'none';
+
+    const grid = document.getElementById('tl-targets');
+    grid.innerHTML = item.opts.map((o, i) => `
+      <div class="target-orb" id="orb-${i}" onclick="triggerLightning(${i})">
+        <div style="font-size:34px; margin-bottom:8px;">⚡</div>
+        <h3 style="font-family:var(--font-sans); font-size:22px; font-weight:800;">${o}</h3>
+      </div>
+    `).join('');
+  }
+
+  function playZapSound(correct) {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = correct ? 'triangle' : 'sawtooth';
+      osc.frequency.setValueAtTime(correct ? 520 : 160, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(correct ? 880 : 90, ctx.currentTime + 0.25);
+      gain.gain.setValueAtTime(0.2, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.25);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.25);
+    } catch (e) {}
+  }
+
+  function triggerLightning(idx) {
+    if (locked || idx < 0) return;
+    locked = true;
+    const item = questions[qIdx % questions.length];
+    const orb = document.getElementById('orb-' + idx);
+    const isCorrect = (idx === item.ans);
+
+    playZapSound(isCorrect);
+    if (orb) orb.classList.add(isCorrect ? 'hit-correct' : 'hit-wrong');
+    document.getElementById('orb-' + item.ans)?.classList.add('hit-correct');
+
+    if (isCorrect) {
+      score += 30;
+      document.getElementById('tl-score').textContent = score;
+    } else {
+      lives = Math.max(1, lives - 1);
+      document.getElementById('tl-lives').textContent = '❤️'.repeat(lives);
+    }
+
+    saveRound(isCorrect);
+    const fb = document.getElementById('tl-feedback');
+    fb.style.display = 'block';
+    document.getElementById('tl-fb-head').textContent = isCorrect ? '⚡ THUNDER LOCK HIT! (+30 points)' : '⚠️ DISTRACTOR HIT — CHECK EXPLANATION:';
+    document.getElementById('tl-fb-body').textContent = item.exp;
+  }
+
+  /* every 5 answers = one finished Arcade round (10 XP each, up to 3 a day, counted in shared/js/app.js) */
+  let answered = 0, right = 0;
+  function saveRound(ok) {
+    answered++; if (ok) right++;
+    if (answered % 5) return;
+    try {
+      const k = 'smh.arcade.v1', a = JSON.parse(localStorage.getItem(k) || '{}') || {};
+      a.rounds = Array.isArray(a.rounds) ? a.rounds : []; a.best = a.best || {};
+      const d = new Date(), date = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+      a.rounds.push({ game: 'thunder', date, score, correct: right, total: 5, ts: Date.now() });
+      a.rounds = a.rounds.slice(-200);
+      a.best.thunder = Math.max(a.best.thunder || 0, score);
+      localStorage.setItem(k, JSON.stringify(a));
+      if (window.SMHApp && SMHApp.refresh) SMHApp.refresh();
+    } catch {}
+    right = 0;
+  }
+
+  function nextThunderQ() {
+    qIdx++;
+    renderThunderQ();
+  }
+
+  /* MEDIAPIPE HANDS GESTURE TRACKING (OPEN PALM = AIM, CLENCH FIST = LOCK) */
+  function startCamera() {
+    const videoElement = document.getElementById('webcam-video');
+    const cursor = document.getElementById('hand-cursor');
+    cursor.style.display = 'block';
+    document.getElementById('cam-status').textContent = 'STARTING CAM...';
+
+    const hands = new Hands({
+      locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`
+    });
+    hands.setOptions({ maxNumHands: 1, modelComplexity: 1, minDetectionConfidence: 0.6, minTrackingConfidence: 0.6 });
+
+    hands.onResults((results) => {
+      if (!results.multiHandLandmarks || results.multiHandLandmarks.length === 0) return;
+      document.getElementById('cam-status').textContent = 'HAND LOCKED ✓';
+      const lm = results.multiHandLandmarks[0];
+      // Index MCP (9) for stable palm cursor (mirrored X)
+      const x = (1 - lm[9].x) * window.innerWidth;
+      const y = lm[9].y * window.innerHeight;
+      cursor.style.left = `${x}px`;
+      cursor.style.top = `${y}px`;
+
+      // Highlight orb under palm cursor
+      aimedIdx = -1;
+      [0, 1, 2].forEach(i => {
+        const el = document.getElementById('orb-' + i);
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
+          el.classList.add('aimed');
+          aimedIdx = i;
+        } else {
+          el.classList.remove('aimed');
+        }
+      });
+
+      // Detect Fist Clench: fingertips (8, 12, 16) folded below PIP joints (6, 10, 14)
+      const isFist = (lm[8].y > lm[6].y) && (lm[12].y > lm[10].y) && (lm[16].y > lm[14].y);
+      if (isFist && aimedIdx !== -1 && !locked) {
+        triggerLightning(aimedIdx);
+      }
+    });
+
+    const camera = new Camera(videoElement, {
+      onFrame: async () => { await hands.send({ image: videoElement }); },
+      width: 320,
+      height: 240
+    });
+    camera.start();
+  }
+
+  document.addEventListener('DOMContentLoaded', renderThunderQ);
+</script>
+</body>
+</html>

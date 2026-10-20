@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+  <link rel="icon" href="assets/heroes/small-muet-logo.svg" type="image/svg+xml">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#ffcc33">
+<title>Mock Practice 1 · Writing · Smart MUET Guide</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#111;
+  --white:#fff;
+  --soft:#f3f7f8;
+  --muted:#44507a;
+  --gold:#ffcc33;
+  --orange:#ff754a;
+  --cyan:#16D5E8;
+  --lime:#48F000;
+  --pink:#e0479e;
+  --red:#ff2525;
+  --line:3px solid var(--ink);
+  --shadow:5px 5px 0 var(--ink);
+  --fh:"Sora",sans-serif;
+  --fb:"DM Sans",sans-serif;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+body{
+  font-family:var(--fb);
+  background:var(--gold);
+  color:var(--ink);
+  overflow-x:hidden;
+}
+
+a{color:inherit;text-decoration:none}
+button,textarea{font:inherit}
+
+.app{
+  width:100%;
+  max-width:580px;
+  min-height:100dvh;
+  margin:auto;
+  background:var(--soft);
+  padding:15px 14px 118px;
+}
+
+.top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:14px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:9px;
+}
+
+.brand img{
+  width:54px;
+  height:54px;
+}
+
+.brand small{
+  display:block;
+  font-size:9px;
+  font-weight:1000;
+  color:var(--muted);
+  letter-spacing:.08em;
+}
+
+.brand b{
+  display:block;
+  margin-top:3px;
+  font-family:var(--fh);
+  font-size:17px;
+}
+
+.back{min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;
+  border:2px solid var(--ink);
+  border-radius:999px;
+  background:#fff;
+  box-shadow:2px 2px 0 var(--ink);
+  padding:8px 11px;
+  font-size:11px;
+  font-weight:1000;
+}
+
+.hero{
+  position:relative;
+  overflow:hidden;
+  background:#fff;
+  border:var(--line);
+  border-radius:24px;
+  box-shadow:var(--shadow);
+  padding:20px 18px;
+  margin-bottom:14px;
+}
+
+.hero:after{z-index:-1;
+  content:"";
+  position:absolute;
+  right:-28px;
+  top:-28px;
+  width:108px;
+  height:108px;
+  border:var(--line);
+  border-radius:50%;
+  background:var(--orange);
+}
+
+.tag{
+  position:relative;
+  z-index:2;
+  display:inline-block;
+  background:var(--ink);
+  color:#fff;
+  border-radius:999px;
+  padding:6px 9px;
+  font-size:9px;
+  font-weight:1000;
+  letter-spacing:.08em;
+}
+
+.hero h1{
+  position:relative;
+  z-index:2;
+  margin-top:10px;
+  font-family:var(--fh);
+  font-size:clamp(35px,9vw,49px);
+  line-height:.96;
+  letter-spacing:-.05em;
+}
+
+.hero h1 span{
+  display:block;
+  color:var(--orange);
+}
+
+.hero p{
+  position:relative;
+  z-index:2;
+  margin-top:11px;
+  color:#142b68;
+  font-size:15px;
+  line-height:1.48;
+  font-weight:750;
+}
+
+.exam-card{
+  position:sticky;
+  top:7px;
+  z-index:50;
+  background:var(--ink);
+  color:#fff;
+  border:var(--line);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  padding:12px;
+  margin-bottom:14px;
+}
+
+.exam-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.exam-card h2{
+  font-family:var(--fh);
+  font-size:16px;
+}
+
+.exam-card p{
+  margin-top:3px;
+  color:#ddd;
+  font-size:9px;
+  font-weight:750;
+}
+
+.timer{
+  font-family:var(--fh);
+  font-size:29px;
+  font-weight:800;
+  white-space:nowrap;
+}
+
+.start{
+  width:100%;
+  min-height:45px;
+  margin-top:9px;
+  border:2px solid #fff;
+  border-radius:10px;
+  background:var(--gold);
+  color:#111;
+  font-size:10px;
+  font-weight:1000;
+  cursor:pointer;
+}
+
+.progress{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:7px;
+  margin-bottom:13px;
+}
+
+.progress div{
+  border:2px solid var(--ink);
+  border-radius:12px;
+  background:#fff;
+  padding:8px 10px;
+  font-size:9px;
+  font-weight:1000;
+}
+
+.progress div.done{
+  background:var(--lime);
+}
+
+.mock-note{
+  border:var(--line);
+  border-radius:14px;
+  background:#fff4d1;
+  box-shadow:4px 4px 0 var(--ink);
+  padding:10px;
+  margin-bottom:13px;
+  font-size:11px;
+  line-height:1.45;
+  font-weight:800;
+}
+
+.task{
+  background:#fff;
+  border:var(--line);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  margin-bottom:14px;
+}
+
+.task-head{
+  display:grid;
+  grid-template-columns:48px 1fr auto;
+  gap:10px;
+  align-items:center;
+  padding:12px;
+  background:#fff3e8;
+  border-bottom:2px solid var(--ink);
+}
+
+.task-no{
+  width:46px;
+  height:46px;
+  display:grid;
+  place-items:center;
+  border:2px solid var(--ink);
+  border-radius:12px;
+  background:#fff;
+  font-family:var(--fh);
+  font-size:18px;
+  font-weight:800;
+}
+
+.task-meta small{
+  display:block;
+  font-size:9px;
+  color:var(--muted);
+  font-weight:900;
+  letter-spacing:.05em;
+}
+
+.task-meta b{
+  display:block;
+  margin-top:3px;
+  font-family:var(--fh);
+  font-size:15px;
+  line-height:1.2;
+}
+
+.weight{
+  border:2px solid var(--ink);
+  border-radius:999px;
+  background:var(--gold);
+  padding:5px 7px;
+  font-size:8px;
+  font-weight:1000;
+}
+
+.task-body{
+  padding:12px;
+}
+
+.instruction{
+  border:2px solid var(--ink);
+  border-radius:12px;
+  background:#f8fbff;
+  padding:10px;
+  font-size:12px;
+  line-height:1.48;
+  font-weight:750;
+}
+
+.instruction p+p{
+  margin-top:8px;
+}
+
+.time-chip{
+  display:inline-flex;
+  margin-bottom:8px;
+  border:2px solid var(--ink);
+  border-radius:999px;
+  background:var(--cyan);
+  padding:5px 8px;
+  font-size:8px;
+  font-weight:1000;
+  letter-spacing:.05em;
+}
+
+.letter-box{
+  margin-top:10px;
+  border:2px solid var(--ink);
+  border-radius:14px;
+  background:#fff;
+  padding:11px;
+  font-size:12px;
+  line-height:1.55;
+}
+
+.address{
+  text-align:right;
+  font-style:italic;
+  margin-bottom:12px;
+}
+
+.letter-box p+p{
+  margin-top:10px;
+}
+
+.note-line{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:8px;
+  align-items:center;
+}
+
+.note-pill{
+  border:2px solid var(--ink);
+  border-radius:999px;
+  background:var(--pink);
+  padding:5px 8px;
+  font-size:8px;
+  font-weight:1000;
+  white-space:nowrap;
+}
+
+.prompt{
+  margin-top:10px;
+  border:2px solid var(--ink);
+  border-radius:13px;
+  background:#fff4d1;
+  padding:11px;
+  font-size:12px;
+  line-height:1.48;
+  font-weight:800;
+}
+
+.topic{
+  margin-top:10px;
+  border:3px solid var(--ink);
+  border-radius:15px;
+  background:#fff;
+  padding:18px 12px;
+  text-align:center;
+  font-family:Georgia,serif;
+  font-size:19px;
+  line-height:1.4;
+  font-style:italic;
+  font-weight:700;
+}
+
+.writer{
+  margin-top:12px;
+}
+
+.writer-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  margin-bottom:6px;
+}
+
+.writer-head b{
+  font-family:var(--fh);
+  font-size:13px;
+}
+
+.count{
+  border:2px solid var(--ink);
+  border-radius:999px;
+  background:#fff;
+  padding:5px 8px;
+  font-size:9px;
+  font-weight:1000;
+}
+
+.count.ok{
+  background:var(--lime);
+}
+
+textarea{
+  width:100%;
+  min-height:270px;
+  resize:vertical;
+  border:3px solid var(--ink);
+  border-radius:14px;
+  background:#fff;
+  padding:12px;
+  color:#111;
+  font-size:14px;
+  line-height:1.6;
+  font-weight:600;
+  outline:none;
+}
+
+textarea:focus{
+  box-shadow:0 0 0 4px rgba(255,196,0,.28);
+}
+
+#task2Text{
+  min-height:430px;
+}
+
+.save-state{
+  margin-top:6px;
+  color:var(--muted);
+  font-size:9px;
+  font-weight:800;
+}
+
+.complete-btn{
+  width:100%;
+  min-height:46px;
+  margin-top:10px;
+  border:var(--line);
+  border-radius:11px;
+  background:var(--gold);
+  box-shadow:3px 3px 0 var(--ink);
+  font-size:10px;
+  font-weight:1000;
+  cursor:pointer;
+}
+
+.task-result{
+  display:none;
+  margin-top:9px;
+  border:2px solid var(--ink);
+  border-radius:11px;
+  background:#ddf6ee;
+  padding:9px;
+  font-size:11px;
+  line-height:1.45;
+  font-weight:800;
+}
+
+.task-result.show{
+  display:block;
+}
+
+.final{
+  background:#fff;
+  border:var(--line);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  padding:14px;
+}
+
+.final h2{
+  font-family:var(--fh);
+  font-size:20px;
+}
+
+.final p{
+  margin-top:5px;
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.45;
+  font-weight:750;
+}
+
+.final button{
+  width:100%;
+  min-height:50px;
+  margin-top:10px;
+  border:var(--line);
+  border-radius:11px;
+  background:var(--red);
+  color:#fff;
+  box-shadow:4px 4px 0 var(--ink);
+  font-size:11px;
+  font-weight:1000;
+  cursor:pointer;
+}
+
+.final-result{
+  display:none;
+  margin-top:10px;
+  border:2px solid var(--ink);
+  border-radius:12px;
+  background:#ddf6ee;
+  padding:11px;
+  font-size:12px;
+  line-height:1.45;
+  font-weight:800;
+}
+
+.final-result.show{
+  display:block;
+}
+
+.nav{
+  position:fixed;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:10px;
+  width:calc(100% - 20px);
+  max-width:560px;
+  z-index:80;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  background:#fff;
+  border:var(--line);
+  border-radius:18px;
+  box-shadow:5px 5px 0 var(--ink);
+  padding:6px;
+}
+
+.nav a{
+  min-height:58px;
+  display:grid;
+  place-items:center;
+  align-content:center;
+  gap:3px;
+  border-radius:10px;
+  font-size:9px;
+  font-weight:1000;
+}
+
+.nav a.active{
+  background:var(--gold);
+  border:2px solid var(--ink);
+}
+
+.nav img{
+  width:26px;
+  height:26px;
+}
+
+@media(min-width:760px){
+  .app{
+    max-width:900px;
+    padding:24px 24px 120px;
+  }
+
+  .nav{
+    max-width:860px;
+  }
+
+  textarea{
+    min-height:320px;
+  }
+
+  #task2Text{
+    min-height:500px;
+  }
+}
+
+.rubric-panel{
+  margin-top:14px;
+  background:#fff;
+  border:var(--line);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  padding:14px;
+}
+.rubric-panel h2{
+  font-family:var(--fh);
+  font-size:20px;
+}
+.rubric-panel>p{
+  margin-top:5px;
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.45;
+  font-weight:750;
+}
+.rubric-note{
+  margin-top:9px;
+  border:2px solid var(--ink);
+  border-radius:11px;
+  background:#fff4d1;
+  padding:9px;
+  font-size:10px;
+  line-height:1.42;
+  font-weight:800;
+}
+.score-block{
+  margin-top:10px;
+  border:2px solid var(--ink);
+  border-radius:14px;
+  background:#f5f7ff;
+  padding:10px;
+}
+.score-block h3{
+  font-family:var(--fh);
+  font-size:14px;
+}
+.score-block small{
+  display:block;
+  margin-top:2px;
+  color:var(--muted);
+  font-size:9px;
+  font-weight:800;
+}
+.criteria-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:8px;
+  margin-top:9px;
+}
+.criterion{
+  display:grid;
+  grid-template-columns:1fr 88px;
+  gap:8px;
+  align-items:center;
+  border:2px solid var(--ink);
+  border-radius:10px;
+  background:#fff;
+  padding:8px;
+}
+.criterion b{
+  font-size:11px;
+  line-height:1.3;
+}
+.criterion select{
+  width:100%;
+  min-height:38px;
+  border:2px solid var(--ink);
+  border-radius:8px;
+  background:#fff;
+  padding:5px;
+  font-size:10px;
+  font-weight:900;
+}
+.score-summary{
+  margin-top:10px;
+  border:3px solid var(--ink);
+  border-radius:14px;
+  background:#ddf6ee;
+  padding:11px;
+}
+.score-summary .score-big{
+  font-family:var(--fh);
+  font-size:31px;
+  font-weight:800;
+}
+.score-summary p{
+  margin-top:3px;
+  font-size:10px;
+  line-height:1.4;
+  font-weight:800;
+}
+.rubric-toggle{
+  margin-top:10px;
+  width:100%;
+  min-height:44px;
+  border:var(--line);
+  border-radius:10px;
+  background:var(--cyan);
+  box-shadow:3px 3px 0 var(--ink);
+  font-size:10px;
+  font-weight:1000;
+  cursor:pointer;
+}
+.rubric-guide{
+  display:none;
+  margin-top:10px;
+}
+.rubric-guide.show{display:block}
+.rubric-guide details{
+  border:2px solid var(--ink);
+  border-radius:10px;
+  background:#fff;
+  margin-top:6px;
+  overflow:hidden;
+}
+.rubric-guide summary{
+  cursor:pointer;
+  padding:8px;
+  font-size:10px;
+  font-weight:1000;
+  background:#e6ebff;
+}
+.rubric-guide .guide-body{
+  padding:8px;
+  font-size:9px;
+  line-height:1.45;
+  font-weight:700;
+}
+
+
+.mock-eval{display:none;margin-top:10px}.mock-eval.show{display:block}
+.criteria{display:grid;gap:7px;margin-top:8px}
+.criterion{border:2px solid var(--ink);border-radius:11px;background:#fff;padding:9px}
+.criterion-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.criterion b{font-family:var(--fh);font-size:11px}
+.criterion-score{font-family:var(--fh);font-size:22px;font-weight:900}
+.criterion p{margin-top:4px;color:var(--muted);font-size:10px;line-height:1.4;font-weight:750}
+.score-card{margin-top:8px;border:3px solid var(--ink);border-radius:12px;background:#ddf6ee;padding:10px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.score-card b{font-family:var(--fh);font-size:12px}.score-card strong{font-family:var(--fh);font-size:28px}
+.coach{margin-top:8px;border:2px solid var(--ink);border-radius:11px;background:#fff4d1;padding:9px;font-size:11px;line-height:1.45;font-weight:800}
+.save-state2{margin-top:8px;border:2px solid var(--ink);border-radius:10px;background:#fff;padding:8px;font-size:10px;font-weight:850}
+
+
+.mock-task{
+  overflow:hidden;
+  background:#fff;
+  border:var(--line);
+  border-radius:19px;
+  box-shadow:var(--shadow);
+  margin-bottom:12px;
+}
+.mock-task-head{
+  width:100%;
+  min-height:76px;
+  border:0;
+  background:#fff3e8;
+  padding:11px;
+  display:grid;
+  grid-template-columns:46px 1fr auto;
+  gap:9px;
+  align-items:center;
+  text-align:left;
+  cursor:pointer;
+}
+.mock-task-num{
+  width:44px;
+  height:44px;
+  display:grid;
+  place-items:center;
+  border:2px solid var(--ink);
+  border-radius:11px;
+  background:#fff;
+  font-family:var(--fh);
+  font-size:17px;
+  font-weight:800;
+}
+.mock-task-title b{
+  display:block;
+  font-family:var(--fh);
+  font-size:14px;
+}
+.mock-task-title span{
+  display:block;
+  margin-top:3px;
+  color:var(--muted);
+  font-size:10px;
+  font-weight:750;
+}
+.mock-task-plus{
+  font-size:24px;
+  font-weight:1000;
+  transition:.15s;
+}
+.mock-task.open .mock-task-plus{transform:rotate(45deg)}
+.mock-task-body{
+  display:none;
+  border-top:2px solid var(--ink);
+}
+.mock-task.open .mock-task-body{display:block}
+
+
+/* ===== STANDARD MOCK 1 FINISH / SUBMIT CARD ===== */
+.mock-finish{
+  background:#fff;
+  border:var(--line);
+  border-radius:19px;
+  box-shadow:var(--shadow);
+  padding:13px;
+  margin-top:14px;
+}
+.mock-finish h2{
+  font-family:var(--fh);
+  font-size:20px;
+  line-height:1.15;
+}
+.mock-finish p{
+  margin-top:6px;
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.45;
+  font-weight:750;
+}
+.mock-submit-btn{
+  width:100%;
+  min-height:52px;
+  margin-top:11px;
+  border:var(--line);
+  border-radius:11px;
+  background:var(--gold);
+  color:var(--ink);
+  box-shadow:4px 4px 0 var(--ink);
+  font-size:11px;
+  font-weight:1000;
+  letter-spacing:.01em;
+  cursor:pointer;
+}
+.mock-submit-btn:active{
+  transform:translate(2px,2px);
+  box-shadow:2px 2px 0 var(--ink);
+}
+.mock-finish .submit-note{
+  display:block;
+  margin-top:7px;
+  color:var(--muted);
+  font-size:9px;
+  line-height:1.4;
+  font-weight:800;
+}
+
+</style>
+  <link rel="stylesheet" href="css/responsive-v2.css">
+
+<style id="mock1-part7-responsive">
+/* =========================================================
+   PART 7 · MOCK PRACTICE 1 COMPONENTS
+   Speaking · Listening · Reading · Writing
+   Exam-focused responsive standardisation
+   ========================================================= */
+.page-mock1-component .app{
+  width:min(100%,1240px)!important;
+  max-width:100%!important;
+  margin-inline:auto!important;
+  padding:clamp(14px,2vw,26px) clamp(12px,2vw,28px) 122px!important;
+}
+.page-mock1-component .top,
+.page-mock1-component .brandbar{
+  min-height:62px;
+  gap:12px!important;
+  margin-bottom:clamp(12px,1.5vw,16px)!important;
+}
+.page-mock1-component .brand,
+.page-mock1-component .brandbar>div{min-width:0}
+.page-mock1-component .brand img,
+.page-mock1-component .brandbar img{
+  width:clamp(50px,5vw,64px)!important;
+  height:clamp(50px,5vw,64px)!important;
+  flex:0 0 auto;
+}
+.page-mock1-component .brand small,
+.page-mock1-component .brandbar small{
+  font-size:clamp(.62rem,.28vw + .58rem,.73rem)!important;
+}
+.page-mock1-component .brand b,
+.page-mock1-component .brandbar b{
+  font-size:clamp(1rem,.48vw + .9rem,1.18rem)!important;
+  line-height:1.2!important;
+}
+.page-mock1-component .back{
+  min-height:44px!important;
+  flex:0 0 auto;
+  font-size:clamp(.72rem,.3vw + .66rem,.84rem)!important;
+}
+
+/* Hero */
+.page-mock1-component .hero{
+  padding:clamp(18px,3vw,30px)!important;
+  margin-bottom:clamp(13px,1.5vw,17px)!important;
+}
+.page-mock1-component .hero .tag{
+  font-size:clamp(.64rem,.28vw + .6rem,.76rem)!important;
+}
+.page-mock1-component .hero h1{
+  font-size:clamp(2.35rem,5.1vw,4rem)!important;
+  line-height:.96!important;
+}
+.page-mock1-component .hero p{
+  max-width:66ch!important;
+  font-size:clamp(.96rem,.62vw + .84rem,1.14rem)!important;
+  line-height:1.55!important;
+}
+
+/* Timer/test header */
+.page-mock1-component .exam,
+.page-mock1-component .exam-header,
+.page-mock1-component .paperbar{
+  padding:clamp(11px,1.5vw,16px)!important;
+}
+.page-mock1-component .exam-row{
+  gap:10px!important;
+  align-items:center!important;
+}
+.page-mock1-component .exam h2,
+.page-mock1-component .exam-header h2,
+.page-mock1-component .paperbar h2{
+  font-size:clamp(1.02rem,.65vw + .9rem,1.2rem)!important;
+}
+.page-mock1-component .exam p,
+.page-mock1-component .exam-header p,
+.page-mock1-component .paperbar p{
+  font-size:clamp(.66rem,.28vw + .61rem,.78rem)!important;
+  line-height:1.35!important;
+}
+.page-mock1-component .timer{
+  font-size:clamp(1.55rem,2.2vw,2.05rem)!important;
+  white-space:nowrap;
+}
+.page-mock1-component .start,
+.page-mock1-component .start-btn{
+  min-height:48px!important;
+  font-size:clamp(.74rem,.34vw + .68rem,.86rem)!important;
+}
+
+/* Progress strip */
+.page-mock1-component .progress,
+.page-mock1-component .flow{
+  gap:clamp(5px,.8vw,8px)!important;
+}
+.page-mock1-component .progress div,
+.page-mock1-component .flow div{
+  min-width:0;
+  min-height:36px;
+  display:grid;
+  place-items:center;
+  padding:7px 4px!important;
+  font-size:clamp(.6rem,.24vw + .56rem,.7rem)!important;
+  line-height:1.15!important;
+}
+
+/* Accordion/task headers */
+.page-mock1-component .accordion-task,
+.page-mock1-component .mock-task,
+.page-mock1-component .listen-part,
+.page-mock1-component .part,
+.page-mock1-component .task{
+  border-radius:clamp(16px,1.5vw,20px)!important;
+  margin-bottom:clamp(10px,1.2vw,14px)!important;
+}
+.page-mock1-component .accordion-head,
+.page-mock1-component .mock-task-head,
+.page-mock1-component .listen-part-head,
+.page-mock1-component .part-head,
+.page-mock1-component .task-head{
+  min-height:76px!important;
+  grid-template-columns:clamp(44px,4vw,52px) minmax(0,1fr) auto!important;
+  gap:clamp(8px,1vw,12px)!important;
+  padding:clamp(10px,1.4vw,15px)!important;
+}
+.page-mock1-component .accordion-num,
+.page-mock1-component .mock-task-num,
+.page-mock1-component .listen-part-no,
+.page-mock1-component .part-num,
+.page-mock1-component .num{
+  width:clamp(42px,4vw,50px)!important;
+  height:clamp(42px,4vw,50px)!important;
+  font-size:clamp(1rem,.75vw + .86rem,1.2rem)!important;
+}
+.page-mock1-component .accordion-title,
+.page-mock1-component .mock-task-title,
+.page-mock1-component .listen-part-meta,
+.page-mock1-component .part-title,
+.page-mock1-component .title{min-width:0}
+.page-mock1-component .accordion-title b,
+.page-mock1-component .mock-task-title b,
+.page-mock1-component .listen-part-meta b,
+.page-mock1-component .part-title b,
+.page-mock1-component .title b{
+  font-size:clamp(.98rem,.55vw + .88rem,1.15rem)!important;
+  line-height:1.25!important;
+}
+.page-mock1-component .accordion-title span,
+.page-mock1-component .mock-task-title span,
+.page-mock1-component .listen-part-meta small,
+.page-mock1-component .part-title span,
+.page-mock1-component .title span{
+  font-size:clamp(.73rem,.34vw + .67rem,.86rem)!important;
+  line-height:1.35!important;
+}
+.page-mock1-component .accordion-plus,
+.page-mock1-component .mock-task-plus,
+.page-mock1-component .listen-part-plus,
+.page-mock1-component .chev,
+.page-mock1-component .plus{
+  font-size:clamp(1.3rem,1.4vw,1.65rem)!important;
+}
+.page-mock1-component .accordion-body,
+.page-mock1-component .mock-task-body,
+.page-mock1-component .listen-part-body,
+.page-mock1-component .part-body,
+.page-mock1-component .task-body{
+  padding:clamp(11px,1.6vw,18px)!important;
+}
+
+/* Shared prompt/question styles */
+.page-mock1-component .prompt,
+.page-mock1-component .note,
+.page-mock1-component .instruction-card{
+  padding:clamp(9px,1.3vw,14px)!important;
+  font-size:clamp(.82rem,.42vw + .75rem,.96rem)!important;
+  line-height:1.5!important;
+}
+.page-mock1-component .qcard{
+  min-width:0;
+  padding:clamp(10px,1.3vw,14px)!important;
+  margin-top:clamp(8px,1vw,11px)!important;
+}
+.page-mock1-component .qtag{
+  font-size:clamp(.62rem,.26vw + .58rem,.73rem)!important;
+}
+.page-mock1-component .stem{
+  font-size:clamp(.88rem,.45vw + .8rem,1.02rem)!important;
+  line-height:1.46!important;
+}
+.page-mock1-component .opt{
+  grid-template-columns:22px minmax(0,1fr)!important;
+  gap:8px!important;
+  padding:clamp(9px,1vw,12px)!important;
+  font-size:clamp(.82rem,.4vw + .75rem,.95rem)!important;
+  line-height:1.42!important;
+}
+.page-mock1-component .opt input{width:18px;height:18px}
+
+/* Standard final submit card */
+.page-mock1-component .mock-finish{
+  padding:clamp(13px,1.8vw,20px)!important;
+  margin-top:clamp(13px,1.5vw,17px)!important;
+}
+.page-mock1-component .mock-finish h2{
+  font-size:clamp(1.18rem,1vw,1.45rem)!important;
+}
+.page-mock1-component .mock-finish p{
+  max-width:72ch;
+  font-size:clamp(.84rem,.42vw + .77rem,.97rem)!important;
+  line-height:1.48!important;
+}
+.page-mock1-component .mock-submit-btn{
+  min-height:52px!important;
+  font-size:clamp(.8rem,.4vw + .73rem,.93rem)!important;
+}
+
+/* Reports/rubrics */
+.page-mock1-component .criteria{gap:clamp(6px,.8vw,9px)!important}
+.page-mock1-component .criterion{
+  padding:clamp(9px,1.1vw,12px)!important;
+}
+.page-mock1-component .criterion b{
+  font-size:clamp(.78rem,.38vw + .71rem,.9rem)!important;
+}
+.page-mock1-component .criterion-score{
+  font-size:clamp(1.25rem,1.6vw,1.7rem)!important;
+}
+.page-mock1-component .criterion p,
+.page-mock1-component .coach,
+.page-mock1-component .save-state,
+.page-mock1-component .save-state2{
+  font-size:clamp(.76rem,.35vw + .69rem,.88rem)!important;
+  line-height:1.45!important;
+}
+.page-mock1-component .score-card{
+  gap:10px!important;
+}
+.page-mock1-component .score-card strong{
+  font-size:clamp(1.6rem,2vw,2.2rem)!important;
+}
+
+/* ---------- SPEAKING ---------- */
+.page-mock1-speaking select,
+.page-mock1-speaking textarea,
+.page-mock1-speaking input{
+  font-size:max(16px,1rem)!important;
+}
+.page-mock1-speaking .rec{
+  padding:clamp(10px,1.4vw,15px)!important;
+}
+.page-mock1-speaking .rec h3{
+  font-size:clamp(.98rem,.52vw + .88rem,1.14rem)!important;
+}
+.page-mock1-speaking .rec-time{
+  font-size:clamp(1.35rem,1.8vw,1.8rem)!important;
+}
+.page-mock1-speaking .rec-actions{
+  gap:8px!important;
+}
+.page-mock1-speaking .evidence{
+  gap:clamp(6px,.8vw,9px)!important;
+}
+.page-mock1-speaking .metric{min-width:0}
+.page-mock1-speaking .metric b{
+  font-size:clamp(1rem,.7vw + .88rem,1.2rem)!important;
+}
+.page-mock1-speaking .metric small{
+  font-size:clamp(.58rem,.23vw + .54rem,.68rem)!important;
+}
+.page-mock1-speaking .transcript textarea{
+  min-height:clamp(150px,22vh,230px)!important;
+  line-height:1.55!important;
+}
+.page-mock1-speaking .topic-grid{
+  gap:clamp(6px,.8vw,9px)!important;
+}
+.page-mock1-speaking .topic{
+  min-width:0;
+  font-size:clamp(.78rem,.36vw + .71rem,.9rem)!important;
+}
+
+/* ---------- LISTENING ---------- */
+.page-mock1-listening .audio,
+.page-mock1-listening .audio-card{
+  padding:clamp(10px,1.3vw,14px)!important;
+}
+.page-mock1-listening .audio-head{
+  gap:10px!important;
+}
+.page-mock1-listening .audio-head b{
+  font-size:clamp(.88rem,.45vw + .8rem,1.02rem)!important;
+}
+.page-mock1-listening .audio-pill{
+  max-width:48%;
+  white-space:normal!important;
+  text-align:center;
+  font-size:clamp(.66rem,.28vw + .61rem,.77rem)!important;
+}
+.page-mock1-listening iframe,
+.page-mock1-listening audio{
+  width:100%!important;
+  max-width:100%;
+}
+.page-mock1-listening iframe{
+  height:clamp(84px,8vw,112px)!important;
+}
+
+/* ---------- READING ---------- */
+.page-mock1-reading .passage,
+.page-mock1-reading .passage-card,
+.page-mock1-reading .source-paper{
+  min-width:0;
+}
+.page-mock1-reading .passage-scroll,
+.page-mock1-reading .reading-text,
+.page-mock1-reading .passage{
+  max-width:100%;
+  font-size:clamp(.86rem,.42vw + .79rem,1rem)!important;
+  line-height:1.68!important;
+}
+.page-mock1-reading .passage-scroll{
+  max-height:clamp(320px,48vh,520px)!important;
+  overflow:auto;
+  overscroll-behavior:contain;
+}
+
+/* ---------- WRITING ---------- */
+.page-mock1-writing textarea,
+.page-mock1-writing input,
+.page-mock1-writing select{
+  font-size:max(16px,1rem)!important;
+}
+.page-mock1-writing .answer-box,
+.page-mock1-writing .writing-area,
+.page-mock1-writing .task-body textarea{
+  width:100%!important;
+  min-width:0;
+}
+.page-mock1-writing textarea{
+  min-height:clamp(190px,32vh,380px)!important;
+  line-height:1.62!important;
+}
+.page-mock1-writing .counter,
+.page-mock1-writing .wc,
+.page-mock1-writing .autosave{
+  font-size:clamp(.66rem,.28vw + .61rem,.78rem)!important;
+}
+.page-mock1-writing .task-result,
+.page-mock1-writing .mock-eval{
+  font-size:clamp(.8rem,.38vw + .73rem,.93rem)!important;
+  line-height:1.45!important;
+}
+
+/* TABLET */
+@media (min-width:600px){
+  .page-mock1-component .app{
+    max-width:900px!important;
+    padding:22px 24px 122px!important;
+  }
+  .page-mock1-speaking .evidence{
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  }
+}
+
+/* LAPTOP */
+@media (min-width:900px){
+  .page-mock1-component .app{
+    max-width:1120px!important;
+    padding:28px 30px 124px!important;
+  }
+
+  .page-mock1-speaking .accordion-body>*,
+  .page-mock1-writing .mock-task-body>*{
+    max-width:940px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .page-mock1-speaking .rec,
+  .page-mock1-speaking .transcript,
+  .page-mock1-writing .answer-box,
+  .page-mock1-writing textarea,
+  .page-mock1-listening .audio,
+  .page-mock1-reading .passage,
+  .page-mock1-reading .passage-card{
+    max-width:940px!important;
+    margin-inline:auto;
+  }
+
+  .page-mock1-reading .passage-scroll{
+    max-height:560px!important;
+  }
+}
+
+/* WIDE DESKTOP */
+@media (min-width:1180px){
+  .page-mock1-component .app{
+    max-width:1240px!important;
+  }
+
+  /* Listening: keep audio full-width, questions in two columns. */
+  .page-mock1-listening .listen-part.open .listen-part-body,
+  .page-mock1-listening .part.open .part-body{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:12px!important;
+    align-items:start;
+  }
+  .page-mock1-listening .listen-part.open .audio,
+  .page-mock1-listening .listen-part.open .audio-card,
+  .page-mock1-listening .listen-part.open .mock-finish,
+  .page-mock1-listening .part.open .audio,
+  .page-mock1-listening .part.open .audio-card{
+    grid-column:1/-1;
+    width:100%;
+  }
+  .page-mock1-listening .qcard{
+    margin-top:0!important;
+    height:100%;
+  }
+
+  /* Reading: passage full-width, questions in two columns below. */
+  .page-mock1-reading .part.open .part-body{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:12px!important;
+    align-items:start;
+  }
+  .page-mock1-reading .part.open .passage,
+  .page-mock1-reading .part.open .passage-card,
+  .page-mock1-reading .part.open .source-paper,
+  .page-mock1-reading .part.open .mock-finish{
+    grid-column:1/-1;
+    width:100%;
+  }
+  .page-mock1-reading .qcard{
+    margin-top:0!important;
+    height:100%;
+  }
+}
+
+/* MOBILE */
+@media (max-width:599px){
+  .page-mock1-component .exam-row{
+    align-items:flex-start!important;
+  }
+  .page-mock1-component .progress,
+  .page-mock1-component .flow{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+  .page-mock1-listening .audio-head{
+    flex-direction:column;
+  }
+  .page-mock1-listening .audio-pill{
+    max-width:100%;
+  }
+}
+
+/* VERY SMALL PHONE */
+@media (max-width:399px){
+  .page-mock1-component .top{
+    align-items:flex-start;
+  }
+  .page-mock1-component .back{
+    padding:7px 9px!important;
+  }
+  .page-mock1-component .accordion-head,
+  .page-mock1-component .mock-task-head,
+  .page-mock1-component .listen-part-head,
+  .page-mock1-component .part-head,
+  .page-mock1-component .task-head{
+    grid-template-columns:40px minmax(0,1fr) auto!important;
+    gap:7px!important;
+    padding:9px!important;
+  }
+  .page-mock1-component .accordion-num,
+  .page-mock1-component .mock-task-num,
+  .page-mock1-component .listen-part-no,
+  .page-mock1-component .part-num,
+  .page-mock1-component .num{
+    width:40px!important;
+    height:40px!important;
+  }
+  .page-mock1-component .progress,
+  .page-mock1-component .flow{
+    grid-template-columns:1fr!important;
+  }
+  .page-mock1-speaking .rec-actions{
+    grid-template-columns:1fr!important;
+  }
+}
+</style>
+
+  <link rel="stylesheet" href="css/display-standard.css">
+<link rel="stylesheet" href="css/component-experience.css">
+<link rel="stylesheet" href="css/beginner-support.css">
+<link rel="stylesheet" href="../shared/styles/navigation.css">
+<link rel="stylesheet" href="vault-bridge.css">
+</head>
+
+<body class="page-mock1-component page-mock1-writing" data-page-id="mock1-writing" data-app-root="../" data-stage="mock1" data-component="writing">
+
+<main class="app">
+
+<header class="top">
+  <div class="brand">
+    <img src="assets/heroes/small-muet-logo.svg" alt="Smart MUET">
+    <div>
+      <small>MOCK PRACTICE 1 · 800/4</small>
+      <b>Writing</b>
+    </div>
+  </div>
+
+  <a class="back" href="mock1.html">← Mock 1</a>
+</header>
+
+
+<section class="hero">
+  <span class="tag">FULL MOCK · NO PEEL COACHING</span>
+
+  <h1>
+    Plan independently.
+    <span>Write under time.</span>
+  </h1>
+
+  <p>
+    Complete both writing tasks in 75 minutes.
+    Use the original prompts and write your responses without guided technique support.
+  </p>
+</section>
+
+
+<section class="exam-card">
+
+  <div class="exam-row">
+    <div>
+      <h2>Writing Paper 800/4</h2>
+      <p>Task 1 + Task 2 · 75 Minutes</p>
+    </div>
+
+    <div class="timer" id="timer">75:00</div>
+  </div>
+
+  <button class="start" id="startExam">
+    START MOCK WRITING
+  </button>
+
+</section>
+
+
+<div class="progress">
+  <div id="progress1">TASK 1 · 100+ WORDS</div>
+  <div id="progress2">TASK 2 · 250+ WORDS</div>
+</div>
+
+
+<div class="mock-note" id="mockNote">
+  Suggested time allocation from the paper: about 25 minutes for Task 1 and 50 minutes for Task 2.
+  Both responses are autosaved on this device while you type.
+</div>
+
+
+<div id="paper" style="pointer-events:auto;opacity:1">
+
+<section class="mock-task open" id="writingTask1">
+  <button class="mock-task-head" type="button">
+    <div class="mock-task-num">1</div>
+    <div class="mock-task-title">
+      <b>Task 1 · Guided Writing</b>
+      <span>Email reply · 100+ words</span>
+    </div>
+    <div class="mock-task-plus">+</div>
+  </button>
+  <div class="mock-task-body">
+    <div class="task-body">
+
+
+    <span class="time-chip">
+      ADVISED TIME · ABOUT 25 MINUTES
+    </span>
+
+    <div class="instruction">
+      <p>
+        Your friend, Sabrina, is inviting you to take part in a programme on reducing the use of plastic bags.
+        This programme is organised by people in her neighbourhood. Read the letter from her.
+      </p>
+    </div>
+
+
+    <div class="letter-box">
+
+      <div class="address">
+        No 71, Jalan Bunga Raya<br>
+        Taman Mewah<br>
+        46000 KUALA LUMPUR<br><br>
+        11<sup>th</sup> January 2022
+      </div>
+
+      <p>Hi Zack,</p>
+
+      <div class="note-line">
+        <p>
+          I am happy to tell you that my neighbourhood is organising a programme to reduce the use of plastic bags.
+          It will be held next month.
+        </p>
+        <span class="note-pill">Great! ...</span>
+      </div>
+
+      <div class="note-line">
+        <p>
+          We are planning to carry out a few activities.
+          We hope that people from other neighbourhoods can join us.
+          Would you like to take part?
+        </p>
+        <span class="note-pill">Sorry...</span>
+      </div>
+
+      <div class="note-line">
+        <p>
+          As you know, using plastic bags is not good for our environment.
+          But, people continue using them every day.
+          We need to stop this!
+        </p>
+        <span class="note-pill">Agree, because...</span>
+      </div>
+
+      <div class="note-line">
+        <p>
+          I hope to see you at the programme.
+          Do not forget to bring your family and friends along.
+        </p>
+        <span class="note-pill">Tell Sabrina</span>
+      </div>
+
+      <p>
+        Yours sincerely,<br>
+        <em>Sabrina</em>
+      </p>
+
+    </div>
+
+
+    <div class="prompt">
+      Using <b>all the notes given</b>, write a reply of <b>at least 100 words</b> in an appropriate style.
+    </div>
+
+
+    <div class="writer">
+
+      <div class="writer-head">
+        <b>Your Task 1 Response</b>
+        <span class="count" id="count1">0 / 100 words</span>
+      </div>
+
+      <textarea
+        id="task1Text"
+        placeholder="Write your reply here..."
+        spellcheck="true"></textarea>
+
+      <div class="save-state" id="save1">
+        Autosave ready
+      </div>
+
+      <button class="complete-btn" id="readyTask1">
+        MARK TASK 1 READY →
+      </button>
+
+      <div class="task-result" id="readyMsg1"></div>
+
+    </div>
+
+  
+    </div>
+  </div>
+</section>
+
+
+
+<section class="mock-task " id="writingTask2">
+  <button class="mock-task-head" type="button">
+    <div class="mock-task-num">2</div>
+    <div class="mock-task-title">
+      <b>Task 2 · Extended Writing</b>
+      <span>Opinion essay · 250+ words</span>
+    </div>
+    <div class="mock-task-plus">+</div>
+  </button>
+  <div class="mock-task-body">
+    <div class="task-body">
+
+
+    <span class="time-chip">
+      ADVISED TIME · ABOUT 50 MINUTES
+    </span>
+
+    <div class="instruction">
+      <p>
+        You have been asked by the school editorial board to write for the school bulletin.
+        You have decided to write on the following topic:
+      </p>
+    </div>
+
+
+    <div class="topic">
+      “Modernisation has robbed us of our peace of mind.”
+    </div>
+
+
+    <div class="prompt">
+      Write an essay stating your opinion on the above statement.
+      Write <b>at least 250 words</b>.
+    </div>
+
+
+    <div class="writer">
+
+      <div class="writer-head">
+        <b>Your Task 2 Essay</b>
+        <span class="count" id="count2">0 / 250 words</span>
+      </div>
+
+      <textarea
+        id="task2Text"
+        placeholder="Write your essay here..."
+        spellcheck="true"></textarea>
+
+      <div class="save-state" id="save2">
+        Autosave ready
+      </div>
+
+      <button class="complete-btn" id="readyTask2">
+        MARK TASK 2 READY →
+      </button>
+
+      <div class="task-result" id="readyMsg2"></div>
+
+    </div>
+
+  
+    </div>
+  </div>
+</section>
+
+
+
+<section class="mock-finish" id="finishWriting">
+  <h2>Finish Mock Practice 1 · Writing</h2>
+  <p>Submit Task 1 and Task 2 together for your post-test Writing rubric evaluation and overall score.</p>
+  <button class="mock-submit-btn" id="finishMock">SUBMIT FULL WRITING MOCK →</button>
+  <span class="submit-note">No rubric feedback is shown before final submission.</span>
+  <div class="mock-eval" id="finalResult"></div>
+</section>
+
+</div>
+
+</main>
+
+
+
+
+
+<script src="js/backend-config.js"></script>
+<script>
+
+document.querySelectorAll(".mock-task-head").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const current=btn.closest(".mock-task");
+    document.querySelectorAll(".mock-task").forEach(task=>{
+      if(task!==current) task.classList.remove("open");
+    });
+    current.classList.toggle("open");
+    if(current.classList.contains("open")){
+      setTimeout(()=>current.scrollIntoView({behavior:"smooth",block:"start"}),60);
+    }
+  });
+});
+
+const task1=document.getElementById("task1Text");
+const task2=document.getElementById("task2Text");
+const KEY1="muet_mock1_writing_task1_text";
+const KEY2="muet_mock1_writing_task2_text";
+let started=false,remaining=75*60,timerId=null,ready1=false,ready2=false;
+
+function wc(text){const v=(text||"").trim();return v?v.split(/\s+/).filter(Boolean).length:0}
+function drawTimer(){const m=Math.floor(remaining/60),s=remaining%60;document.getElementById("timer").textContent=String(m).padStart(2,"0")+":"+String(s).padStart(2,"0")}
+function updateCounts(){const w1=wc(task1.value),w2=wc(task2.value);const c1=document.getElementById("count1"),c2=document.getElementById("count2");c1.textContent=w1+" / 100 words";c2.textContent=w2+" / 250 words";c1.classList.toggle("ok",w1>=100);c2.classList.toggle("ok",w2>=250);document.getElementById("progress1").classList.toggle("done",w1>=100);document.getElementById("progress2").classList.toggle("done",w2>=250);return{w1,w2}}
+function saveDraft(which){if(which===1){localStorage.setItem(KEY1,task1.value);document.getElementById("save1").textContent="Saved locally ✓"}else{localStorage.setItem(KEY2,task2.value);document.getElementById("save2").textContent="Saved locally ✓"}}
+let st1=null,st2=null;
+task1.addEventListener("input",()=>{updateCounts();document.getElementById("save1").textContent="Saving...";clearTimeout(st1);st1=setTimeout(()=>saveDraft(1),350)});
+task2.addEventListener("input",()=>{updateCounts();document.getElementById("save2").textContent="Saving...";clearTimeout(st2);st2=setTimeout(()=>saveDraft(2),350)});
+
+document.getElementById("startExam").onclick=()=>{if(started)return;started=true;document.getElementById("paper").style.pointerEvents="auto";document.getElementById("paper").style.opacity="1";document.getElementById("startExam").textContent="TIMER RUNNING";timerId=setInterval(()=>{remaining--;drawTimer();if(remaining<=0){clearInterval(timerId);timerId=null;alert("Writing time has ended. Your drafts remain available for final submission.")}},1000)};
+
+document.getElementById("readyTask1").onclick=()=>{const n=wc(task1.value);if(n<50){alert("Develop Task 1 further before marking it ready.");return}ready1=true;const b=document.getElementById("readyMsg1");b.classList.add("show");b.innerHTML=`<b>Task 1 ready ✓</b><br>${n} words. No rubric feedback will be shown until final submission.`;document.getElementById("writingTask1").classList.remove("open");document.getElementById("writingTask2").classList.add("open");setTimeout(()=>document.getElementById("writingTask2").scrollIntoView({behavior:"smooth",block:"start"}),80)};
+document.getElementById("readyTask2").onclick=()=>{const n=wc(task2.value);if(n<100){alert("Develop Task 2 further before marking it ready.");return}ready2=true;const b=document.getElementById("readyMsg2");b.classList.add("show");b.innerHTML=`<b>Task 2 ready ✓</b><br>${n} words. No rubric feedback will be shown until final submission.`};
+
+function evaluateWriting(text,task){
+ const lower=text.toLowerCase(),words=wc(text),paras=text.split(/\n\s*\n|\n/).filter(p=>p.trim().length>20).length,connectors=(lower.match(/\b(firstly|secondly|however|therefore|moreover|furthermore|in addition|on the other hand|because|although|for example|for instance|as a result|consequently|in conclusion)\b/g)||[]).length,sents=Math.max(1,(text.match(/[.!?]+/g)||[]).length),avg=words/sents,wl=lower.match(/\b[a-z]{4,}\b/g)||[],uniq=wl.length?new Set(wl).size/wl.length:0;
+ let tf=1;
+ if(task===1){
+   const groups=[['great','happy','glad'],['sorry','cannot','unable','take part','join'],['agree','environment','plastic'],['family','friends','bring','tell']];
+   const hits=groups.filter(g=>g.some(k=>lower.includes(k))).length;
+   tf=hits===4?(words>=100?5:4):hits===3?4:hits===2?3:hits===1?2:1;if(hits===4&&words>=130)tf=6;
+ }else{
+   const stand=/\b(i agree|i disagree|in my opinion|i believe|i strongly|i partially|although|while some)\b/i.test(text),support=(lower.match(/\b(for example|for instance|because|therefore|as a result|this shows|this means)\b/g)||[]).length;
+   tf=stand?3:2;if(stand&&support>=2)tf=4;if(stand&&support>=3&&words>=250)tf=5;if(stand&&support>=4&&words>=300)tf=6;
+ }
+ let co=1;if(paras>=2)co=3;if(paras>=3&&connectors>=2)co=4;if(paras>=4&&connectors>=4)co=5;if(paras>=5&&connectors>=6)co=6;
+ let lg=2;if(avg>=8&&avg<=30)lg=3;if(uniq>=.48&&words>=(task===1?80:200))lg=4;if(uniq>=.55&&words>=(task===1?100:250)&&connectors>=3)lg=5;if(uniq>=.62&&words>=(task===1?130:300)&&connectors>=5)lg=6;
+ let rs=null;if(task===2){const informal=(lower.match(/\b(gonna|wanna|kinda|lol|btw|yeah|stuff|u|ur)\b/g)||[]).length;rs=informal>=4?2:informal>=2?3:4;if(informal===0&&words>=250)rs=5;if(informal===0&&words>=300&&connectors>=4)rs=6}
+ const raw=task===1?tf+co+lg:tf+co+lg+rs,rawMax=task===1?18:24,scaledMax=task===1?30:60,scaled=Math.round(raw/rawMax*scaledMax);
+ const strength=tf>=5?"Strong task coverage and development.":co>=4?"Your response is generally organised and connected.":"You completed a substantial writing response.";
+ const focus=tf<4?"Address every required content point more explicitly.":co<4?"Improve paragraph progression and linking.":lg<4?"Improve grammatical control and vocabulary range.":task===2&&rs<4?"Keep the register consistently formal.":"Refine precision, development and language control.";
+ return{tf,co,lg,rs,raw,rawMax,scaled,scaledMax,words,strength,focus}
+}
+async function saveAttempt(payload){localStorage.setItem("muet_mock1_writing_task"+payload.taskNumber,JSON.stringify(payload));if(typeof window.saveSmartMuetAttempt!=="function")return{ok:false,localOnly:true};return window.saveSmartMuetAttempt(payload,"saveWritingAttempt")}
+function section(name,e,task){const rows=[["Task Fulfilment",e.tf],["Organisation & Coherence",e.co],["Language",e.lg]].concat(task===2?[["Register & Style",e.rs]]:[]);return `<div class="score-block"><h3>${name}</h3><div class="criteria">${rows.map(r=>`<div class="criterion"><div class="criterion-top"><b>${r[0]}</b><span class="criterion-score">${r[1]}/6</span></div><p>Rubric-aligned practice estimate based on the submitted response.</p></div>`).join("")}</div><div class="coach"><b>💪 Strength:</b> ${e.strength}<br><br><b>🎯 Next action:</b> ${e.focus}</div></div>`}
+
+document.getElementById("finishMock").onclick=async()=>{
+ if(!ready1||!ready2){alert("Mark both Task 1 and Task 2 ready before final submission.");return}
+ const e1=evaluateWriting(task1.value,1),e2=evaluateWriting(task2.value,2),profile=(()=>{try{return JSON.parse(localStorage.getItem("muet_profile")||"{}")}catch(e){return{}}})();
+ const confidence=e1.words>=100&&e2.words>=250?"High":e1.words>=50&&e2.words>=100?"Moderate":"Low";
+ const p1={vaultId:"MOCK-01",component:"Writing",taskNumber:1,taskType:"Task 1",questionId:"sabrina_plastic_bags",questionText:"Reply to Sabrina about the neighbourhood programme to reduce plastic bags.",studentName:profile.name||"",studentRegNo:profile.regNo||"",classGroup:profile.group||"",answerText:task1.value.trim(),wordCount:e1.words,rubric:{taskFulfilment:e1.tf,organisationCoherence:e1.co,language:e1.lg,registerStyle:null},rawScore:e1.raw,rawMax:e1.rawMax,scaledScore:e1.scaled,scaledMax:30,estimateConfidence:confidence,status:"Immediate rubric-based practice estimate",createdAt:new Date().toISOString()};
+ const p2={vaultId:"MOCK-01",component:"Writing",taskNumber:2,taskType:"Task 2",questionId:"modernisation_peace_of_mind",questionText:"Modernisation has robbed us of our peace of mind.",studentName:profile.name||"",studentRegNo:profile.regNo||"",classGroup:profile.group||"",answerText:task2.value.trim(),wordCount:e2.words,rubric:{taskFulfilment:e2.tf,organisationCoherence:e2.co,language:e2.lg,registerStyle:e2.rs},rawScore:e2.raw,rawMax:e2.rawMax,scaledScore:e2.scaled,scaledMax:60,estimateConfidence:confidence,status:"Immediate rubric-based practice estimate",createdAt:new Date().toISOString()};
+ const [s1,s2]=await Promise.all([saveAttempt(p1),saveAttempt(p2)]);
+ const total=e1.scaled+e2.scaled;
+ const box=document.getElementById("finalResult");box.classList.add("show");box.innerHTML=`<div class="coach"><b>Immediate estimated Writing result</b><br>Estimate confidence: ${confidence}. This formative estimate supports practice and is not an official MUET result.</div>`+section("Task 1 · Guided Writing",e1,1)+section("Task 2 · Extended Writing",e2,2)+`<div class="score-card"><div><b>Estimated Mock 1 Writing Score</b><br><small>Task 1 ${e1.scaled}/30 · Task 2 ${e2.scaled}/60</small></div><strong>${total}/90</strong></div><div class="save-state2">${s1.confirmed&&s2.confirmed?"✓ Both writing attempts confirmed in the database":"💾 Mock saved on this device · database receipt pending. Open Progress to retry."}</div>`;
+ localStorage.setItem("muet_mock1_writing","true");localStorage.setItem("muet_mock1_writing_score90",String(total));window.SmartMUETWritingModels?.show('mock1',1,box);window.SmartMUETWritingModels?.show('mock1',2,box);if(timerId){clearInterval(timerId);timerId=null}
+};
+
+task1.value=localStorage.getItem(KEY1)||"";task2.value=localStorage.getItem(KEY2)||"";updateCounts();drawTimer();
+</script>
+
+<script src="js/smart-coach.js"></script>
+<script src="js/writing-models.js"></script>
+<script src="js/component-experience.js" defer></script>
+<script defer src="vault-bridge.js"></script>
+<script defer src="../shared/js/app.js"></script>
+<link rel="stylesheet" href="../shared/styles/shell.css"><script defer src="../shared/js/shell.js"></script><script defer src="../shared/js/navigation.js"></script>
+<script defer src="js/score-keeper.js"></script>
+</body>
+</html>

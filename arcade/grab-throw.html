@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f5f7ff">
+<title>Grab & Throw · Smart MUET Arcade</title>
+<link rel="icon" href="../shared/assets/logo.svg">
+<link rel="stylesheet" href="../shared/styles/tokens.css">
+<link rel="stylesheet" href="../labs/css/lab.css">
+<link rel="stylesheet" href="css/arcade.css">
+<link rel="stylesheet" href="../shared/styles/navigation.css">
+<script defer src="../shared/js/item-bank.js"></script>
+<script defer src="js/gesture-core.js"></script>
+<script defer src="js/arcade-core.js"></script>
+<script defer src="js/grab-throw.js"></script>
+<script defer src="../shared/js/app.js"></script><link rel="stylesheet" href="../shared/styles/shell.css"><script defer src="../shared/js/shell.js"></script><script defer src="../shared/js/navigation.js"></script>
+</head>
+<body data-page-id="arcade-grab" data-app-root="../" class="arcade-page">
+<a class="skip" href="#play">Skip to the game</a>
+<header>
+  <a class="brand" href="../index.html"><img src="../shared/assets/logo.svg" alt=""><span>Smart MUET<small>ARCADE</small></span></a>
+  <nav aria-label="Arcade links"><a href="index.html">Arcade ↗</a><a href="../practice.html">Vault ↗</a><button id="sound" type="button" aria-pressed="false">Sound on</button><button id="motion" type="button" aria-pressed="false">Pause motion</button></nav>
+</header>
+<main id="main" class="arcade-main">
+  <section class="game-intro">
+    <div>
+      <span class="eyebrow">ARCADE / GRAB &amp; THROW / WRITING PEEL + SPEAKING PREP</span><p class="hello">Hello, quick builder!</p>
+      <h1>Grab it.<br><span>Throw it.</span></h1>
+      <p class="lead">Build a paragraph by throwing each sentence into the right bucket: Point, Explain, Example, Link. Speaking rounds use PREP.</p>
+    </div>
+    <ul class="how" aria-label="How to play"><li><b>Tap</b> a sentence, then tap a bucket.</li><li><b>Drag</b> a sentence and flick it into a bucket.</li><li><b>Camera:</b> pinch to grab, open your fingers to throw.</li><li><b>Keyboard:</b> Tab to a sentence, Enter, then Tab to a bucket, Enter.</li></ul>
+  </section>
+  <div class="game-bar" id="play">
+    <div class="hud" id="hud" aria-live="off"></div>
+    <button id="camera" type="button" class="cam-btn" aria-pressed="false">Try camera mode 🎥</button>
+  </div>
+  <div class="stage" id="stage" role="application" aria-label="Grab & Throw game area"></div>
+  <p class="cam-status" id="cam-status" role="status" aria-live="polite">Tap, drag or use the keyboard to play. Camera mode is optional.</p>
+  <section class="game-tips"><article class="paper"><span class="eyebrow">WHY IT HELPS YOUR MUET</span><h3>Structure is marked.</h3><p>Writing examiners reward clear organisation, and Speaking examiners listen for a developed answer. Sorting sentences by job trains you to plan the same way in the exam.</p><a href="../labs/writing-lab.html">Writing PEEL Lab ↗</a> <a href="../labs/speaking-lab.html">Speaking PREP Lab ↗</a></article></section>
+</main>
+<footer>English Language Unit · Politeknik Port Dickson · Camera mode works on this device only. Nothing is recorded or uploaded.</footer>
+</body>
+</html>
