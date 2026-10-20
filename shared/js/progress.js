@@ -167,6 +167,6 @@
   render();
   setTimeout(render, 700); // SMHApp finishes its first check shortly after load
   addEventListener('storage', render);
-  const io = 'IntersectionObserver' in window && !reduce ? new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { sec.classList.add('in'); io.disconnect(); } }), { threshold: .12 }) : null;
+  const io = 'IntersectionObserver' in window && !reduce ? new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { sec.classList.add('in'); io.disconnect(); } }), { threshold: 0, rootMargin: "0px 0px -80px 0px" }) : null;
   if (io) io.observe(sec); else sec.classList.add('in');
 })();

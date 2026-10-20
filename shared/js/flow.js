@@ -6,7 +6,7 @@
   'use strict';
   const id = document.body.dataset.pageId || '', root = document.body.dataset.appRoot || '../';
   const mountAt = { home: '.h-stages-wrap', vault: '.smh-tips' }[id];
-  if (!mountAt || document.querySelector('.fl-sec')) return;
+  if (!mountAt || document.querySelector('.fl-sec,.fl-home-play')) return;
   const anchor = document.querySelector(mountAt); if (!anchor) return;
   const el = (t, c, x) => { const e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; };
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -60,7 +60,11 @@
   });
   const goLink = el('a', 'fl-go'); 
   sec.append(head, routeWrap, grid, goLink);
-  anchor.before(sec);
+  if (id === 'home') {
+    /* Home already shows the five stages: add only the tour button to that heading */
+    const h = anchor.querySelector('.h-head p'); const box = el('span', 'fl-home-play'); box.append(play);
+    (h || anchor).append(box);
+  } else anchor.before(sec);
   /* phone: the five circles work as tabs, showing who does what at one stage */
   const small = matchMedia('(max-width:860px)');
   const pick = n => {

@@ -92,3 +92,5 @@ html[data-smh-theme="dark"] .fl-cell{color:#142b68}
   .fl-route-wrap::after{content:"Tap a number to see who does what";display:block;margin-top:10px;text-align:center;font:700 13px/1.3 "DM Sans",Arial,sans-serif;color:#4a5578}
   .fl-go{display:flex;justify-content:center;align-items:center;min-height:50px;margin-top:14px;border-radius:99px;background:#3b5bff;color:#fff!important;font:800 15px/1 "DM Sans",Arial,sans-serif;text-decoration:none!important}
 }
+.fl-home-play{margin-top:14px}
+.fl-home-play{display:block;margin-top:14px}

@@ -99,3 +99,16 @@ html.smh-shell .smh-footer .fine{padding-top:10px!important;font-size:12px!impor
 /* the Dark switch is already in the header on wide screens */
 @media (min-width:1061px){html.smh-shell .smh-foot-theme{display:none!important}}
 html.smh-shell .smh-footer{padding-bottom:0!important}
+
+/* ---------- Home: compact eBook teaser (chapters live on the eBook page) ---------- */
+.hb-teaser .hb-in{display:grid!important;grid-template-columns:minmax(150px,240px) minmax(0,1fr);gap:clamp(20px,4vw,56px);align-items:center;padding-top:clamp(22px,3vw,36px)!important;padding-bottom:clamp(22px,3vw,36px)!important}
+.hb-teaser .h-stack{width:78%!important;max-width:220px;margin:0 auto 0 4%!important}
+.hb-teaser .hb-txt{min-width:0}
+@media (max-width:640px){.hb-teaser .h-eyebrow{font-size:11px!important;letter-spacing:.08em!important}}
+.hb-teaser .hb-txt h2{margin:6px 0 8px!important}
+.hb-teaser .hb-txt p{max-width:52ch;margin:0 0 14px!important}
+.hb-teaser .h-book-prog{max-width:420px;margin-bottom:16px}
+.hb-btns{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.hb-all{display:inline-flex;align-items:center;min-height:50px;padding:0 22px;border-radius:99px;border:2px solid #ffffffb3;color:#fff!important;font:800 16px/1 "DM Sans",DM,Arial,sans-serif;text-decoration:none!important}
+.hb-all:hover{border-color:#fff;background:#ffffff1a}
+@media (max-width:640px){.hb-teaser .hb-in{grid-template-columns:110px minmax(0,1fr);gap:16px;align-items:start}.hb-teaser .h-stack{width:100%!important;margin:8px 0 0!important}.hb-teaser .hb-txt p{display:none}.hb-btns a{min-height:46px;padding:0 16px;font-size:15px}}

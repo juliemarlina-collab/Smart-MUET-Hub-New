@@ -235,7 +235,7 @@
 (() => {
   const r = document.body.dataset.appRoot || '../';
   if (!document.querySelector('link[href*="coach.css"]')) { const l = document.createElement('link'); l.rel = 'stylesheet'; l.href = r + 'shared/styles/coach.css?v=20261021c'; document.head.append(l); }
-  const pid = document.body.dataset.pageId || '', V = '?v=20261021c';
+  const pid = document.body.dataset.pageId || '', V = '?v=20261021d';
   const css = f => { if (document.querySelector('link[href*="' + f + '"]')) return; const l = document.createElement('link'); l.rel = 'stylesheet'; l.href = r + 'shared/styles/' + f + V; document.head.append(l); };
   if (['home', 'vault'].includes(pid)) css('flow.css');
   if (['home', 'me'].includes(pid)) css('progress.css');
