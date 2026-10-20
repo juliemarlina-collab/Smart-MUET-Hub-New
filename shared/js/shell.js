@@ -230,3 +230,14 @@
       .observe(body, { childList: true });
   }
 })();
+
+/* coach: Guide me tour, dialogue boxes (shared/js/coach.js) */
+(() => {
+  const r = document.body.dataset.appRoot || '../';
+  if (!document.querySelector('link[href$="coach.css"]')) { const l = document.createElement('link'); l.rel = 'stylesheet'; l.href = r + 'shared/styles/coach.css'; document.head.append(l); }
+  const pid = document.body.dataset.pageId || '';
+  if (['home', 'vault'].includes(pid) && !document.querySelector('link[href$="flow.css"]')) { const l = document.createElement('link'); l.rel = 'stylesheet'; l.href = r + 'shared/styles/flow.css'; document.head.append(l); }
+  const add = f => { if (document.querySelector('script[src$="' + f + '"]')) return; const sc = document.createElement('script'); sc.src = r + 'shared/js/' + f; document.body.append(sc); };
+  const go = () => { if (['home', 'vault'].includes(pid)) add('flow.js'); add('coach.js'); };
+  if (document.readyState === 'complete') setTimeout(go, 300); else addEventListener('load', () => setTimeout(go, 300));
+})();

@@ -175,6 +175,25 @@
   }
   const isComplete = (i) => sets[i].items.every((it) => Number.isInteger(answers[it.id]));
 
+  /* explanation straight after each answer, in a dialogue box; the first answer counts */
+  function reveal(fs, it, fresh) {
+    const chosen = answers[it.id], right = chosen === it.answer;
+    fs.querySelectorAll("label").forEach((l, j) => {
+      const inp = l.querySelector("input"); inp.disabled = true;
+      l.classList.toggle("is-right", j === it.answer);
+      l.classList.toggle("is-wrong", j === chosen && !right);
+    });
+    if (fs.querySelector(".qfb")) return;
+    const box = el("div", "qfb " + (right ? "ok" : "no"));
+    box.setAttribute("role", "status");
+    const av = el("span", "cs-av", right ? "✓" : "✳"); av.setAttribute("aria-hidden", "true");
+    const tx = el("div");
+    tx.append(el("b", "", right ? "Correct! Here is why." : "Not quite. The answer is " + String.fromCharCode(65 + it.answer) + "."), el("p", "", it.why));
+    const sk = SKILLS[sets[current].skill];
+    if (sk) tx.append(el("span", "tag", "Technique · " + sk.tech + " · Learn it in the " + sk.name + " guide"));
+    box.append(av, tx); fs.append(box);
+    if (fresh) box.scrollIntoView({ block: "nearest", behavior: "smooth" });
+  }
   function renderSet() {
     stopVoice();
     const s = sets[current];
@@ -260,11 +279,12 @@
         inp.name = "diag-" + it.id;
         inp.value = i;
         inp.checked = answers[it.id] === i;
-        inp.onchange = () => (answers[it.id] = i);
+        inp.onchange = () => { answers[it.id] = i; reveal(fs, it, true); };
         l.append(inp, el("span", "", String.fromCharCode(65 + i) + "  " + o));
         fs.append(l);
       });
       mount.append(fs);
+      if (Number.isInteger(answers[it.id])) reveal(fs, it, false);
     });
     $("#set-back").disabled = current === 0;
     $("#set-next").textContent = current === 3 ? "See my result ✓" : "Next set →";

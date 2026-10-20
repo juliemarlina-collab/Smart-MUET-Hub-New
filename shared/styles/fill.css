@@ -57,3 +57,23 @@ html.smh-shell .hero-collage .smh-photo-pair img+img{bottom:0!important;left:0!i
 
 /* no sideways sliding on phones */
 html,body{overflow-x:clip}
+
+/* ---------- Practice header CTAs ---------- */
+.pr-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.pr-btn{display:inline-flex;align-items:center;min-height:52px;padding:0 24px;border-radius:99px;background:#3b5bff;color:#fff!important;font:800 16px/1 "DM Sans",DM,Arial,sans-serif;text-decoration:none!important;box-shadow:0 6px 0 #142b68}
+.pr-btn:hover{transform:translateY(-1px)}
+.pr-btn.line{background:#fff;color:#142b68!important;border:2px solid #142b68;box-shadow:none}
+.pr-btn:focus-visible{outline:3px solid #ff754a;outline-offset:3px}
+#pf-folders{scroll-margin-top:90px}
+
+/* ---------- fewer empty gaps ---------- */
+html.smh-shell .smh-hero-grid{padding-bottom:clamp(16px,2.4vw,32px)!important}
+html.smh-shell .smh-hero-grid + .pg-sec,html.smh-shell .smh-hero-grid + section{margin-top:0!important;padding-top:clamp(8px,1.6vw,20px)!important}
+html.smh-shell .me-print-head + .pg-sec{margin-top:0!important;padding-top:8px!important}
+/* Practice "How to use": left column holds the coach tip so it is not empty */
+.smh-tips .board > div:first-child{align-self:stretch;display:flex;flex-direction:column}
+.smh-tips .board > div:first-child .coach-say{margin-top:auto}
+/* Home "I've sat MUET before" paper rows: brand fonts, full width */
+.h-skills{width:100%;max-width:none!important}
+.h-skills .h-row{font-family:"DM Sans",DM,Arial,sans-serif!important}
+.h-skills .h-row b{font:400 clamp(22px,2.2vw,28px)/1.05 Anton,Impact,sans-serif!important;text-transform:uppercase;letter-spacing:.01em}
