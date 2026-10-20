@@ -77,3 +77,22 @@ html.smh-shell .me-print-head + .pg-sec{margin-top:0!important;padding-top:8px!i
 .h-skills{width:100%;max-width:none!important}
 .h-skills .h-row{font-family:"DM Sans",DM,Arial,sans-serif!important}
 .h-skills .h-row b{font:400 clamp(22px,2.2vw,28px)/1.05 Anton,Impact,sans-serif!important;text-transform:uppercase;letter-spacing:.01em}
+
+/* ---------- v3 (21 Oct): CTA buttons win over page link styles ---------- */
+html.smh-shell main a.pr-btn{display:inline-flex!important;align-items:center;min-height:52px;padding:0 24px!important;border-radius:99px!important;background:#3b5bff!important;color:#fff!important;font:800 16px/1 "DM Sans",DM,Arial,sans-serif!important;text-decoration:none!important;box-shadow:0 6px 0 #142b68;border:0}
+html.smh-shell main a.pr-btn.line{background:#fff!important;color:#142b68!important;border:2px solid #142b68!important;box-shadow:none}
+
+/* Home hero: photo sits in the middle of the text column, no empty block under it */
+@media (min-width:861px){.h-grid{align-items:center!important}}
+
+/* ---------- compact footer ---------- */
+html.smh-shell .smh-footer{margin-top:32px!important;font-size:14px!important}
+html.smh-shell .smh-footer .in{max-width:1180px!important;padding:22px var(--s-gutter,16px) 18px!important;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) minmax(0,1fr)!important;gap:14px 28px!important}
+html.smh-shell .smh-footer .in>div:first-child p{font-size:13px!important;line-height:1.5!important;margin:4px 0 0!important;max-width:44ch;opacity:.85}
+html.smh-shell .smh-footer .in>div:first-child b{font-size:22px!important}
+html.smh-shell .smh-footer h2{margin:0 0 4px!important;font-size:11px!important}
+html.smh-shell .smh-footer .in>div:not(:first-child){display:flex;flex-wrap:wrap;gap:2px 14px;align-content:flex-start}
+html.smh-shell .smh-footer .in>div:not(:first-child) h2{flex-basis:100%}
+html.smh-shell .smh-footer a{padding:3px 0!important;font-size:14px!important}
+html.smh-shell .smh-footer .fine{padding-top:10px!important;font-size:12px!important;opacity:.75}
+@media (max-width:860px){html.smh-shell .smh-footer .in{grid-template-columns:1fr 1fr!important}html.smh-shell .smh-footer .in>div:first-child{grid-column:1/-1}html.smh-shell .smh-footer .in>div:first-child p{display:none}}
