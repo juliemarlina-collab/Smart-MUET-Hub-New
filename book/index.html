@@ -45,7 +45,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{
 
 /* stage */
 .main{flex:1;display:flex;min-height:0;position:relative}
-.stage{flex:1;overflow:auto;background:var(--stage);position:relative;touch-action:pan-x pan-y pinch-zoom}
+.stage{flex:1;overflow:auto;background:var(--stage);position:relative;touch-action:pan-y pinch-zoom}
 .spread{display:flex;justify-content:center;align-items:center;gap:0;min-height:100%;padding:18px;box-sizing:border-box;
   transform-origin:top center;perspective:2200px}
 .page{position:relative;background:#fff;box-shadow:var(--shadow);aspect-ratio:595/842;flex:none;user-select:none;-webkit-user-select:none}
@@ -66,6 +66,23 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{
 @keyframes turnN{from{transform:rotateY(-14deg) translateX(30px);opacity:.35}to{transform:none;opacity:1}}
 @keyframes turnP{from{transform:rotateY(14deg) translateX(-30px);opacity:.35}to{transform:none;opacity:1}}
 @media (prefers-reduced-motion:reduce){.turn-next,.turn-prev{animation:none}}
+/* Heyzine-style page flip: a leaf turns on the spine, shaded, following the finger */
+.page.ghost{visibility:hidden;box-shadow:none;background:none}
+.flip-layer{position:absolute;left:0;top:0;pointer-events:none;z-index:4;perspective:2600px}
+.flip-cover{position:absolute;background:var(--stage);overflow:hidden}
+.flip-cover img,.leaf-face img{width:100%;height:100%;display:block;object-fit:cover}
+.leaf{position:absolute;transform-style:preserve-3d;will-change:transform}
+.leaf-face{position:absolute;inset:0;background:#fff;overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.leaf-face.back{transform:rotateY(180deg)}
+.leaf-face.paper{background:linear-gradient(90deg,#f1f2f8,#fff 30%)}
+.leaf-shade{position:absolute;inset:0;opacity:0;pointer-events:none}
+.leaf.hinge-l .front .leaf-shade{background:linear-gradient(90deg,#0000 0%,#0000002e 55%,#00000059 100%)}
+.leaf.hinge-l .back .leaf-shade{background:linear-gradient(270deg,#0000 0%,#0000002e 55%,#00000059 100%)}
+.leaf.hinge-r .front .leaf-shade{background:linear-gradient(270deg,#0000 0%,#0000002e 55%,#00000059 100%)}
+.leaf.hinge-r .back .leaf-shade{background:linear-gradient(90deg,#0000 0%,#0000002e 55%,#00000059 100%)}
+.flip-cast{position:absolute;pointer-events:none;opacity:0}
+.spread.two .page+.page{box-shadow:var(--shadow),inset 14px 0 18px -14px #0003}
+.spread.two .page:first-child:not(.ghost){box-shadow:var(--shadow),inset -14px 0 18px -14px #0003}
 
 .nav{position:absolute;top:50%;translate:0 -50%;width:46px;height:46px;border-radius:50%;background:var(--chrome);box-shadow:0 4px 14px #0002;
   display:grid;place-items:center;z-index:5}
@@ -272,15 +289,20 @@ function buildPage(p){
 }
 function layout(){
   const sp=$('#spread'), st=$('#stage'), vis=visible(cur);
-  const availH=st.clientHeight-36, availW=st.clientWidth-36-(innerWidth>600?100:0);
+  const availH=st.clientHeight-36, availW=st.clientWidth-36-(innerWidth>600?100:0), cols=isTwo()?2:1;
   let h=availH, w=h*595/842;
-  if(w*vis.length>availW){ w=availW/vis.length; h=w*842/595; }
-  sp.querySelectorAll('.page').forEach(pg=>{pg.style.width=w*zoom+'px';pg.style.height=h*zoom+'px';redrawInk(pg.querySelector('canvas'))});
+  if(w*cols>availW){ w=availW/cols; h=w*842/595; }
+  st.style.touchAction=zoom===1?'pan-y pinch-zoom':'pan-x pan-y pinch-zoom';
+  sp.querySelectorAll('.page').forEach(pg=>{pg.style.width=w*zoom+'px';pg.style.height=h*zoom+'px';const c=pg.querySelector('canvas');if(c)redrawInk(c)});
 }
 function render(dir){
   const vis=visible(cur), sp=$('#spread');
   sp.className='spread '+(vis.length===2?'two':'one');
-  sp.replaceChildren(...vis.map(buildPage));
+  const els=vis.map(buildPage);
+  if(isTwo()&&vis.length===1){const g=document.createElement('div');g.className='page ghost';g.setAttribute('aria-hidden','true');if(vis[0]===1)els.unshift(g);else els.push(g)}
+  sp.className='spread two';
+  if(!isTwo()) sp.className='spread one';
+  sp.replaceChildren(...els);
   layout();
   if(dir){ sp.classList.add(dir>0?'turn-next':'turn-prev'); }
   // preload neighbours
@@ -304,10 +326,128 @@ function go(p,dir){
   $('#stage').scrollTo(0,0);
   if(innerWidth<900) closeDrawer();
 }
-function step(d){
-  const vis=visible(cur);
-  go(d>0 ? vis[vis.length-1]+1 : (isTwo() && vis[0]>2 ? vis[0]-2 : vis[0]-1), d);
+function targetOf(d){ const vis=visible(cur); return d>0 ? vis[vis.length-1]+1 : (isTwo() && vis[0]>2 ? vis[0]-2 : vis[0]-1); }
+function step(d){ flip(d); }
+
+/* ---------- page flip (Heyzine style) ----------
+   The real pages switch underneath; a "leaf" (front = page leaving, back = page arriving)
+   turns on the spine with shading. Drag follows the finger; tap or arrows play it.
+   Next pages are decoded first so the turn never stalls. */
+const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let flipping=null;
+const srcOf=p=>p?'pages/p'+pad(p)+'.webp':null;
+function ready(ps){ return Promise.race([Promise.all(ps.map(p=>{const i=new Image();i.src=srcOf(p);return i.decode?i.decode().catch(()=>{}):Promise.resolve()})),new Promise(r=>setTimeout(r,500))]); }
+function rectIn(el){ const st=$('#stage'),s=st.getBoundingClientRect(),r=el.getBoundingClientRect(); return {x:r.left-s.left+st.scrollLeft,y:r.top-s.top+st.scrollTop,w:r.width,h:r.height}; }
+function slotsNow(){ const ch=[...$('#spread').children]; return ch.map(el=>({r:rectIn(el),p:el.dataset.p?+el.dataset.p:null})); }
+function box(cls,r){ const d=document.createElement('div'); d.className=cls; Object.assign(d.style,{left:r.x+'px',top:r.y+'px',width:r.w+'px',height:r.h+'px'}); return d; }
+function faceOf(src,side){ const f=document.createElement('div'); f.className='leaf-face '+side+(src?'':' paper'); if(src){const i=new Image();i.src=src;i.alt='';f.append(i)} const sh=document.createElement('i'); sh.className='leaf-shade'; f.append(sh); return f; }
+const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2, easeOut=t=>1-Math.pow(1-t,3);
+
+async function startFlip(d){
+  if(flipping||zoom!==1||inking) return null;
+  const t=targetOf(d); if(t<1||t>N) return null;
+  flipping={pending:true};
+  const two=isTwo(), oldCur=cur;
+  await ready(visible(t));
+  const before=slotsNow();
+  cur=t; render(0);
+  const after=slotsNow(), st=$('#stage');
+  const layer=document.createElement('div'); layer.className='flip-layer';
+  layer.style.width=st.scrollWidth+'px'; layer.style.height=st.scrollHeight+'px';
+  let leaf, hinge, A0, A1, fadeOut=false, fadeIn=false;
+  if(two){
+    const [L0,R0]=before, [L1,R1]=after;
+    if(d>0){ // right page turns over to the left
+      layer.append(box('flip-cover',L0.r)); if(L0.p) layer.lastChild.append(Object.assign(new Image(),{src:srcOf(L0.p),alt:''}));
+      leaf=box('leaf hinge-l',R0.r); leaf.append(faceOf(srcOf(R0.p),'front'),faceOf(srcOf(L1.p),'back'));
+      hinge='left'; A0=0; A1=-180;
+    } else { // left page turns over to the right
+      layer.append(box('flip-cover',R0.r)); if(R0.p) layer.lastChild.append(Object.assign(new Image(),{src:srcOf(R0.p),alt:''}));
+      leaf=box('leaf hinge-r',L0.r); leaf.append(faceOf(srcOf(L0.p),'front'),faceOf(srcOf(R1.p),'back'));
+      hinge='right'; A0=0; A1=180;
+    }
+    layer.style.perspectiveOrigin=(R0.r.x)+'px 50%';
+  } else {
+    const [O]=before, [Nw]=after;
+    if(d>0){ leaf=box('leaf hinge-l',O.r); leaf.append(faceOf(srcOf(O.p),'front'),faceOf(null,'back')); hinge='left'; A0=0; A1=-180; fadeOut=true; }
+    else { layer.append(box('flip-cover',O.r)); layer.lastChild.append(Object.assign(new Image(),{src:srcOf(O.p),alt:''}));
+      leaf=box('leaf hinge-l',Nw.r); leaf.append(faceOf(srcOf(Nw.p),'front'),faceOf(null,'back')); hinge='left'; A0=-180; A1=0; fadeIn=true; }
+    layer.style.perspectiveOrigin=(O.r.x)+'px 50%';
+  }
+  leaf.style.transformOrigin=hinge+' center';
+  layer.append(leaf); st.append(layer);
+  const shades=leaf.querySelectorAll('.leaf-shade');
+  let prog=0;
+  const set=p=>{
+    prog=Math.max(0,Math.min(1,p));
+    const a=A0+(A1-A0)*prog, k=Math.sin(Math.PI*prog);
+    leaf.style.transform='rotateY('+a+'deg)';
+    leaf.style.boxShadow='0 '+(6+14*k)+'px '+(18+40*k)+'px rgba(10,20,60,'+(0.10+0.28*k)+')';
+    shades.forEach(s=>s.style.opacity=(0.15+0.85*k).toFixed(3));
+    leaf.style.opacity=fadeOut?(prog<.55?1:Math.max(0,1-(prog-.55)/.45)):fadeIn?(prog<.45?prog/.45:1):1;
+  };
+  set(0);
+  let raf=0;
+  const run=(to,ms,fn=ease)=>new Promise(res=>{
+    cancelAnimationFrame(raf); const from=prog, t0=performance.now();
+    if(reduceMotion) ms=1;
+    const tick=now=>{ const k=Math.min(1,(now-t0)/ms); set(from+(to-from)*fn(k)); if(k<1) raf=requestAnimationFrame(tick); else res(); };
+    raf=requestAnimationFrame(tick);
+  });
+  const finish=async(to,ms,fn)=>{ await run(to,ms,fn); layer.remove(); if(to===0){ cur=oldCur; render(0); } flipping=null; if(innerWidth<900) closeDrawer(); };
+  flipping={set,finish,get prog(){return prog},w:(two?before[1].r.w:before[0].r.w)};
+  return flipping;
 }
+async function flip(d){
+  const t=targetOf(d); if(t<1||t>N) return;
+  if(reduceMotion||zoom!==1||inking){ go(t,d); return; }
+  if(flipping) return;
+  const f=await startFlip(d); if(f) f.finish(1,700,ease);
+}
+
+/* drag to turn: the leaf follows the finger (or mouse), release to finish or fall back */
+(()=>{
+  const st=$('#stage'); let drag=null, suppressClick=false;
+  st.addEventListener('pointerdown',e=>{
+    if(inking||zoom!==1||flipping||e.button>0) return;
+    if(e.target.closest('.nav,button')) return;
+    drag={id:e.pointerId,x:e.clientX,y:e.clientY,dx:0,t:performance.now(),v:0,lx:e.clientX,lt:performance.now(),f:null,dir:0,started:false,up:false};
+  });
+  st.addEventListener('pointermove',async e=>{
+    if(!drag||e.pointerId!==drag.id) return;
+    const dx=e.clientX-drag.x, dy=e.clientY-drag.y, now=performance.now();
+    drag.v=(e.clientX-drag.lx)/Math.max(1,now-drag.lt); drag.lx=e.clientX; drag.lt=now; drag.dx=dx;
+    if(!drag.started){
+      if(Math.abs(dx)<10||Math.abs(dx)<Math.abs(dy)*1.2) { if(Math.abs(dy)>14) drag=null; return; }
+      const dir=dx<0?1:-1, t=targetOf(dir); if(t<1||t>N){ drag=null; return; }
+      drag.started=true; drag.dir=dir; suppressClick=true;
+      try{ st.setPointerCapture(e.pointerId); }catch(_){}
+      const me=drag; const f=await startFlip(dir); if(!f){ if(drag===me) drag=null; return; }
+      me.f=f; if(me.up) release(me); else f.set(Math.abs(me.dx)/(f.w*1.15));
+      return;
+    }
+    if(drag.f) drag.f.set(Math.max(0,-drag.dir*dx)/(drag.f.w*1.15));
+  });
+  function release(dg){
+    const f=dg.f; if(!f) return;
+    const p=f.prog, fast=(-dg.dir*dg.v)>0.45;
+    if(p>0.28||fast) f.finish(1,Math.max(160,(1-p)*520),easeOut); else f.finish(0,Math.max(140,p*420),easeOut);
+  }
+  const end=e=>{
+    if(!drag||e.pointerId!==drag.id) return;
+    const dg=drag; drag=null; dg.up=true;
+    if(dg.started){ if(dg.f) release(dg); return; }
+    // a tap on the outer edge of the book turns the page
+    if(e.type==='pointerup'&&!e.target.closest('a,.hot')){
+      const pages=[...$('#spread').querySelectorAll('.page:not(.ghost)')]; if(!pages.length) return;
+      const r0=pages[0].getBoundingClientRect(), r1=pages[pages.length-1].getBoundingClientRect(), edge=Math.min(90,r1.width*.18);
+      if(e.clientX>r1.right-edge&&e.clientX<=r1.right+20) flip(1);
+      else if(e.clientX<r0.left+edge&&e.clientX>=r0.left-20) flip(-1);
+    }
+  };
+  st.addEventListener('pointerup',end); st.addEventListener('pointercancel',end);
+  st.addEventListener('click',e=>{ if(suppressClick){ e.preventDefault(); e.stopPropagation(); suppressClick=false; } },true);
+})();
 
 /* ---------- drawer ---------- */
 function openDrawer(tab){ $('#drawer').classList.add('open'); if(innerWidth<900) $('#scrim').hidden=false; if(innerWidth>=1200){$('#main').classList.add('pushed');layout()} showTab(tab); }
@@ -471,11 +611,7 @@ addEventListener('keydown',e=>{
   else if(e.key==='p'||e.key==='P') setInking(!inking);
   else if(e.key==='Escape'){closeDrawer();setInking(false)}
 });
-// swipe to turn (only when not drawing and not zoomed)
-let sx=null,sy=0;
-$('#stage').addEventListener('pointerdown',e=>{if(!inking&&zoom===1&&e.pointerType!=='mouse'){sx=e.clientX;sy=e.clientY}});
-$('#stage').addEventListener('pointerup',e=>{if(sx==null)return;const dx=e.clientX-sx,dy=e.clientY-sy;sx=null;if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5)step(dx<0?1:-1)});
-addEventListener('resize',()=>{clearTimeout(layout.h);layout.h=setTimeout(()=>render(),120)});
+addEventListener('resize',()=>{clearTimeout(layout.h);layout.h=setTimeout(()=>{if(!flipping)render()},120)});
 addEventListener('hashchange',()=>{const m=location.hash.match(/^#(?:p|page=)(\d+)$/);if(m&&+m[1]!==visible(cur)[0])go(+m[1])});
 
 buildToc();
