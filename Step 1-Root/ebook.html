@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#142b68">
+<title>eBook · Smart MUET Hub</title>
+<meta name="description" content="The Smart MUET Guide eBook: 53 pages, 8 chapters and 14 games, with your pages read and stars saved on this device.">
+<link rel="icon" href="./shared/assets/logo.svg">
+<link rel="stylesheet" href="./shared/styles/tokens.css">
+<link rel="stylesheet" href="./shared/styles/navigation.css">
+<link rel="stylesheet" href="./shared/styles/shell.css">
+<link rel="stylesheet" href="./shared/styles/home.css">
+<link rel="stylesheet" href="./shared/styles/pages.css">
+<script defer src="./shared/js/app.js"></script>
+<script defer src="./shared/js/shell.js"></script>
+<script defer src="./shared/js/navigation.js"></script>
+<script defer src="./shared/js/ebook.js"></script>
+</head>
+<body data-page-id="ebook" data-app-root="./">
+<main id="main">
+  <section class="pg-hero pg-navy" aria-labelledby="eb-title">
+    <div class="h-wrap pg-hero-grid">
+      <div>
+        <p class="hello">The Smart MUET Guide · 2027 edition</p>
+        <h1 id="eb-title" class="smh-h1">Read it like a book.<br><em>Play it like a game.</em></h1>
+        <p class="lead">53 pages, 8 chapters and 14 games. Every chapter tells you what MUET asks and links straight to the guide and Lab for that paper.</p>
+        <div class="pg-btns"><a class="pg-btn pg-btn-sun" id="book-open" href="book/index.html">Open the eBook →</a><a class="pg-btn pg-btn-line" href="book/index.html#page=2">See the contents</a></div>
+        <div class="pg-stats" aria-label="Your eBook progress">
+          <div><b id="eb-pages">0</b><span>of 53 pages read</span></div>
+          <div><b id="eb-stars">0</b><span>stars won</span></div>
+          <div><b id="eb-games">0</b><span>of 14 games played</span></div>
+        </div>
+        <div class="h-book-bar pg-bar"><i id="book-bar"></i></div><span id="book-read" hidden></span>
+      </div>
+      <div class="pg-book">
+        <a class="h-stack" href="book/index.html" aria-label="Open the Smart MUET Guide eBook at the cover">
+          <img class="pg3" src="book/pages/p03.webp" alt="" width="1653" height="2339">
+          <img class="pg2" src="book/pages/p02.webp" alt="" width="1653" height="2339">
+          <img class="pg1" src="book/pages/p01.webp" alt="Smart MUET Guide 2027 eBook cover" width="1653" height="2339">
+        </a>
+        <img class="pg-book-sticker" src="shared/assets/learning.webp" alt="">
+      </div>
+    </div>
+  </section>
+
+  <section class="smh-sec" aria-labelledby="ch-title">
+    <div class="smh-sec-head"><div><span class="eyebrow">01 / Chapters</span><h2 id="ch-title">Eight chapters, <em>one path</em></h2></div><p>Tap a chapter to open the eBook at its first page. The tag shows pages read and stars from the games inside.</p></div>
+    <div class="h-book h-book-solo"><nav class="h-chapters" aria-label="eBook chapters"><a class="h-ch c-purple" href="book/index.html#page=4" data-from="4" data-to="10"><img src="book/pages/t04.webp" alt="" loading="lazy" width="150" height="212"><span class="h-ch-n">CH 1</span><b>Know your MUET</b><small>Papers, bands and CEFR</small><span class="h-ch-st">p. 4–10</span></a><a class="h-ch c-yellow" href="book/index.html#page=11" data-from="11" data-to="15"><img src="book/pages/t11.webp" alt="" loading="lazy" width="150" height="212"><span class="h-ch-n">CH 2</span><b>MUET admin</b><small>MPM portal, calendar, registration</small><span class="h-ch-st">p. 11–15</span></a><a class="h-ch c-listening" href="book/index.html#page=17" data-from="17" data-to="23"><img src="book/pages/t17.webp" alt="" loading="lazy" width="150" height="212"><span class="h-ch-n">CH 3</span><b>Listening · CLUE</b><small>Hear the whole message</small><span class="h-ch-st">p. 17–23</span></a><a class="h-ch c-speaking" href="book/index.html#page=24" data-from="24" data-to="30"><img src="book/pages/t24.webp" alt="" loading="lazy" width="150" height="212"><span class="h-ch-n">CH 4</span><b>Speaking · PREP</b><small>One idea, fully developed</small><span class="h-ch-st">p. 24–30</span></a><a class="h-ch c-reading" href="book/index.html#page=31" data-from="31" data-to="37"><img src="book/pages/t31.webp" alt="" loading="lazy" width="150" height="212"><span class="h-ch-n">CH 5</span><b>Reading · SCAN</b><small>Search with purpose</small><span class="h-ch-st">p. 31–37</span></a><a class="h-ch c-writing" href="book/index.html#page=38" data-from="38" data-to="44"><img src="book/pages/t38.webp" alt="" loading="lazy" width="150" height="212"><span class="h-ch-n">CH 6</span><b>Writing · PEEL</b><small>Develop each point</small><span class="h-ch-st">p. 38–44</span></a><a class="h-ch c-yellow" href="book/index.html#page=45" data-from="45" data-to="47"><img src="book/pages/t45.webp" alt="" loading="lazy" width="150" height="212"><span class="h-ch-n">CH 7</span><b>Game Zone</b><small>Quiz Show questions 1–8</small><span class="h-ch-st">p. 45–47</span></a><a class="h-ch c-ink" href="book/index.html#page=48" data-from="48" data-to="53"><img src="book/pages/t48.webp" alt="" loading="lazy" width="150" height="212"><span class="h-ch-n">CH 8</span><b>Review & next steps</b><small>Answer key, badges, your path</small><span class="h-ch-st">p. 48–53</span></a></nav></div>
+  </section>
+
+  <section class="smh-sec" aria-labelledby="route-title">
+    <div class="smh-sec-head"><div><span class="eyebrow">02 / Read, learn, try</span><h2 id="route-title">From page <em>to practice</em></h2></div><p>For each paper: read the chapter, follow the 6-step guide, then try it in the Lab.</p></div>
+    <div class="pg-routes">
+        <div class="pg-route r-listening"><span class="pg-route-k">800/1</span><b>Listening · CLUE</b>
+          <a href="book/index.html#page=17">1 · Read p. 17–23</a><a href="guides/listening.html">2 · Learn the 6 steps</a><a href="labs/listening-lab.html">3 · Try the Lab</a></div>
+        <div class="pg-route r-speaking"><span class="pg-route-k">800/2</span><b>Speaking · PREP</b>
+          <a href="book/index.html#page=24">1 · Read p. 24–30</a><a href="guides/speaking.html">2 · Learn the 6 steps</a><a href="labs/speaking-lab.html">3 · Try the Lab</a></div>
+        <div class="pg-route r-reading"><span class="pg-route-k">800/3</span><b>Reading · SCAN</b>
+          <a href="book/index.html#page=31">1 · Read p. 31–37</a><a href="guides/reading.html">2 · Learn the 6 steps</a><a href="labs/reading-lab.html">3 · Try the Lab</a></div>
+        <div class="pg-route r-writing"><span class="pg-route-k">800/4</span><b>Writing · PEEL</b>
+          <a href="book/index.html#page=38">1 · Read p. 38–44</a><a href="guides/writing.html">2 · Learn the 6 steps</a><a href="labs/writing-lab.html">3 · Try the Lab</a></div>
+    </div>
+  </section>
+
+  <section class="smh-sec" aria-labelledby="how-title">
+    <div class="smh-sec-head"><div><span class="eyebrow">03 / How to use it</span><h2 id="how-title">Three <em>tips</em></h2></div></div>
+    <div class="pg-tips">
+      <div class="pg-tip t-sun"><b>Swipe or tap the arrows</b><p>Pages flip like a real book. The eBook remembers the last page you opened.</p></div>
+      <div class="pg-tip t-blue"><b>Play the games</b><p>Look for "Try it first" and "Spot the trap". Each game gives stars and XP on the spot.</p></div>
+      <div class="pg-tip t-mint"><b>Use the links</b><p>Every page has a button back to the Hub, so you can go from reading to practice in one tap.</p></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

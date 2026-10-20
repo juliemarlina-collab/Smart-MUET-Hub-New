@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#142b68">
+<title>Certificate of Accomplishment · Smart MUET Hub</title>
+<meta name="description" content="Finish the Smart MUET Hub journey and your certificate of accomplishment is made for you, ready to print or save as PDF.">
+<link rel="icon" href="./shared/assets/logo.svg">
+<link rel="stylesheet" href="./shared/styles/tokens.css">
+<link rel="stylesheet" href="./shared/styles/navigation.css">
+<link rel="stylesheet" href="./shared/styles/shell.css">
+<link rel="stylesheet" href="./shared/styles/pages.css">
+<link rel="stylesheet" href="./shared/styles/certificate.css">
+<script defer src="./shared/js/app.js"></script>
+<script defer src="./shared/js/shell.js"></script>
+<script defer src="./shared/js/navigation.js"></script>
+<script defer src="./shared/js/cert-core.js"></script>
+<script defer src="./shared/js/certificate.js"></script>
+</head>
+<body data-page-id="certificate" data-app-root="./">
+<main id="main">
+  <section class="pg-hero pg-navy ct-hero" aria-labelledby="ct-title">
+    <div class="h-wrap pg-hero-grid">
+      <div>
+        <p class="hello">Finish the journey</p>
+        <h1 id="ct-title" class="smh-h1">Your certificate<br><em>of accomplishment</em></h1>
+        <p class="lead" id="ct-lead">Complete the nine Hub activities below. Your certificate is made for you automatically, with your name, your Mock 1 practice band and the date.</p>
+        <div class="pg-stats ct-stats"><div><b id="ct-done">0</b><span>of 9 activities done</span></div><div><b id="ct-pct">0%</b><span>of the journey</span></div></div>
+        <div class="h-book-bar pg-bar"><i id="ct-bar"></i></div>
+      </div>
+      <div class="ct-seal-wrap" aria-hidden="true"><div class="ct-seal"><span>SMART MUET HUB</span><b>★</b><span>ACCOMPLISHED</span></div><img src="shared/assets/progress.webp" alt=""></div>
+    </div>
+  </section>
+
+  <section class="smh-sec pg-sec" aria-labelledby="req-title">
+    <div class="smh-sec-head"><div><span class="eyebrow">01 / Nine activities</span><h2 id="req-title">What you need <em>to finish</em></h2></div><p>Ticks appear on their own as you work. Tap any activity that is not ticked to go straight to it.</p></div>
+    <ol class="ct-list" id="ct-list"></ol>
+  </section>
+
+  <section class="smh-sec pg-sec ct-out" id="certificate" aria-labelledby="cert-title" hidden>
+    <div class="smh-sec-head"><div><span class="eyebrow">02 / Your certificate</span><h2 id="cert-title">Well done. <em>It’s yours.</em></h2></div><p>Check your name, then print it or save it as a PDF. Choose “Landscape” in the print settings.</p></div>
+    <div class="ct-form">
+      <label>Name on the certificate<input id="ct-name" maxlength="60" autocomplete="name" placeholder="Your full name"></label>
+      <label>Class / programme<input id="ct-class" maxlength="60" placeholder="e.g. DEE 3A"></label>
+      <button class="pg-btn pg-btn-sun ct-print" type="button" id="ct-print">Print or save as PDF</button>
+    </div>
+    <article class="cert" id="cert" aria-label="Certificate of accomplishment">
+      <div class="cert-in">
+        <header class="cert-top">
+          <img src="shared/assets/logo.svg" alt="" class="cert-logo">
+          <div><b>Smart MUET Hub</b><small>English Language Unit · Jabatan Pengajian Am · Politeknik Port Dickson</small></div>
+        </header>
+        <div class="cert-k">Certificate of</div>
+        <div class="cert-title">Accomplishment</div>
+        <div class="cert-pre">This certifies that</div>
+        <div class="cert-name" id="cert-name">Your name</div>
+        <div class="cert-class" id="cert-class"></div>
+        <div class="cert-body">has completed the Smart MUET Hub learning journey: the 10-minute check, the Smart MUET Guide eBook, the four skill guides and Labs (CLUE · PREP · SCAN · PEEL), MUET Vault 1 and Vault 2, and Mock 1 under exam conditions.</div>
+        <div class="cert-stats">
+          <div><small>Mock 1 practice total</small><b id="cert-total">—</b></div>
+          <div><small>Practice band</small><b id="cert-band">—</b></div>
+          <div><small>CEFR</small><b id="cert-cefr">—</b></div>
+          <div><small>XP earned</small><b id="cert-xp">—</b></div>
+        </div>
+        <div class="cert-papers" aria-hidden="true"><img src="shared/assets/listening.webp" alt=""><img src="shared/assets/speaking.webp" alt=""><img src="shared/assets/reading.webp" alt=""><img src="shared/assets/writing.webp" alt=""></div>
+        <footer class="cert-foot">
+          <div><span class="cert-line"></span><b>English Language Lecturer</b><small>English Language Unit, JPA</small></div>
+          <div class="cert-seal"><span>★</span></div>
+          <div><b id="cert-date">—</b><small>Date issued</small><b id="cert-id" class="cert-id">—</b><small>Certificate ID</small></div>
+        </footer>
+        <div class="cert-note">Practice band from Smart MUET Hub papers. This is not an official MPM result.</div>
+      </div>
+    </article>
+  </section>
+</main>
+</body>
+</html>

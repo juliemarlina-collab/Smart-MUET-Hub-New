@@ -1,0 +1,85 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f5f7ff"><title>My learning · Smart MUET</title><link rel="icon" href="shared/assets/logo.svg"><link rel="stylesheet" href="shared/styles/tokens.css"><link rel="stylesheet" href="shared/styles/hub.css"><link rel="stylesheet" href="shared/styles/navigation.css"><script defer src="shared/js/hub.js"></script><script defer src="shared/js/app.js"></script><link rel="stylesheet" href="shared/styles/shell.css"><script defer src="shared/js/shell.js"></script><script defer src="shared/js/navigation.js"></script><script defer src="shared/js/me.js"></script><link rel="stylesheet" href="shared/styles/pages.css"><script defer src="shared/js/cert-core.js"></script><script defer src="shared/js/me-plus.js"></script></head><body data-page-id="me" data-app-root="./"><a class="skip" href="#main">Skip to content</a><header><a class="brand" href="index.html"><img src="shared/assets/logo.svg" alt=""><span>Smart MUET<small>YOUR LEARNING JOURNEY</small></span></a><a href="account/index.html">My account ↗</a></header><main id="main"><section class="smh-hero-grid"><div><span class="eyebrow">ME / MY LEARNING RECORD</span><p class="hello">Look how far you’ve come!</p><h1>Notice your progress.<br><em>Choose your next step.</em></h1><p>Your MUET practice results, badges, XP and streak in one place. Print it or save it as a PDF to show your lecturer.</p><div class="actions"><button type="button" class="primary" id="me-print">Print or save as PDF ⎙</button><button type="button" class="button" id="me-csv">Download my results ↓</button></div></div><div class="hero-collage smh-photo"><span class="hero-star" aria-hidden="true">✳</span><span class="floating-label">YOUR LEARNING RECORD<br><b>every step counts.</b></span><img class="smh-photo-main" src="shared/assets/photo-progress.webp" alt="A student sitting the MUET in an exam hall" width="1200" height="800"><img class="smh-photo-sticker" src="shared/assets/progress.webp" alt="" aria-hidden="true"></div></section>
+<section class="me-print-head" aria-hidden="true"><img src="shared/assets/logo.svg" alt=""><div><b>Smart MUET Hub · My MUET practice record</b><span id="print-meta"></span></div></section>
+
+<section class="smh-sec pg-sec" aria-label="Certificate"><a class="ct-card" href="certificate.html" id="me-cert"><span class="ct-card-seal" aria-hidden="true">★</span><span class="ct-card-txt"><small>Certificate of accomplishment</small><b id="me-cert-t">0 of 9 activities done</b><span id="me-cert-s">Finish all nine and your certificate is made for you.</span></span><span class="ct-card-go" id="me-cert-go">See what’s left →</span></a></section>
+<section class="smh-sec me-results" aria-labelledby="res-title">
+  <div class="smh-sec-head"><div><span class="eyebrow">01 / MY MUET RESULTS</span><h2 id="res-title">Vault 1 · Vault 2 · Mock 1</h2></div>
+  <p>Each paper is marked out of 90. When all four papers in a level are done, the total out of 360 gives a practice band.</p></div>
+  <div class="me-profile">
+    <label>Name<input id="me-name" autocomplete="name" placeholder="Your full name"></label>
+    <label>Class / programme<input id="me-class" placeholder="e.g. DEE 3A"></label>
+    <label>Target band<select id="me-target"><option value="">Choose…</option><option>Band 3.0</option><option>Band 3.5</option><option>Band 4.0</option><option>Band 4.5</option><option>Band 5.0</option><option>Band 5+</option></select></label>
+  </div>
+  <div class="me-summary" id="me-summary"></div>
+  <div class="me-levels" id="me-levels"></div>
+  <div class="me-chart" id="me-chart" aria-label="Total score by level"></div>
+  <p class="me-note">Practice estimates from Smart MUET papers on this device. They are a guide to your level, not an official MPM result.</p>
+</section>
+
+<section class="smh-sec me-errlog" aria-labelledby="err-title" id="errors">
+  <div class="smh-sec-head"><div><span class="eyebrow">02 / MY ERROR LOG</span><h2 id="err-title">Mistakes I will <em>fix next</em></h2></div><p>Questions you missed in the Labs, the 10-minute check and the Trap spotter, plus mistakes you add yourself. Fix one, then tick it off.</p></div>
+  <div class="el-grid">
+    <div class="el-list" id="el-list" aria-live="polite"></div>
+    <form class="el-add" id="el-add">
+      <b>Add my own mistake</b>
+      <label>Paper<select id="el-paper"><option value="listening">Listening</option><option value="speaking">Speaking</option><option value="reading" selected>Reading</option><option value="writing">Writing</option></select></label>
+      <label>What went wrong<input id="el-what" maxlength="140" placeholder="e.g. Chose the option that repeated words from the text" required></label>
+      <label>My fix next time<input id="el-fix" maxlength="140" placeholder="e.g. Check the sentence after 'however'"></label>
+      <button class="button primary" type="submit">Add to my log</button>
+    </form>
+  </div>
+</section>
+
+<section class="smh-sec me-rubric" aria-labelledby="rub-title" id="rubric">
+  <div class="smh-sec-head"><div><span class="eyebrow">03 / LECTURER RUBRIC</span><h2 id="rub-title">Speaking &amp; Writing, <em>checked by a person</em></h2></div><p>Speaking and Writing need a person to mark them. Your lecturer (or you, honestly) picks a level for each part. The score out of 90 can go straight into your results table.</p></div>
+  <div class="rb" id="rb"></div>
+</section>
+
+<section class="smh-sec" aria-labelledby="badges-title" id="badges">
+  <div class="smh-sec-head"><div><span class="eyebrow">04 / MY BADGES</span><h2 id="badges-title">Badges I've earned.</h2></div><p id="badge-count"></p></div>
+  <div class="me-board"><div class="smh-shelf" id="badge-shelf"></div><p class="small">Badges recognise practice, never a predicted band. Personal progress only: there is no class leaderboard.</p></div>
+</section>
+
+<section class="smh-sec" aria-label="XP and streak">
+  <div class="smh-sec-head"><div><span class="eyebrow">05 / KEEP GOING</span><h2>My XP and streak.</h2></div><p>XP grows with every Lab, Vault paper, reflection and game. Your streak counts the days you open Smart MUET.</p></div>
+  <div class="me-two">
+    <article class="me-card me-xp" aria-labelledby="xp-title"><span class="me-tag">XP</span><h3 id="xp-title">My XP</h3><div id="xp-breakdown"></div></article>
+    <article class="me-card me-streak" aria-labelledby="streak-title"><span class="me-tag">STREAK</span><h3 id="streak-title">My streak</h3><p class="small" id="streak-summary"></p><div class="smh-calendar" id="streak-calendar" aria-label="Active days, last 4 weeks"></div><p class="small">Streak bonuses: 3 days +15 XP, 7 days +40 XP, 14 days +100 XP.</p></article>
+  </div>
+</section>
+
+<section class="smh-sec" aria-labelledby="rec-title">
+  <div class="smh-sec-head"><div><span class="eyebrow">06 / LEARN AND READ</span><h2 id="rec-title">Reading and guide records.</h2></div><p>Steps marked done in each Learn guide, Labs finished and eBook pages read.</p></div>
+  <div class="me-records" id="me-records"></div>
+</section>
+
+<section class="smh-sec me-history" aria-labelledby="ref-title">
+  <div class="smh-sec-head"><div><span class="eyebrow">07 / MY REFLECTIONS</span><h2 id="ref-title">What I learned.</h2></div><p>Every Lab and guide ends with a reflection. They are saved here, newest first.</p></div>
+  <div class="me-board history" id="reflection-timeline"></div>
+  <div id="local-progress" hidden></div>
+  <p class="me-actions-end"><button id="export-all" class="button">Export my full learning record (.txt) ↓</button> <a class="button" href="account/index.html">Account &amp; registration ↗</a></p>
+</section>
+<section class="smh-sec me-bands" aria-labelledby="band-title" id="bands">
+  <div class="smh-sec-head"><div><span class="eyebrow">08 / BAND GUIDE</span><h2 id="band-title">What each band <em>means</em></h2></div><p>MUET aggregated score out of 360, the band and CEFR level it gives, and what a candidate at that level can usually do (simplified).</p></div>
+  <div class="bt-wrap"><table class="bt">
+    <thead><tr><th scope="col">Score /360</th><th scope="col">Band</th><th scope="col">CEFR</th><th scope="col">User</th><th scope="col">What you can usually do</th></tr></thead>
+    <tbody>
+      <tr><td>331–360</td><td><b>5+</b></td><td>C1+</td><td>Very highly proficient</td><td>Speaks very fluently and confidently; writes complex texts accurately and effectively.</td></tr>
+      <tr><td>294–330</td><td><b>5.0</b></td><td>C1</td><td>Proficient</td><td>Understands long, complex talks and texts; writes well-structured, detailed texts.</td></tr>
+      <tr><td>258–293</td><td><b>4.5</b></td><td>B2</td><td>Upper independent</td><td>Takes an active part in academic discussion; writes clear texts with few errors.</td></tr>
+      <tr><td>211–257</td><td><b>4.0</b></td><td>B2</td><td>Upper independent</td><td>Follows longer talks and lectures; explains advantages and disadvantages clearly.</td></tr>
+      <tr><td>164–210</td><td><b>3.5</b></td><td>B1</td><td>Independent</td><td>Understands main points of clear speech; gives reasons and opinions on familiar topics.</td></tr>
+      <tr class="bt-target"><td>123–163</td><td><b>3.0</b></td><td>B1</td><td>Independent</td><td>Manages familiar conversations; writes understandable, connected responses.</td></tr>
+      <tr><td>82–122</td><td><b>2.5</b></td><td>A2</td><td>Basic</td><td>Understands simple phrases and routine messages; writes simple linked sentences.</td></tr>
+      <tr><td>36–81</td><td><b>2.0</b></td><td>A2</td><td>Basic</td><td>Describes daily activities in simple sentences.</td></tr>
+      <tr><td>1–35</td><td><b>1.0</b></td><td>A1</td><td>Limited</td><td>Understands very basic words spoken slowly; writes isolated phrases.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="bt-facts">
+    <div><b>4 papers × 90</b><span>Listening, Speaking, Reading and Writing are each marked out of 90. You sit all four.</span></div>
+    <div><b>Results last 5 years</b><span>A MUET certificate is valid for five years from the date the result is released.</span></div>
+    <div><b>Register on the MPM portal</b><span>Sessions, fees and dates change each year. Always check the official Majlis Peperiksaan Malaysia (MPM) website.</span></div>
+  </div>
+  <p class="me-note">The highlighted row is the band many diploma programmes ask for. Check your own programme’s requirement.</p>
+</section>
+<p class="notice">The text export includes guide progress, PDF reading records and all four lab records (plans, drafts, answers, reflections) plus your review queue. Recordings stay in the Speaking Lab and must be downloaded there separately. XP, streaks and badges are worked out from these records on this device. Practice bands are worked out from complete sets of four Vault or Mock papers; they are estimates, not official results. Cross-device syncing is not active in this build. Clearing browser data removes local records.</p><p id="storage-status" role="status" hidden></p></main><footer>English Language Unit · Politeknik Port Dickson · Practice at your own pace.</footer></body></html>
