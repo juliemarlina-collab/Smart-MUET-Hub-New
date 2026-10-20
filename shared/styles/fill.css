@@ -96,3 +96,6 @@ html.smh-shell .smh-footer .in>div:not(:first-child) h2{flex-basis:100%}
 html.smh-shell .smh-footer a{padding:3px 0!important;font-size:14px!important}
 html.smh-shell .smh-footer .fine{padding-top:10px!important;font-size:12px!important;opacity:.75}
 @media (max-width:860px){html.smh-shell .smh-footer .in{grid-template-columns:1fr 1fr!important}html.smh-shell .smh-footer .in>div:first-child{grid-column:1/-1}html.smh-shell .smh-footer .in>div:first-child p{display:none}}
+/* the Dark switch is already in the header on wide screens */
+@media (min-width:1061px){html.smh-shell .smh-foot-theme{display:none!important}}
+html.smh-shell .smh-footer{padding-bottom:0!important}
