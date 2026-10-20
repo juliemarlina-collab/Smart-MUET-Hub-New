@@ -1,0 +1,59 @@
+/* Smart MUET Hub · "fill the frame" (21 Oct 2026)
+   Loaded LAST on the five menu pages and the certificate.
+   Goal: pictures fill their column like the certificate seal does, with no big empty colour blocks.
+   1. eBook page stack: much bigger on phone, tablet and PC
+   2. Photo heroes (Learn, Practice, Me, Home): photo fills the column; the colour block hugs it
+   3. Practice photo pair: two big overlapping photos instead of two small ones
+   4. Home eBook block: bigger stack on phone */
+
+/* ---------- 1. eBook page stack ---------- */
+.pg-book{max-width:none!important;width:100%;margin:0!important;padding:12px 8% 34px 2%!important}
+.pg-book .h-stack{width:100%!important;max-width:460px;margin:0 auto!important}
+.pg-hero-grid{align-items:center}
+@media (min-width:861px){
+  .pg-hero-grid:has(.pg-book){grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important}
+  .pg-book .h-stack{max-width:440px}
+}
+@media (max-width:860px){
+  .pg-book{padding:8px 16% 30px 6%!important;margin-top:8px!important}
+  .pg-book .h-stack{max-width:520px}
+}
+.pg-book .pg-book-sticker{width:30%!important;max-width:170px!important;right:0!important;bottom:4px!important}
+/* the stack fans open a little on tap/hover so it feels like a book */
+.h-stack:active .pg1{transform:rotateY(-4deg) rotate(0deg) translateX(-4%)}
+.h-stack:active .pg2{transform:translate(20%,-2%) rotateY(-10deg) rotate(5deg) scale(.95)}
+.h-stack:active .pg3{transform:translate(38%,-4%) rotateY(-10deg) rotate(9deg) scale(.9)}
+
+/* Home eBook block: bigger stack on phones */
+@media (max-width:560px){
+  .h-book-cover .h-stack{width:80%!important;max-width:420px}
+}
+
+/* ---------- 2. Photo heroes: fill the column ---------- */
+html.smh-shell .smh-hero-grid .hero-collage,
+html.smh-shell .guide-hero .hero-collage{max-width:none!important;width:100%!important;padding:0 0 26px 0!important;margin:0!important}
+html.smh-shell .hero-collage::before{inset:22px -10px 8px 22px!important;border-radius:28px!important}
+html.smh-shell .hero-collage>img:not(.smh-photo-sticker){width:100%!important;aspect-ratio:4/3!important}
+html.smh-shell .hero-collage img.smh-photo-sticker{width:30%!important;max-width:200px!important;right:-6px!important;bottom:-4px!important}
+@media (min-width:861px){
+  html.smh-shell :is(.smh-hero-grid,.guide-hero){grid-template-columns:minmax(0,1fr) minmax(0,1.05fr)!important;align-items:center!important}
+}
+@media (max-width:860px){
+  html.smh-shell .smh-hero-grid .hero-collage,
+  html.smh-shell .guide-hero .hero-collage{padding:0 10px 22px 0!important;margin-top:6px!important}
+  html.smh-shell .hero-collage::before{inset:18px 0 4px 18px!important;border-radius:24px!important}
+  html.smh-shell .hero-collage>img:not(.smh-photo-sticker){border-width:6px!important;border-radius:20px!important}
+}
+
+/* ---------- 3. Practice: two big overlapping photos ---------- */
+html.smh-shell .smh-photo-pair{aspect-ratio:1/.9!important;width:100%}
+html.smh-shell .hero-collage .smh-photo-pair img{width:74%!important;aspect-ratio:4/3!important;rotate:0deg!important}
+html.smh-shell .hero-collage .smh-photo-pair img:first-child{top:0!important;right:0!important;left:auto!important;z-index:1}
+html.smh-shell .hero-collage .smh-photo-pair img+img{bottom:0!important;left:0!important;top:auto!important;z-index:2}
+@media (max-width:860px){
+  html.smh-shell .smh-photo-pair{aspect-ratio:1/.92!important}
+  html.smh-shell .hero-collage .smh-photo-pair img{width:76%!important;border-width:6px!important;border-radius:20px!important}
+}
+
+/* no sideways sliding on phones */
+html,body{overflow-x:clip}
