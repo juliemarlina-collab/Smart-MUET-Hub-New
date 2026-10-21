@@ -108,12 +108,14 @@
     bubble.querySelector('.cb-next').focus({ preventScroll: true });
   }
   function close() {
+    if (guideButton) guideButton.remove();
     idx = -1; [ring, bubble, scrim].forEach(e => e && e.remove()); ring = bubble = scrim = null;
     removeEventListener('scroll', place, true); removeEventListener('resize', place);
     markSeen(id);
   }
   function start() {
-    if (!steps.length || bubble) return;
+    if (!steps.length || bubble || seen()[id]) return;
+    markSeen(id); // Each page tour can be launched only once on this device.
     scrim = el('div', 'coach-scrim'); scrim.onclick = close;
     ring = el('div', 'coach-ring');
     bubble = el('div', 'coach-bubble'); bubble.setAttribute('role', 'dialog'); bubble.setAttribute('aria-modal', 'false'); bubble.setAttribute('aria-label', 'Page guide');
@@ -130,11 +132,12 @@
   }
   addEventListener('keydown', e => { if (!bubble) return; if (e.key === 'Escape') close(); else if (e.key === 'ArrowRight') bubble.querySelector('.cb-next').click(); else if (e.key === 'ArrowLeft' && idx > 0) show(idx - 1); });
 
-  /* Guide me button */
-  if (steps.length) {
+  /* Guide me button: shown only until the page tour has been launched once. */
+  let guideButton = null;
+  if (steps.length && !seen()[id]) {
     const g = el('button', 'coach-fab'); g.type = 'button'; g.setAttribute('aria-label', 'Guide me through this page');
     g.innerHTML = '<span aria-hidden="true">?</span><b>Guide me</b>';
-    g.onclick = start; body.append(g);
+    g.onclick = start; guideButton = g; body.append(g);
     if (!seen()[id] && !location.hash.match(/^#(p|page=)/)) setTimeout(start, 900);
   }
 
