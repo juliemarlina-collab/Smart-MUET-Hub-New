@@ -1,0 +1,1152 @@
+[
+  {
+    "id": "MUET-L-001",
+    "topic": "Library renovation",
+    "transcript": "Attention students. The second floor of the library will close for renovation from Monday to Thursday. Books from that floor can be requested at the ground-floor counter.",
+    "question": "What should students do if they need books from the second floor?",
+    "options": {
+      "A": "Request them at the ground-floor counter",
+      "B": "Wait until the library permanently reopens",
+      "C": "Borrow them from the sports centre"
+    },
+    "correct_answer": "A",
+    "correct_text": "Request them at the ground-floor counter",
+    "explanation": "The announcement states: Attention students. The second floor of the library will close for renovation from Monday to Thursday. Books from that floor can be requested at the ground-floor counter.",
+    "fill_blank_prompt": "Attention students. The second floor of the library will close for renovation from Monday to Thursday. Books from that floor can be requested at the ________.",
+    "fill_blank_answer": "ground-floor counter",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-002",
+    "topic": "Bus schedule",
+    "transcript": "The campus shuttle will leave every thirty minutes instead of every twenty minutes this Friday because one bus is undergoing maintenance.",
+    "question": "What change is being announced?",
+    "options": {
+      "A": "The shuttle fare will increase",
+      "B": "Shuttles will run less frequently on Friday",
+      "C": "All shuttle services will stop permanently"
+    },
+    "correct_answer": "B",
+    "correct_text": "Shuttles will run less frequently on Friday",
+    "explanation": "The announcement states: The campus shuttle will leave every thirty minutes instead of every twenty minutes this Friday because one bus is undergoing maintenance.",
+    "fill_blank_prompt": "The campus shuttle will leave every ________ instead of every twenty minutes this Friday because one bus is undergoing maintenance.",
+    "fill_blank_answer": "thirty minutes",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-003",
+    "topic": "Exam venue",
+    "transcript": "Students taking the English placement test tomorrow must report to Block C, Room 204, not the main examination hall.",
+    "question": "Where will the English placement test take place?",
+    "options": {
+      "A": "The main examination hall",
+      "B": "The language laboratory in Block A",
+      "C": "Block C, Room 204"
+    },
+    "correct_answer": "C",
+    "correct_text": "Block C, Room 204",
+    "explanation": "The announcement states: Students taking the English placement test tomorrow must report to Block C, Room 204, not the main examination hall.",
+    "fill_blank_prompt": "Students taking the English placement test tomorrow must report to ________, Room 204, not the main examination hall.",
+    "fill_blank_answer": "Block C",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-004",
+    "topic": "Cafeteria opening",
+    "transcript": "Due to electrical repairs, the cafeteria will open at eleven tomorrow morning. Breakfast packs will be available at the student lounge from eight.",
+    "question": "Where can students get breakfast before the cafeteria opens?",
+    "options": {
+      "A": "At the student lounge",
+      "B": "At the library information desk",
+      "C": "At the cafeteria from seven"
+    },
+    "correct_answer": "A",
+    "correct_text": "At the student lounge",
+    "explanation": "The announcement states: Due to electrical repairs, the cafeteria will open at eleven tomorrow morning. Breakfast packs will be available at the student lounge from eight.",
+    "fill_blank_prompt": "Due to electrical repairs, the cafeteria will open at eleven tomorrow morning. Breakfast packs will be available at the ________ from eight.",
+    "fill_blank_answer": "student lounge",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-005",
+    "topic": "Career workshop",
+    "transcript": "The career centre's interview workshop has been moved from Wednesday to Friday at two in the afternoon. Existing registrations remain valid.",
+    "question": "What should registered participants know?",
+    "options": {
+      "A": "The workshop has been cancelled",
+      "B": "The workshop is now on Friday",
+      "C": "They must register and pay again"
+    },
+    "correct_answer": "B",
+    "correct_text": "The workshop is now on Friday",
+    "explanation": "The announcement states: The career centre's interview workshop has been moved from Wednesday to Friday at two in the afternoon. Existing registrations remain valid.",
+    "fill_blank_prompt": "The career centre's interview workshop has been moved from Wednesday to ________ at two in the afternoon. Existing registrations remain valid.",
+    "fill_blank_answer": "Friday",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-006",
+    "topic": "Wi-Fi maintenance",
+    "transcript": "Campus Wi-Fi will be unavailable between midnight and two in the morning on Saturday while technicians upgrade the network.",
+    "question": "When will the campus Wi-Fi be unavailable?",
+    "options": {
+      "A": "During Saturday afternoon",
+      "B": "Throughout the whole weekend",
+      "C": "Early Saturday morning"
+    },
+    "correct_answer": "C",
+    "correct_text": "Early Saturday morning",
+    "explanation": "The announcement states: Campus Wi-Fi will be unavailable between midnight and two in the morning on Saturday while technicians upgrade the network.",
+    "fill_blank_prompt": "Campus Wi-Fi will be unavailable between ________ and two in the morning on Saturday while technicians upgrade the network.",
+    "fill_blank_answer": "midnight",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-007",
+    "topic": "Sports trial",
+    "transcript": "Students interested in joining the volleyball team should attend trials at the indoor court on Tuesday at five. Bring suitable sports shoes.",
+    "question": "What should interested students bring?",
+    "options": {
+      "A": "Suitable sports shoes",
+      "B": "Their own volleyball net",
+      "C": "A printed medical report"
+    },
+    "correct_answer": "A",
+    "correct_text": "Suitable sports shoes",
+    "explanation": "The announcement states: Students interested in joining the volleyball team should attend trials at the indoor court on Tuesday at five. Bring suitable sports shoes.",
+    "fill_blank_prompt": "Students interested in joining the volleyball team should attend trials at the indoor court on Tuesday at five. Bring suitable ________.",
+    "fill_blank_answer": "sports shoes",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-008",
+    "topic": "Scholarship briefing",
+    "transcript": "The scholarship office will hold an information session in Auditorium B at ten on Thursday. Applications are not collected during the briefing.",
+    "question": "What is the purpose of Thursday's session?",
+    "options": {
+      "A": "To distribute scholarship payments",
+      "B": "To explain scholarship opportunities",
+      "C": "To collect completed applications"
+    },
+    "correct_answer": "B",
+    "correct_text": "To explain scholarship opportunities",
+    "explanation": "The announcement states: The scholarship office will hold an information session in Auditorium B at ten on Thursday. Applications are not collected during the briefing.",
+    "fill_blank_prompt": "The scholarship office will hold an ________ in Auditorium B at ten on Thursday. Applications are not collected during the briefing.",
+    "fill_blank_answer": "information session",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-009",
+    "topic": "Lost property",
+    "transcript": "A black wallet found near the engineering workshop has been handed to campus security. The owner must show identification to claim it.",
+    "question": "What must the wallet's owner do?",
+    "options": {
+      "A": "Pay a replacement fee",
+      "B": "Contact the engineering lecturer",
+      "C": "Show identification at security"
+    },
+    "correct_answer": "C",
+    "correct_text": "Show identification at security",
+    "explanation": "The announcement states: A black wallet found near the engineering workshop has been handed to campus security. The owner must show identification to claim it.",
+    "fill_blank_prompt": "A black wallet found near the engineering workshop has been handed to campus security. The owner must show ________ to claim it.",
+    "fill_blank_answer": "identification",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-010",
+    "topic": "Blood donation",
+    "transcript": "The health unit invites eligible students to donate blood in the multipurpose hall on Monday between nine and three. Please eat beforehand.",
+    "question": "What are donors advised to do before attending?",
+    "options": {
+      "A": "Eat a meal",
+      "B": "Bring a university transcript",
+      "C": "Avoid all food for twelve hours"
+    },
+    "correct_answer": "A",
+    "correct_text": "Eat a meal",
+    "explanation": "The announcement states: The health unit invites eligible students to donate blood in the multipurpose hall on Monday between nine and three. Please eat beforehand.",
+    "fill_blank_prompt": "The health unit invites eligible students to donate blood in the multipurpose hall on Monday between nine and three. Please ________ beforehand.",
+    "fill_blank_answer": "eat",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-011",
+    "topic": "Lecture relocation",
+    "transcript": "Professor Lim's afternoon economics lecture will take place online today because the lecture theatre's air conditioning has failed.",
+    "question": "How will the economics lecture be delivered today?",
+    "options": {
+      "A": "In the usual lecture theatre",
+      "B": "Online",
+      "C": "At the campus cafeteria"
+    },
+    "correct_answer": "B",
+    "correct_text": "Online",
+    "explanation": "The announcement states: Professor Lim's afternoon economics lecture will take place online today because the lecture theatre's air conditioning has failed.",
+    "fill_blank_prompt": "Professor Lim's afternoon economics lecture will take place ________ today because the lecture theatre's air conditioning has failed.",
+    "fill_blank_answer": "online",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-012",
+    "topic": "Printing service",
+    "transcript": "The printing shop is offering discounted black-and-white printing for final-year projects until the end of the month. Colour printing is excluded.",
+    "question": "Which service qualifies for the discount?",
+    "options": {
+      "A": "Colour poster printing",
+      "B": "Photocopying personal documents",
+      "C": "Black-and-white project printing"
+    },
+    "correct_answer": "C",
+    "correct_text": "Black-and-white project printing",
+    "explanation": "The announcement states: The printing shop is offering discounted black-and-white printing for final-year projects until the end of the month. Colour printing is excluded.",
+    "fill_blank_prompt": "The printing shop is offering discounted ________ printing for final-year projects until the end of the month. Colour printing is excluded.",
+    "fill_blank_answer": "black-and-white",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-013",
+    "topic": "Parking restriction",
+    "transcript": "The north car park will be reserved for visitors during tomorrow's graduation rehearsal. Students should use the east car park instead.",
+    "question": "Where should students park tomorrow?",
+    "options": {
+      "A": "The east car park",
+      "B": "The graduation stage area",
+      "C": "The north car park"
+    },
+    "correct_answer": "A",
+    "correct_text": "The east car park",
+    "explanation": "The announcement states: The north car park will be reserved for visitors during tomorrow's graduation rehearsal. Students should use the east car park instead.",
+    "fill_blank_prompt": "The north car park will be reserved for visitors during tomorrow's graduation rehearsal. Students should use the ________ instead.",
+    "fill_blank_answer": "east car park",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-014",
+    "topic": "Course registration",
+    "transcript": "Online course registration closes at five on Friday. Students with timetable clashes must contact their academic adviser before submitting.",
+    "question": "Who should students contact about timetable clashes?",
+    "options": {
+      "A": "The transport office",
+      "B": "Their academic adviser",
+      "C": "The campus librarian"
+    },
+    "correct_answer": "B",
+    "correct_text": "Their academic adviser",
+    "explanation": "The announcement states: Online course registration closes at five on Friday. Students with timetable clashes must contact their academic adviser before submitting.",
+    "fill_blank_prompt": "Online course registration closes at five on Friday. Students with timetable clashes must contact their ________ before submitting.",
+    "fill_blank_answer": "academic adviser",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-015",
+    "topic": "Language club",
+    "transcript": "The English Language Club's conversation circle will meet in Room 12 this week instead of the garden because rain is forecast.",
+    "question": "Why has the conversation circle moved indoors?",
+    "options": {
+      "A": "The club has doubled its membership",
+      "B": "The garden is permanently closed",
+      "C": "Rain is expected"
+    },
+    "correct_answer": "C",
+    "correct_text": "Rain is expected",
+    "explanation": "The announcement states: The English Language Club's conversation circle will meet in Room 12 this week instead of the garden because rain is forecast.",
+    "fill_blank_prompt": "The English Language Club's conversation circle will meet in Room 12 this week instead of the garden because ________ is forecast.",
+    "fill_blank_answer": "rain",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-016",
+    "topic": "Safety drill",
+    "transcript": "A fire evacuation drill will begin at ten tomorrow. When the alarm sounds, leave by the nearest safe exit and gather at the assembly point.",
+    "question": "What should students do when the alarm sounds?",
+    "options": {
+      "A": "Leave through the nearest safe exit",
+      "B": "Return to collect their bags",
+      "C": "Stay inside until a lecturer arrives"
+    },
+    "correct_answer": "A",
+    "correct_text": "Leave through the nearest safe exit",
+    "explanation": "The announcement states: A fire evacuation drill will begin at ten tomorrow. When the alarm sounds, leave by the nearest safe exit and gather at the assembly point.",
+    "fill_blank_prompt": "A fire evacuation drill will begin at ten tomorrow. When the alarm sounds, leave by the nearest safe exit and gather at the ________.",
+    "fill_blank_answer": "assembly point",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-017",
+    "topic": "Student ID",
+    "transcript": "Students who have not collected their replacement identification cards can do so at the registry counter on weekdays before four.",
+    "question": "Where can replacement ID cards be collected?",
+    "options": {
+      "A": "At the library entrance",
+      "B": "At the registry counter",
+      "C": "At the sports complex"
+    },
+    "correct_answer": "B",
+    "correct_text": "At the registry counter",
+    "explanation": "The announcement states: Students who have not collected their replacement identification cards can do so at the registry counter on weekdays before four.",
+    "fill_blank_prompt": "Students who have not collected their replacement identification cards can do so at the ________ on weekdays before four.",
+    "fill_blank_answer": "registry counter",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-018",
+    "topic": "Field trip",
+    "transcript": "The biology field trip bus will depart at seven thirty sharp. Participants must meet outside the science block fifteen minutes earlier.",
+    "question": "When should participants meet outside the science block?",
+    "options": {
+      "A": "At seven thirty",
+      "B": "At eight fifteen",
+      "C": "At seven fifteen"
+    },
+    "correct_answer": "C",
+    "correct_text": "At seven fifteen",
+    "explanation": "The announcement states: The biology field trip bus will depart at seven thirty sharp. Participants must meet outside the science block fifteen minutes earlier.",
+    "fill_blank_prompt": "The biology field trip bus will depart at ________ sharp. Participants must meet outside the science block fifteen minutes earlier.",
+    "fill_blank_answer": "seven thirty",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-019",
+    "topic": "Dental screening",
+    "transcript": "Free dental screenings will be offered at the campus clinic on Wednesday. Walk-ins are welcome, but appointments will be given priority.",
+    "question": "Who will receive priority at the dental screening?",
+    "options": {
+      "A": "Students with appointments",
+      "B": "Only final-year students",
+      "C": "Students who arrive after lunch"
+    },
+    "correct_answer": "A",
+    "correct_text": "Students with appointments",
+    "explanation": "The announcement states: Free dental screenings will be offered at the campus clinic on Wednesday. Walk-ins are welcome, but appointments will be given priority.",
+    "fill_blank_prompt": "Free dental screenings will be offered at the campus clinic on Wednesday. Walk-ins are welcome, but ________ will be given priority.",
+    "fill_blank_answer": "appointments",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-020",
+    "topic": "Public speaking",
+    "transcript": "The public speaking competition deadline has been extended to next Monday. Submit your recorded speech through the student portal.",
+    "question": "How should entries be submitted?",
+    "options": {
+      "A": "By handing in a USB drive",
+      "B": "Through the student portal",
+      "C": "By speaking live at the office"
+    },
+    "correct_answer": "B",
+    "correct_text": "Through the student portal",
+    "explanation": "The announcement states: The public speaking competition deadline has been extended to next Monday. Submit your recorded speech through the student portal.",
+    "fill_blank_prompt": "The public speaking competition deadline has been extended to next Monday. Submit your recorded speech through the ________.",
+    "fill_blank_answer": "student portal",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-021",
+    "topic": "Recycling drive",
+    "transcript": "The green committee is collecting clean plastic bottles and aluminium cans beside the main gate this Saturday. Glass containers will not be accepted.",
+    "question": "Which item will not be accepted?",
+    "options": {
+      "A": "Clean plastic bottles",
+      "B": "Aluminium cans",
+      "C": "Glass containers"
+    },
+    "correct_answer": "C",
+    "correct_text": "Glass containers",
+    "explanation": "The announcement states: The green committee is collecting clean plastic bottles and aluminium cans beside the main gate this Saturday. Glass containers will not be accepted.",
+    "fill_blank_prompt": "The green committee is collecting clean plastic bottles and aluminium cans beside the main gate this Saturday. Glass containers will not be accepted.",
+    "fill_blank_answer": "glass containers",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-022",
+    "topic": "Book fair",
+    "transcript": "The campus book fair starts on Tuesday and ends on Thursday. Students who show their student cards will receive a ten percent discount.",
+    "question": "How can students receive the discount?",
+    "options": {
+      "A": "Show their student cards",
+      "B": "Arrive only on Thursday",
+      "C": "Purchase at least ten books"
+    },
+    "correct_answer": "A",
+    "correct_text": "Show their student cards",
+    "explanation": "The announcement states: The campus book fair starts on Tuesday and ends on Thursday. Students who show their student cards will receive a ten percent discount.",
+    "fill_blank_prompt": "The campus book fair starts on Tuesday and ends on Thursday. Students who show their ________ will receive a ten percent discount.",
+    "fill_blank_answer": "student cards",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-023",
+    "topic": "Computer lab",
+    "transcript": "Computer Lab 3 is temporarily unavailable due to software installation. Students may use Lab 1 for scheduled practice sessions.",
+    "question": "Which alternative laboratory is available?",
+    "options": {
+      "A": "Computer Lab 3",
+      "B": "Computer Lab 1",
+      "C": "The chemistry laboratory"
+    },
+    "correct_answer": "B",
+    "correct_text": "Computer Lab 1",
+    "explanation": "The announcement states: Computer Lab 3 is temporarily unavailable due to software installation. Students may use Lab 1 for scheduled practice sessions.",
+    "fill_blank_prompt": "Computer Lab 3 is temporarily unavailable due to software installation. Students may use ________ for scheduled practice sessions.",
+    "fill_blank_answer": "Lab 1",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-024",
+    "topic": "Counselling session",
+    "transcript": "The student counselling unit is organising a stress-management talk on Friday at noon. Attendance is free, but seats must be reserved online.",
+    "question": "What must students do to attend?",
+    "options": {
+      "A": "Pay at the door",
+      "B": "Submit a medical certificate",
+      "C": "Reserve a seat online"
+    },
+    "correct_answer": "C",
+    "correct_text": "Reserve a seat online",
+    "explanation": "The announcement states: The student counselling unit is organising a stress-management talk on Friday at noon. Attendance is free, but seats must be reserved online.",
+    "fill_blank_prompt": "The student counselling unit is organising a stress-management talk on Friday at noon. Attendance is free, but seats must be reserved ________.",
+    "fill_blank_answer": "online",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-025",
+    "topic": "Hostel water",
+    "transcript": "Water supply in Hostel D will be interrupted from nine until noon tomorrow for pipe repairs. Residents should store enough water in advance.",
+    "question": "What should Hostel D residents do?",
+    "options": {
+      "A": "Store water before the interruption",
+      "B": "Report to the sports hall",
+      "C": "Move out of the hostel immediately"
+    },
+    "correct_answer": "A",
+    "correct_text": "Store water before the interruption",
+    "explanation": "The announcement states: Water supply in Hostel D will be interrupted from nine until noon tomorrow for pipe repairs. Residents should store enough water in advance.",
+    "fill_blank_prompt": "Water supply in Hostel D will be interrupted from nine until noon tomorrow for pipe repairs. Residents should ________ in advance.",
+    "fill_blank_answer": "store enough water",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-026",
+    "topic": "Photography contest",
+    "transcript": "The photography contest theme is Campus Life. Entries must be original photographs taken this semester and uploaded by Sunday evening.",
+    "question": "What kind of photographs are eligible?",
+    "options": {
+      "A": "Photographs taken before enrolment",
+      "B": "Original campus-life photographs from this semester",
+      "C": "Any pictures downloaded from the internet"
+    },
+    "correct_answer": "B",
+    "correct_text": "Original campus-life photographs from this semester",
+    "explanation": "The announcement states: The photography contest theme is Campus Life. Entries must be original photographs taken this semester and uploaded by Sunday evening.",
+    "fill_blank_prompt": "The photography contest theme is Campus Life. Entries must be original photographs taken ________ and uploaded by Sunday evening.",
+    "fill_blank_answer": "this semester",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-027",
+    "topic": "Guest lecture",
+    "transcript": "A guest speaker from the renewable energy industry will address students in Hall A on Tuesday. The session begins at eleven, followed by questions.",
+    "question": "What happens after the guest speaker's talk?",
+    "options": {
+      "A": "A compulsory written examination",
+      "B": "A laboratory safety inspection",
+      "C": "A question-and-answer session"
+    },
+    "correct_answer": "C",
+    "correct_text": "A question-and-answer session",
+    "explanation": "The announcement states: A guest speaker from the renewable energy industry will address students in Hall A on Tuesday. The session begins at eleven, followed by questions.",
+    "fill_blank_prompt": "A guest speaker from the renewable energy industry will address students in Hall A on Tuesday. The session begins at eleven, followed by ________.",
+    "fill_blank_answer": "questions",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-028",
+    "topic": "Clinic hours",
+    "transcript": "The campus clinic will close at one on Friday for staff training. Emergency cases should be directed to the nearby district hospital.",
+    "question": "Why will the clinic close early?",
+    "options": {
+      "A": "Staff training",
+      "B": "A public holiday",
+      "C": "A shortage of medicine"
+    },
+    "correct_answer": "A",
+    "correct_text": "Staff training",
+    "explanation": "The announcement states: The campus clinic will close at one on Friday for staff training. Emergency cases should be directed to the nearby district hospital.",
+    "fill_blank_prompt": "The campus clinic will close at one on Friday for ________. Emergency cases should be directed to the nearby district hospital.",
+    "fill_blank_answer": "staff training",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-029",
+    "topic": "Entrepreneurship booth",
+    "transcript": "Applications for booths at the student entrepreneurship day are open until Wednesday. Priority will go to groups selling student-made products.",
+    "question": "Which applicants will receive priority?",
+    "options": {
+      "A": "Students who apply after Wednesday",
+      "B": "Groups offering student-made products",
+      "C": "Outside retailers selling imported goods"
+    },
+    "correct_answer": "B",
+    "correct_text": "Groups offering student-made products",
+    "explanation": "The announcement states: Applications for booths at the student entrepreneurship day are open until Wednesday. Priority will go to groups selling student-made products.",
+    "fill_blank_prompt": "Applications for booths at the student entrepreneurship day are open until Wednesday. Priority will go to groups selling ________.",
+    "fill_blank_answer": "student-made products",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-030",
+    "topic": "Music rehearsal",
+    "transcript": "Choir members should note that tonight's rehearsal starts at six thirty rather than seven. Please arrive ten minutes before the new starting time.",
+    "question": "What is the revised rehearsal starting time?",
+    "options": {
+      "A": "Seven",
+      "B": "Seven thirty",
+      "C": "Six thirty"
+    },
+    "correct_answer": "C",
+    "correct_text": "Six thirty",
+    "explanation": "The announcement states: Choir members should note that tonight's rehearsal starts at six thirty rather than seven. Please arrive ten minutes before the new starting time.",
+    "fill_blank_prompt": "Choir members should note that tonight's rehearsal starts at ________ rather than seven. Please arrive ten minutes before the new starting time.",
+    "fill_blank_answer": "six thirty",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-031",
+    "topic": "Campus clean-up",
+    "transcript": "Volunteers for Saturday's campus clean-up should meet at the administration building at eight. Gloves and rubbish bags will be provided.",
+    "question": "What equipment will organisers provide?",
+    "options": {
+      "A": "Gloves and rubbish bags",
+      "B": "Gardening machines and boots",
+      "C": "Lunch boxes and umbrellas"
+    },
+    "correct_answer": "A",
+    "correct_text": "Gloves and rubbish bags",
+    "explanation": "The announcement states: Volunteers for Saturday's campus clean-up should meet at the administration building at eight. Gloves and rubbish bags will be provided.",
+    "fill_blank_prompt": "Volunteers for Saturday's campus clean-up should meet at the administration building at eight. Gloves and rubbish bags will be provided.",
+    "fill_blank_answer": "gloves",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-032",
+    "topic": "Library returns",
+    "transcript": "The library's external book-return box is closed for repairs. Until further notice, return books directly to the circulation desk during opening hours.",
+    "question": "How should students return books now?",
+    "options": {
+      "A": "In the external return box",
+      "B": "At the circulation desk",
+      "C": "At the student affairs office"
+    },
+    "correct_answer": "B",
+    "correct_text": "At the circulation desk",
+    "explanation": "The announcement states: The library's external book-return box is closed for repairs. Until further notice, return books directly to the circulation desk during opening hours.",
+    "fill_blank_prompt": "The library's external book-return box is closed for repairs. Until further notice, return books directly to the ________ during opening hours.",
+    "fill_blank_answer": "circulation desk",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-033",
+    "topic": "Internship briefing",
+    "transcript": "All second-year engineering students must attend an internship briefing next Monday. The session will explain placement procedures and required documents.",
+    "question": "What will the internship briefing explain?",
+    "options": {
+      "A": "Scholarship interview scores",
+      "B": "Final examination results",
+      "C": "Placement procedures and documents"
+    },
+    "correct_answer": "C",
+    "correct_text": "Placement procedures and documents",
+    "explanation": "The announcement states: All second-year engineering students must attend an internship briefing next Monday. The session will explain placement procedures and required documents.",
+    "fill_blank_prompt": "All second-year engineering students must attend an internship briefing next Monday. The session will explain placement procedures and ________.",
+    "fill_blank_answer": "required documents",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-034",
+    "topic": "Language assessment",
+    "transcript": "Students registered for the speaking assessment should check their individual timeslots on the learning portal. Arrive ten minutes before your slot.",
+    "question": "Where can students find their speaking timeslots?",
+    "options": {
+      "A": "On the learning portal",
+      "B": "At the security post",
+      "C": "On the cafeteria noticeboard"
+    },
+    "correct_answer": "A",
+    "correct_text": "On the learning portal",
+    "explanation": "The announcement states: Students registered for the speaking assessment should check their individual timeslots on the learning portal. Arrive ten minutes before your slot.",
+    "fill_blank_prompt": "Students registered for the speaking assessment should check their individual timeslots on the ________. Arrive ten minutes before your slot.",
+    "fill_blank_answer": "learning portal",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-035",
+    "topic": "Food donation",
+    "transcript": "The student council is collecting unopened dry food for families affected by flooding. Donations can be left at the student centre until Friday.",
+    "question": "What type of food should be donated?",
+    "options": {
+      "A": "Opened packets of snacks",
+      "B": "Unopened dry food",
+      "C": "Prepared hot meals"
+    },
+    "correct_answer": "B",
+    "correct_text": "Unopened dry food",
+    "explanation": "The announcement states: The student council is collecting unopened dry food for families affected by flooding. Donations can be left at the student centre until Friday.",
+    "fill_blank_prompt": "The student council is collecting ________ for families affected by flooding. Donations can be left at the student centre until Friday.",
+    "fill_blank_answer": "unopened dry food",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-036",
+    "topic": "Laboratory goggles",
+    "transcript": "From next week, all chemistry students must wear protective goggles during experiments. Students without goggles will not be allowed to participate.",
+    "question": "What new rule applies to chemistry experiments?",
+    "options": {
+      "A": "Lab coats are no longer needed",
+      "B": "Students may conduct experiments alone",
+      "C": "Protective goggles are compulsory"
+    },
+    "correct_answer": "C",
+    "correct_text": "Protective goggles are compulsory",
+    "explanation": "The announcement states: From next week, all chemistry students must wear protective goggles during experiments. Students without goggles will not be allowed to participate.",
+    "fill_blank_prompt": "From next week, all chemistry students must wear ________ during experiments. Students without goggles will not be allowed to participate.",
+    "fill_blank_answer": "protective goggles",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-037",
+    "topic": "Debate auditions",
+    "transcript": "Auditions for the intercollege debate team will take place on Thursday afternoon in Seminar Room 5. Prepare a two-minute argument on any education issue.",
+    "question": "What must candidates prepare?",
+    "options": {
+      "A": "A two-minute argument",
+      "B": "A ten-page research report",
+      "C": "A recorded musical performance"
+    },
+    "correct_answer": "A",
+    "correct_text": "A two-minute argument",
+    "explanation": "The announcement states: Auditions for the intercollege debate team will take place on Thursday afternoon in Seminar Room 5. Prepare a two-minute argument on any education issue.",
+    "fill_blank_prompt": "Auditions for the intercollege debate team will take place on Thursday afternoon in Seminar Room 5. Prepare a ________ on any education issue.",
+    "fill_blank_answer": "two-minute argument",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-038",
+    "topic": "Payment reminder",
+    "transcript": "The finance office reminds students that hostel fees are due by the fifteenth. Payments made through the official portal will generate an electronic receipt.",
+    "question": "What will online payment generate?",
+    "options": {
+      "A": "A printed student card",
+      "B": "An electronic receipt",
+      "C": "A scholarship application"
+    },
+    "correct_answer": "B",
+    "correct_text": "An electronic receipt",
+    "explanation": "The announcement states: The finance office reminds students that hostel fees are due by the fifteenth. Payments made through the official portal will generate an electronic receipt.",
+    "fill_blank_prompt": "The finance office reminds students that hostel fees are due by the fifteenth. Payments made through the official portal will generate an ________.",
+    "fill_blank_answer": "electronic receipt",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-039",
+    "topic": "Campus map",
+    "transcript": "The orientation team has uploaded an updated campus map showing the new engineering building. Download it from the orientation page before Monday's tour.",
+    "question": "Where can students obtain the updated map?",
+    "options": {
+      "A": "From the sports club website",
+      "B": "From the library book-return box",
+      "C": "From the orientation page"
+    },
+    "correct_answer": "C",
+    "correct_text": "From the orientation page",
+    "explanation": "The announcement states: The orientation team has uploaded an updated campus map showing the new engineering building. Download it from the orientation page before Monday's tour.",
+    "fill_blank_prompt": "The orientation team has uploaded an updated campus map showing the new engineering building. Download it from the ________ before Monday's tour.",
+    "fill_blank_answer": "orientation page",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-040",
+    "topic": "Research seminar",
+    "transcript": "The postgraduate research seminar will be held in hybrid format, allowing students to attend either in person or through a video link.",
+    "question": "What does hybrid format mean for this seminar?",
+    "options": {
+      "A": "Students may attend on site or online",
+      "B": "Only speakers can join remotely",
+      "C": "Every student must attend in person"
+    },
+    "correct_answer": "A",
+    "correct_text": "Students may attend on site or online",
+    "explanation": "The announcement states: The postgraduate research seminar will be held in hybrid format, allowing students to attend either in person or through a video link.",
+    "fill_blank_prompt": "The postgraduate research seminar will be held in ________, allowing students to attend either in person or through a video link.",
+    "fill_blank_answer": "hybrid format",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-041",
+    "topic": "Weather cancellation",
+    "transcript": "Because of thunderstorms, today's outdoor leadership activities have been postponed. Indoor group discussions will continue as scheduled.",
+    "question": "Which activity will still take place?",
+    "options": {
+      "A": "The evening camping session",
+      "B": "Indoor group discussions",
+      "C": "Outdoor leadership exercises"
+    },
+    "correct_answer": "B",
+    "correct_text": "Indoor group discussions",
+    "explanation": "The announcement states: Because of thunderstorms, today's outdoor leadership activities have been postponed. Indoor group discussions will continue as scheduled.",
+    "fill_blank_prompt": "Because of thunderstorms, today's outdoor leadership activities have been postponed. Indoor group discussions will continue as scheduled.",
+    "fill_blank_answer": "indoor group discussions",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-042",
+    "topic": "Volunteer tutoring",
+    "transcript": "The community outreach unit needs volunteers to tutor primary pupils in English on Saturdays. Training will be provided before the first session.",
+    "question": "What will volunteers receive before tutoring begins?",
+    "options": {
+      "A": "A guaranteed paid contract",
+      "B": "An examination exemption",
+      "C": "Training"
+    },
+    "correct_answer": "C",
+    "correct_text": "Training",
+    "explanation": "The announcement states: The community outreach unit needs volunteers to tutor primary pupils in English on Saturdays. Training will be provided before the first session.",
+    "fill_blank_prompt": "The community outreach unit needs volunteers to tutor primary pupils in English on Saturdays. Training will be provided before the first session.",
+    "fill_blank_answer": "training",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-043",
+    "topic": "Art exhibition",
+    "transcript": "Student artwork will be displayed in the main foyer from Monday to Wednesday. Exhibitors must collect their work by four on Wednesday.",
+    "question": "When must exhibitors collect their work?",
+    "options": {
+      "A": "By four on Wednesday",
+      "B": "At noon on Friday",
+      "C": "Before Monday morning"
+    },
+    "correct_answer": "A",
+    "correct_text": "By four on Wednesday",
+    "explanation": "The announcement states: Student artwork will be displayed in the main foyer from Monday to Wednesday. Exhibitors must collect their work by four on Wednesday.",
+    "fill_blank_prompt": "Student artwork will be displayed in the main foyer from Monday to Wednesday. Exhibitors must collect their work by ________ on Wednesday.",
+    "fill_blank_answer": "four",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-044",
+    "topic": "Library database",
+    "transcript": "The university has subscribed to a new academic journal database. Students can access it using their institutional login from anywhere with internet access.",
+    "question": "What is required to access the journal database?",
+    "options": {
+      "A": "A payment at the library counter",
+      "B": "An institutional login",
+      "C": "A new physical membership card"
+    },
+    "correct_answer": "B",
+    "correct_text": "An institutional login",
+    "explanation": "The announcement states: The university has subscribed to a new academic journal database. Students can access it using their institutional login from anywhere with internet access.",
+    "fill_blank_prompt": "The university has subscribed to a new academic journal database. Students can access it using their ________ from anywhere with internet access.",
+    "fill_blank_answer": "institutional login",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-045",
+    "topic": "Medical leave",
+    "transcript": "Students submitting medical certificates for missed classes should upload a clear scan to the student portal within three working days.",
+    "question": "How should students submit medical certificates?",
+    "options": {
+      "A": "Send a photograph to the bus driver",
+      "B": "Leave the original at the cafeteria",
+      "C": "Upload a scan to the student portal"
+    },
+    "correct_answer": "C",
+    "correct_text": "Upload a scan to the student portal",
+    "explanation": "The announcement states: Students submitting medical certificates for missed classes should upload a clear scan to the student portal within three working days.",
+    "fill_blank_prompt": "Students submitting medical certificates for missed classes should upload a clear scan to the student portal within ________.",
+    "fill_blank_answer": "three working days",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-046",
+    "topic": "Sports centre",
+    "transcript": "The fitness room will close at six this evening for equipment inspection. The outdoor jogging track will remain open until nine.",
+    "question": "Which facility will remain available later tonight?",
+    "options": {
+      "A": "The outdoor jogging track",
+      "B": "The fitness room",
+      "C": "The equipment inspection room"
+    },
+    "correct_answer": "A",
+    "correct_text": "The outdoor jogging track",
+    "explanation": "The announcement states: The fitness room will close at six this evening for equipment inspection. The outdoor jogging track will remain open until nine.",
+    "fill_blank_prompt": "The fitness room will close at six this evening for equipment inspection. The outdoor ________ will remain open until nine.",
+    "fill_blank_answer": "jogging track",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-047",
+    "topic": "Peer mentoring",
+    "transcript": "First-semester students may register for peer mentoring until the end of next week. Each participant will be paired with a trained senior student.",
+    "question": "Who will support participants in peer mentoring?",
+    "options": {
+      "A": "A campus security officer",
+      "B": "A trained senior student",
+      "C": "An external examiner"
+    },
+    "correct_answer": "B",
+    "correct_text": "A trained senior student",
+    "explanation": "The announcement states: First-semester students may register for peer mentoring until the end of next week. Each participant will be paired with a trained senior student.",
+    "fill_blank_prompt": "First-semester students may register for peer mentoring until the end of next week. Each participant will be paired with a trained ________.",
+    "fill_blank_answer": "senior student",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-048",
+    "topic": "Presentation clinic",
+    "transcript": "The language unit is offering a presentation-skills clinic on Tuesday. Participants should bring one slide from an upcoming presentation for feedback.",
+    "question": "What should participants bring?",
+    "options": {
+      "A": "A completed internship logbook",
+      "B": "A printed examination timetable",
+      "C": "One presentation slide"
+    },
+    "correct_answer": "C",
+    "correct_text": "One presentation slide",
+    "explanation": "The announcement states: The language unit is offering a presentation-skills clinic on Tuesday. Participants should bring one slide from an upcoming presentation for feedback.",
+    "fill_blank_prompt": "The language unit is offering a presentation-skills clinic on Tuesday. Participants should bring ________ from an upcoming presentation for feedback.",
+    "fill_blank_answer": "one slide",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-049",
+    "topic": "Accessibility lift",
+    "transcript": "The lift in Block B is out of service until Friday. Students needing step-free access should use the connecting corridor to Block A.",
+    "question": "What alternative route is recommended?",
+    "options": {
+      "A": "The connecting corridor to Block A",
+      "B": "The stairs beside the closed lift",
+      "C": "The basement delivery entrance"
+    },
+    "correct_answer": "A",
+    "correct_text": "The connecting corridor to Block A",
+    "explanation": "The announcement states: The lift in Block B is out of service until Friday. Students needing step-free access should use the connecting corridor to Block A.",
+    "fill_blank_prompt": "The lift in Block B is out of service until Friday. Students needing step-free access should use the ________ to Block A.",
+    "fill_blank_answer": "connecting corridor",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  },
+  {
+    "id": "MUET-L-050",
+    "topic": "Graduation photos",
+    "transcript": "Graduates who ordered official photographs may collect them at the alumni counter starting next Monday. Bring the collection reference sent by email.",
+    "question": "What must graduates bring to collect their photographs?",
+    "options": {
+      "A": "A copy of their final essay",
+      "B": "Their emailed collection reference",
+      "C": "Their original admission letter"
+    },
+    "correct_answer": "B",
+    "correct_text": "Their emailed collection reference",
+    "explanation": "The announcement states: Graduates who ordered official photographs may collect them at the alumni counter starting next Monday. Bring the collection reference sent by email.",
+    "fill_blank_prompt": "Graduates who ordered official photographs may collect them at the alumni counter starting next Monday. Bring the ________ sent by email.",
+    "fill_blank_answer": "collection reference",
+    "skill": "Listening",
+    "strategy": [
+      "Check",
+      "Listen",
+      "Understand",
+      "Eliminate"
+    ]
+  }
+]
