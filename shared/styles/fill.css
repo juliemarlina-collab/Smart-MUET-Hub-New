@@ -142,3 +142,41 @@ html.smh-shell .smh-footer .fine{font-size:11px!important;padding-top:7px!import
 .h-preferences[open] summary span{transform:rotate(180deg)}
 .h-preferences .h-target{margin-top:14px}
 @media(max-width:640px){.h-hero .h-left h1{font-size:clamp(40px,10vw,56px)!important}.h-hero .h-switch{margin-bottom:10px}}
+
+/* Five-stage infographic cards: concise overview + accessible expandable details */
+.h-stages .h-stage{display:flex;flex-direction:column}
+.h-stages .h-stage-visual{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px;padding:17px 8px 13px;min-height:218px}
+.h-stages .h-visual-icon{width:86px;height:86px;border-radius:24px;display:grid;place-items:center;background:#f0f2ff;border:2px solid #e0e6ff;box-shadow:0 7px 0 rgba(15,31,75,.07);font-size:45px;line-height:1}
+.h-stages .h-visual-label{font-weight:800;color:#1a285c;font-size:16px;line-height:1.25;margin:0;min-height:40px;display:flex;align-items:center}
+.h-stages .h-visual-chips{display:flex;flex-direction:column;align-items:stretch;gap:7px;width:100%;max-width:180px}
+.h-stages .h-visual-chip{display:flex;align-items:center;gap:8px;background:#f4f6ff;border:1px solid #e4e8fa;border-radius:999px;padding:6px 11px;color:#25335e;font-size:12px;font-weight:700;text-align:left;white-space:nowrap}
+.h-stages .h-chip-dot{width:7px;height:7px;flex:none;border-radius:50%;background:#4c52ff}
+.h-stages .h-stage-details{margin:2px 12px 14px;border:1px solid #e4e8fa;border-radius:12px;background:#fafbff;overflow:hidden}
+.h-stages .h-stage-details summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:11px 12px;color:#1b2b63;font-weight:800;font-size:12px}
+.h-stages .h-stage-details summary::-webkit-details-marker{display:none}
+.h-stages .h-stage-details[open] summary span{transform:rotate(180deg)}
+.h-stages .h-stage-details dl{padding:0 12px 12px;margin:0}
+.h-stages .h-stage-details dd{font-size:12px;line-height:1.5}
+.h-stages .h-stage-details dt{font-size:10px}
+.h-stages .h-stage-go{margin-top:auto}
+@media(max-width:650px){.h-stages .h-stage-visual{min-height:unset;padding:16px 10px}.h-stages .h-visual-chips{max-width:230px}.h-stages .h-visual-icon{width:76px;height:76px;font-size:40px}}
+
+/* Smart MUET V3 — 3D stage illustrations, accessible real HTML controls */
+.h-stages .h-stage-visual{min-height:0;padding:9px 9px 6px;display:block;overflow:hidden}
+.h-stages .h-stage-3d{display:block;width:100%;height:auto;aspect-ratio:1.46/1;object-fit:cover;object-position:center;border-radius:14px;box-shadow:0 7px 16px rgba(20,32,75,.13);transition:transform .22s ease,box-shadow .22s ease}
+.h-stages .h-stage:hover .h-stage-3d{transform:translateY(-3px);box-shadow:0 10px 21px rgba(20,32,75,.18)}
+.h-stages .h-stage:focus-within .h-stage-3d{outline:2px solid #ffd84d;outline-offset:2px}
+.h-stages .h-stage-details{margin-top:12px}
+@media(prefers-reduced-motion:reduce){.h-stages .h-stage-3d{transition:none}.h-stages .h-stage:hover .h-stage-3d{transform:none}}
+
+
+/* Official 3D five-stage posters. Artwork remains intact; link is real HTML. */
+.h-stages .h-stage-poster{position:relative;display:block;padding:0!important;min-width:0;overflow:visible;border:0!important;background:transparent!important;box-shadow:none!important;border-radius:24px}
+.h-stages .h-stage-poster-link{display:block;width:100%;border-radius:24px;overflow:hidden;line-height:0;box-shadow:0 10px 22px rgba(15,28,79,.16);transition:transform .2s ease,box-shadow .2s ease}
+.h-stages .h-stage-poster-link img{display:block;width:100%;height:auto;aspect-ratio:2/3;object-fit:contain}
+.h-stages .h-stage-poster-link:hover{transform:translateY(-5px);box-shadow:0 15px 26px rgba(15,28,79,.22)}
+.h-stages .h-stage-poster-link:focus-visible{outline:4px solid #172b70;outline-offset:5px}
+.h-stages .h-stage-live-status{position:absolute;z-index:2;top:3.5%;right:5%;min-height:0;padding:6px 9px;border-radius:999px;background:#fff;color:#10245b;font-weight:800;font-size:clamp(9px,.8vw,12px);line-height:1.1;box-shadow:0 2px 9px #09184733;pointer-events:none;text-align:center}
+.h-stages .h-stage-live-status:empty{display:none}
+@media(max-width:760px){.h-stages .h-stage-live-status{font-size:12px;padding:7px 11px}}
+@media(prefers-reduced-motion:reduce){.h-stages .h-stage-poster-link{transition:none}.h-stages .h-stage-poster-link:hover{transform:none}}
