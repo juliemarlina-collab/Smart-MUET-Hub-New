@@ -15,6 +15,21 @@
 <script defer src="./shared/js/shell.js?v=20261021d"></script>
 <script defer src="./shared/js/navigation.js"></script>
 <script defer src="./shared/js/home.js"></script>
+<style>
+/* Smart MUET Hub blueprint: five illustrated stages only */
+.smh-stage-gallery{background:#F5F7FF;color:#142B68}
+.smh-stage-gallery .smh-stage-list{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(8px,1.2vw,18px);list-style:none;padding:0;margin:28px 0 18px;align-items:start}
+.smh-stage-gallery .smh-stage-item{min-width:0;position:relative;margin:0;padding:0;border:0;background:transparent;box-shadow:none;overflow:visible}
+.smh-stage-gallery .smh-stage-link{display:block;position:relative;line-height:0;border-radius:20px;transition:transform .22s ease,filter .22s ease;outline-offset:4px}
+.smh-stage-gallery .smh-stage-link img{display:block;width:100%;height:auto;object-fit:contain;border-radius:20px;filter:drop-shadow(0 10px 13px rgba(20,43,104,.13))}
+.smh-stage-gallery .smh-stage-link:hover{transform:translateY(-7px);filter:brightness(1.04)}
+.smh-stage-gallery .smh-stage-link:focus-visible{outline:4px solid #3B5BFF}
+.smh-stage-gallery .smh-stage-live{display:none;position:absolute;right:10px;bottom:10px;z-index:2;background:#fff;color:#142B68;border:2px solid #FFCC33;border-radius:999px;padding:6px 12px;font:800 12px/1.2 'DM Sans',sans-serif;box-shadow:0 3px 12px rgba(20,43,104,.15)}
+.smh-stage-gallery .smh-stage-live:not(:empty){display:inline-flex}
+@media(max-width:900px){.smh-stage-gallery .smh-stage-list{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}}
+@media(max-width:600px){.smh-stage-gallery .smh-stage-list{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;padding:8px 4px 22px;scroll-padding-left:4px;-webkit-overflow-scrolling:touch}.smh-stage-gallery .smh-stage-item{flex:0 0 min(72vw,300px);scroll-snap-align:start}.smh-stage-gallery .smh-stage-link img{border-radius:18px}}
+@media(prefers-reduced-motion:reduce){.smh-stage-gallery .smh-stage-link{transition:none}.smh-stage-gallery .smh-stage-link:hover{transform:none}}
+</style>
 </head>
 <body data-page-id="home" data-app-root="./">
 <main id="main">
@@ -97,42 +112,42 @@
     </div>
   </section>
 
-  <section class="h-stages-wrap" aria-labelledby="stages-title">
+  <section class="h-stages-wrap smh-stage-gallery" aria-labelledby="stages-title">
     <div class="h-wrap">
-      <div class="h-head"><h2 id="stages-title">Five stages <em>to your band</em></h2><p>For a beginner starting from zero. Each stage tells you what to expect, where to get help, what to do and how you know you are improving.</p></div>
-      <ol class="h-stages">
-          <li class="h-stage s-blue" data-stage="start">
-            <div class="h-stage-top"><span class="h-stage-n">Stage 01 · Week 0</span><span class="st"></span></div>
-            <h3>Start<small>Know MUET</small></h3>
-            <dl><div><dt title="What you can expect">Expect</dt><dd>What MUET is: 4 papers, bands 1 to 5+, and what your target band means.</dd></div><div><dt title="Help you get">Help</dt><dd>Welcome tour, eBook chapter 1, band and CEFR table.</dd></div><div><dt title="What you do">Do</dt><dd>Read eBook pages 1–16. Choose First MUET or Returning. Set your target band.</dd></div><div><dt title="How you know you improve">Feedback</dt><dd>Your profile is saved. First XP on the Me page.</dd></div></dl>
-            <a class="h-stage-go" href="welcome/index.html">Open Know MUET →</a>
-          </li>
-          <li class="h-stage s-navy" data-stage="check">
-            <div class="h-stage-top"><span class="h-stage-n">Stage 02 · Day 1</span><span class="st"></span></div>
-            <h3>Check<small>10-minute check</small></h3>
-            <dl><div><dt title="What you can expect">Expect</dt><dd>Find your strongest and weakest paper in 10 minutes, with no pressure.</dd></div><div><dt title="Help you get">Help</dt><dd>One question at a time, a hint on every item, no timer.</dd></div><div><dt title="What you do">Do</dt><dd>20 quick items across Listening, Speaking, Reading and Writing.</dd></div><div><dt title="How you know you improve">Feedback</dt><dd>A score for each paper, your starting paper and a 3-week plan.</dd></div></dl>
-            <a class="h-stage-go" href="labs/diagnostic.html">Take the check →</a>
-          </li>
-          <li class="h-stage s-yellow" data-stage="learn">
-            <div class="h-stage-top"><span class="h-stage-n">Stage 03 · Weeks 1–4</span><span class="st"></span></div>
-            <h3>Learn<small>4 skill guides</small></h3>
-            <dl><div><dt title="What you can expect">Expect</dt><dd>One strategy per paper and six short steps. You always know the next step.</dd></div><div><dt title="Help you get">Help</dt><dd>CLUE · PREP · SCAN · PEEL, worked examples, language bank.</dd></div><div><dt title="What you do">Do</dt><dd>Try it first, spot the trap, eBook quizzes with stars.</dd></div><div><dt title="How you know you improve">Feedback</dt><dd>Auto marking, stars and XP, a 6-step progress bar.</dd></div></dl>
-            <a class="h-stage-go" href="learn.html">Open Learn →</a>
-          </li>
-          <li class="h-stage s-coral" data-stage="practise">
-            <div class="h-stage-top"><span class="h-stage-n">Stage 04 · Weeks 3–8</span><span class="st"></span></div>
-            <h3>Practise<small>Lab → Vault → Mock</small></h3>
-            <dl><div><dt title="What you can expect">Expect</dt><dd>Real MUET-style papers, from guided to exam level.</dd></div><div><dt title="Help you get">Help</dt><dd>Lab tips, Vault folders with tips, Arcade levels: Warm-up, Diploma, Exam.</dd></div><div><dt title="What you do">Do</dt><dd>Labs, then Vault 1, Vault 2 and Mock 1. Arcade for speed and vocabulary.</dd></div><div><dt title="How you know you improve">Feedback</dt><dd>Score /90 per paper, total /360, band and CEFR, Review list of mistakes.</dd></div></dl>
-            <a class="h-stage-go" href="practice.html">Open Practice →</a>
-          </li>
-          <li class="h-stage s-mint" data-stage="track">
-            <div class="h-stage-top"><span class="h-stage-n">Stage 05 · Every week</span><span class="st"></span></div>
-            <h3>Track<small>My progress</small></h3>
-            <dl><div><dt title="What you can expect">Expect</dt><dd>See your band move and know what to fix next.</dd></div><div><dt title="Help you get">Help</dt><dd>Results table, error log, lecturer rubric for Speaking and Writing.</dd></div><div><dt title="What you do">Do</dt><dd>Reflect on each paper, redo Review items, keep your streak.</dd></div><div><dt title="How you know you improve">Feedback</dt><dd>Badges, streak, PDF for your lecturer, and a <a href="certificate.html">certificate</a> when all 9 activities are done.</dd></div></dl>
-            <a class="h-stage-go" href="me.html">Open Me →</a>
-          </li>
+      <div class="h-head"><h2 id="stages-title">Five stages <em>to your band</em></h2><p>Follow your journey from knowing the test to tracking your progress. Select a stage to begin.</p></div>
+      <ol class="h-stages smh-stage-list">
+        <li class="smh-stage-item" data-stage="start">
+          <a class="smh-stage-link" href="welcome/index.html" aria-label="Stage 01: Start — Know MUET. Open page">
+            <img src="shared/assets/stages/stage-01-start.webp" alt="Stage 01: Start — Know MUET" loading="lazy" width="1024" height="1536">
+          </a>
+          <span class="smh-stage-live st" aria-live="polite"></span>
+        </li>
+        <li class="smh-stage-item" data-stage="check">
+          <a class="smh-stage-link" href="labs/diagnostic.html" aria-label="Stage 02: Check — 10-minute diagnostic. Open page">
+            <img src="shared/assets/stages/stage-02-check.webp" alt="Stage 02: Check — 10-minute diagnostic" loading="lazy" width="1024" height="1536">
+          </a>
+          <span class="smh-stage-live st" aria-live="polite"></span>
+        </li>
+        <li class="smh-stage-item" data-stage="learn">
+          <a class="smh-stage-link" href="learn.html" aria-label="Stage 03: Learn — four skill guides. Open page">
+            <img src="shared/assets/stages/stage-03-learn.webp" alt="Stage 03: Learn — four skill guides" loading="lazy" width="1024" height="1536">
+          </a>
+          <span class="smh-stage-live st" aria-live="polite"></span>
+        </li>
+        <li class="smh-stage-item" data-stage="practise">
+          <a class="smh-stage-link" href="practice.html" aria-label="Stage 04: Practise — Lab, Vault and Mock. Open page">
+            <img src="shared/assets/stages/stage-04-practise.webp" alt="Stage 04: Practise — Lab, Vault and Mock" loading="lazy" width="1024" height="1536">
+          </a>
+          <span class="smh-stage-live st" aria-live="polite"></span>
+        </li>
+        <li class="smh-stage-item" data-stage="track">
+          <a class="smh-stage-link" href="me.html" aria-label="Stage 05: Track — My progress. Open page">
+            <img src="shared/assets/stages/stage-05-track.webp" alt="Stage 05: Track — My progress" loading="lazy" width="1024" height="1536">
+          </a>
+          <span class="smh-stage-live st" aria-live="polite"></span>
+        </li>
       </ol>
-      <p class="h-stages-note"><b>Stuck?</b> Every page has Back, the eBook link and a tip. The yellow <b>Continue</b> button always opens your next step.</p>
+      <p class="h-stages-note"><b>Your learning route:</b> Know → Check → Learn → Practise → Track.</p>
     </div>
   </section>
 
