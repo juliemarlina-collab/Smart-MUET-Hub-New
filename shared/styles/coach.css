@@ -57,3 +57,7 @@ html[data-smh-theme="dark"] .cs-tx p{color:#d6ddf5}
 .qfb b{display:block;font:800 16px/1.3 "DM Sans",Arial,sans-serif;margin-bottom:2px}
 .qfb p{margin:0!important;font-size:15px!important;line-height:1.55!important}
 .qfb .tag{display:inline-block;margin-top:6px;font:800 11px/1 "DM Sans",Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;background:#ffffffb3;border-radius:99px;padding:5px 9px}
+/* Labs: the step coach strip sits inside the same width as the step tabs and the step card */
+main>.coach-step{max-width:1240px;margin:14px auto 0;box-sizing:border-box}
+@media(max-width:1000px){main>.coach-step{margin:12px 20px 0}}
+@media(max-width:700px){main>.coach-step{margin:10px 15px 0}}
