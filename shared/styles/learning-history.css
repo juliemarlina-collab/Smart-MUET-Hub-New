@@ -1,0 +1,11 @@
+/* Compact, accessible history panels; preserves original child IDs and data. */
+.smh-history-accordion{border:1px solid var(--line,rgba(20,42,77,.18));border-radius:20px;background:rgba(255,255,255,.65);overflow:hidden;margin-block:12px}
+.smh-history-accordion>summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:18px 22px;font-size:clamp(1rem,2vw,1.15rem);font-weight:700}
+.smh-history-accordion>summary::-webkit-details-marker{display:none}
+.smh-history-accordion>summary small{display:block;font-weight:400;font-size:.82rem;opacity:.78;margin-top:4px}
+.smh-history-accordion>summary:focus-visible{outline:3px solid #2358d4;outline-offset:-3px}
+.smh-history-accordion[open]>summary{border-bottom:1px solid rgba(20,42,77,.12)}
+.smh-history-body{padding:16px 18px;min-width:0;overflow-x:auto}
+.smh-history-body .me-two{grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
+@media(max-width:640px){.smh-history-accordion>summary{padding:15px}.smh-history-body{padding:12px}.smh-history-body table{display:block;max-width:100%;overflow-x:auto}}
+@media print{.smh-history-accordion:not([open]) .smh-history-body{display:block!important}.smh-history-accordion>summary{display:none}}
