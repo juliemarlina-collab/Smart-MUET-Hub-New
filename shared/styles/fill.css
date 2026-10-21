@@ -129,3 +129,16 @@ html.smh-shell .smh-footer a{font-size:12px!important;line-height:1.35!important
 html.smh-shell .smh-footer .fine{font-size:11px!important;padding-top:7px!important;margin:0!important;line-height:1.4!important}
 @media(max-width:860px){html.smh-shell .smh-footer .in{gap:10px 18px!important}}
 @media(max-width:520px){html.smh-shell .smh-footer .in{grid-template-columns:1fr 1fr!important;gap:10px 14px!important}html.smh-shell .smh-footer .in>div:first-child{grid-column:1/-1}html.smh-shell .smh-footer .in>div:first-child p{display:block!important}html.smh-shell .smh-footer a{font-size:12px!important}html.smh-shell .smh-footer .smh-foot-theme{grid-column:1/-1}}
+
+/* Home hero: focused first-screen presentation (2026-10-21) */
+.h-hero .h-left h1{font-size:clamp(42px,5vw,68px)!important;line-height:1.04!important;margin:14px 0 18px!important;letter-spacing:-.025em}
+.h-hero .h-switch{margin-bottom:14px}
+.h-hero .h-lead{max-width:48ch;font-size:clamp(16px,1.45vw,18px)!important;line-height:1.55}
+.h-hero .h-btns{margin-top:22px}
+.h-preferences{margin-top:20px;max-width:420px}
+.h-preferences summary{cursor:pointer;display:inline-flex;align-items:center;gap:8px;color:#142b68;font:700 14px/1.4 "DM Sans",Arial,sans-serif;list-style:none;border-bottom:1px solid currentColor;padding:4px 0}
+.h-preferences summary::-webkit-details-marker{display:none}
+.h-preferences summary:focus-visible{outline:3px solid #4955ff;outline-offset:4px}
+.h-preferences[open] summary span{transform:rotate(180deg)}
+.h-preferences .h-target{margin-top:14px}
+@media(max-width:640px){.h-hero .h-left h1{font-size:clamp(40px,10vw,56px)!important}.h-hero .h-switch{margin-bottom:10px}}
