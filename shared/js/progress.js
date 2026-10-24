@@ -116,6 +116,16 @@
       .forEach(([k, v, c]) => { const t = el('div', 'pd-tile ' + c); t.append(el('b', '', v), el('span', '', k)); tiles.append(t); });
     top.append(ring, tiles);
     sec.append(top);
+    if (id === 'home') {
+      /* Home shows the short version: this week plus a link; the full timeline and paper cards live on Me */
+      const cur = W[Math.min(d.week, 8)], todo = cur.items.find(i => !i[1]);
+      const strip = el('div', 'pd-now');
+      const t = el('div'); t.append(el('small', '', 'This week · Week ' + cur.w + ' · ' + cur.t), el('b', '', todo ? 'Next: ' + todo[0] : 'All done this week ✓'));
+      const go = el('a', 'pd-now-go', todo ? 'Do it now →' : 'See my journey →'); go.href = root + (todo ? todo[2] : 'me.html#pd-title');
+      const all = el('a', 'pd-now-all', 'Full 8-week journey on Me →'); all.href = root + 'me.html#pd-title';
+      strip.append(t, go, all); sec.append(strip); sec.classList.add('pd-compact');
+      return;
+    }
     if (!reduce) requestAnimationFrame(() => setTimeout(() => ring.style.setProperty('--p', pct), 60));
 
     /* timeline */

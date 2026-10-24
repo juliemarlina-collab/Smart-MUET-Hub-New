@@ -144,6 +144,7 @@ h3.sub{font:800 13px var(--display);letter-spacing:.08em;text-transform:uppercas
 
 :root{padding-block:env(safe-area-inset-top,0px) env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}
 </style>
+<style>.resume{position:fixed;left:50%;bottom:76px;translate:-50% 0;z-index:70;display:flex;gap:6px;align-items:center;background:#142b68;color:#fff;border-radius:99px;padding:6px;box-shadow:0 10px 30px #0b153a55;font:700 15px/1 "DM Sans",Arial,sans-serif}.resume-go{background:#ffcc33;color:#142b68;border:0;border-radius:99px;padding:12px 18px;font:inherit;font-weight:800;cursor:pointer}.resume-x{background:none;border:0;color:#fff;font:inherit;width:40px;height:40px;border-radius:99px;cursor:pointer}</style>
 </head>
 <body>
 
@@ -616,9 +617,19 @@ addEventListener('hashchange',()=>{const m=location.hash.match(/^#(?:p|page=)(\d
 
 buildToc();
 const m=location.hash.match(/^#(?:p|page=)(\d+)$/);
-cur = m ? +m[1] : store.get('last',1);
+/* open at the cover unless a page is asked for; offer the last page instead of jumping there.
+   The Home button and this offer both use smh.pdfbook.v1.last, so they always agree. */
+let lastPage=1;try{lastPage=parseInt(JSON.parse(localStorage.getItem('smh.pdfbook.v1.last')),10)||1}catch(e){}
+cur = m ? +m[1] : 1;
 if(innerWidth>=1200) openDrawer('toc');
 render();
+if(!m&&lastPage>1&&lastPage<=N){
+  const r=document.createElement('div');r.className='resume';r.setAttribute('role','region');r.setAttribute('aria-label','Continue reading');
+  const go1=document.createElement('button');go1.type='button';go1.className='resume-go';go1.textContent='Continue at page '+lastPage+' →';
+  const x=document.createElement('button');x.type='button';x.className='resume-x';x.setAttribute('aria-label','Stay on the cover');x.textContent='✕';
+  go1.onclick=()=>{r.remove();go(lastPage)};x.onclick=()=>r.remove();
+  r.append(go1,x);document.body.append(r);setTimeout(()=>r.remove(),12000);
+}
 </script>
 
 <link rel="stylesheet" href="quiz.css"><script defer src="quiz.js"></script>
