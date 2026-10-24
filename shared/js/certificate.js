@@ -10,7 +10,7 @@
   const put = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} };
   const el = (t, c, x) => { const n = document.createElement(t); if (c) n.className = c; if (x !== undefined) n.textContent = x; return n; };
   const P = ['listening', 'speaking', 'reading', 'writing'];
-  const BANDS = [[331, 'Band 5+', 'C1+'], [294, 'Band 5.0', 'C1'], [258, 'Band 4.5', 'B2'], [211, 'Band 4.0', 'B2'], [164, 'Band 3.5', 'B1'], [123, 'Band 3.0', 'B1'], [82, 'Band 2.5', 'A2'], [36, 'Band 2.0', 'A2'], [1, 'Band 1.0', 'A1']];
+  const BANDS = (window.MUETBands ? window.MUETBands.LEGACY : [[331, 'Band 5+', 'C1+'], [294, 'Band 5.0', 'C1'], [258, 'Band 4.5', 'B2'], [211, 'Band 4.0', 'B2'], [164, 'Band 3.5', 'B1'], [123, 'Band 3.0', 'B1'], [82, 'Band 2.5', 'A2'], [36, 'Band 2.0', 'A2'], [1, 'Band 1.0', 'A2']]);
   const preview = /[?&]preview\b/.test(location.search);
 
   const state = () => window.SMHCert.state();

@@ -11,8 +11,8 @@
   const PAPERS = [['listening', 'Listening', '800/1'], ['speaking', 'Speaking', '800/2'], ['reading', 'Reading', '800/3'], ['writing', 'Writing', '800/4']];
   const LEVELS = [['v1', 'Vault 1', 'Guided practice', 'f-yellow'], ['v2', 'Vault 2', 'Less support', 'f-purple'], ['mock1', 'Mock 1', 'Exam conditions', 'f-ink']];
   /* MUET aggregated score (out of 360) to band, as published by MPM for the 2021 format onwards */
-  const BANDS = [[331, 'Band 5+', 'C1+'], [294, 'Band 5.0', 'C1'], [258, 'Band 4.5', 'B2'], [211, 'Band 4.0', 'B2'], [164, 'Band 3.5', 'B1'], [123, 'Band 3.0', 'B1'], [82, 'Band 2.5', 'A2'], [36, 'Band 2.0', 'A2'], [1, 'Band 1.0', 'A1']];
-  const BAND_ORDER = ['Band 1.0', 'Band 2.0', 'Band 2.5', 'Band 3.0', 'Band 3.5', 'Band 4.0', 'Band 4.5', 'Band 5.0', 'Band 5+'];
+  const BANDS = (window.MUETBands ? window.MUETBands.LEGACY : [[331, 'Band 5+', 'C1+'], [294, 'Band 5.0', 'C1'], [258, 'Band 4.5', 'B2'], [211, 'Band 4.0', 'B2'], [164, 'Band 3.5', 'B1'], [123, 'Band 3.0', 'B1'], [82, 'Band 2.5', 'A2'], [36, 'Band 2.0', 'A2'], [1, 'Band 1.0', 'A2']]);
+  const BAND_ORDER = window.MUETBands ? window.MUETBands.ORDER.slice() : ['Band 1.0', 'Band 2.0', 'Band 2.5', 'Band 3.0', 'Band 3.5', 'Band 4.0', 'Band 4.5', 'Band 5.0', 'Band 5+'];
   const bandOf = t => (BANDS.find(([min]) => t >= min) || [0, '—', '']);
 
   function level(id) {
