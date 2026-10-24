@@ -94,8 +94,13 @@
       const recs = get('smh.me.rubric.v1', []) || [];
       recs.unshift({ date: new Date().toISOString().slice(0, 10), paper, by: who.value, level: lvl.value, parts: sels.map(s => +s.value), score90: x, feedback: fb.value.trim().slice(0, 300) });
       put('smh.me.rubric.v1', recs.slice(0, 30));
-      if (lvl.value) { put('muet_' + lvl.value + '_' + paper + '_score90', String(x)); put('muet_' + lvl.value + '_' + paper, 'true'); }
-      msg.textContent = 'Saved: ' + x + ' / 90' + (lvl.value ? ', added to your ' + lvl.options[lvl.selectedIndex].text.replace('Save to ', '') + ' table.' : '.');
+      let added = !!lvl.value;
+      if (lvl.value && paper === 'speaking') {
+        /* Speaking: only a lecturer mark becomes the mark; a self-assessment stays in the log */
+        if (who.value === 'Lecturer' && window.MUETSpeaking) window.MUETSpeaking.setLecturer(lvl.value, { score90: x, parts: sels.map(s => +s.value), feedback: fb.value.trim() });
+        else added = false;
+      } else if (lvl.value) { put('muet_' + lvl.value + '_' + paper + '_score90', String(x)); put('muet_' + lvl.value + '_' + paper, 'true'); }
+      msg.textContent = 'Saved: ' + x + ' / 90' + (added ? ', added to your ' + lvl.options[lvl.selectedIndex].text.replace('Save to ', '') + ' table as the lecturer mark.' : lvl.value && paper === 'speaking' ? '. Self-assessments stay in the log; only a lecturer mark becomes your Speaking mark.' : '.');
       refresh(); history();
     });
     card.append(out, meta, save, msg);

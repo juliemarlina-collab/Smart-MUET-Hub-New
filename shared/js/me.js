@@ -18,11 +18,12 @@
   function level(id) {
     const papers = PAPERS.map(([k, name, code]) => {
       const done = raw('muet_' + id + '_' + k) === 'true', s = parseInt(raw('muet_' + id + '_' + k + '_score90'), 10);
+      if (k === 'speaking' && window.MUETSpeaking) { const g = window.MUETSpeaking.get(id); return { k, name, code, done: done || g.shown !== null, score: g.shown, provisional: g.provisional }; }
       return { k, name, code, done, score: Number.isFinite(s) ? Math.max(0, Math.min(90, s)) : null };
     });
     const scored = papers.filter(p => p.score !== null), complete = scored.length === 4;
     const total = scored.reduce((n, p) => n + p.score, 0);
-    return { papers, complete, total, scoredCount: scored.length, band: complete ? bandOf(total) : null };
+    return { papers, complete, total, scoredCount: scored.length, band: complete ? bandOf(total) : null, provisional: papers.some(p => p.provisional) };
   }
 
   /* ---------- profile (name, class, target) for the printed record ---------- */
@@ -45,7 +46,7 @@
       const d = BAND_ORDER.indexOf(target) - BAND_ORDER.indexOf(latest.band[1]);
       return d <= 0 ? 'Target reached ✓' : d + ' band step' + (d > 1 ? 's' : '') + ' to go';
     };
-    [['Latest complete level', latest ? latest.name : 'None yet'], ['Practice band', latest ? latest.band[1] + ' · CEFR ' + latest.band[2] : '—'],
+    [['Latest complete level', latest ? latest.name : 'None yet'], ['Practice band', latest ? (latest.provisional ? 'Provisional ' : '') + latest.band[1] + ' · CEFR ' + latest.band[2] : '—'],
      ['Total', latest ? latest.total + ' / 360' : '—'], ['Target band', target || 'Not set'], ['Gap to target', gap()],
      ['Papers done', L.reduce((n, x) => n + x.papers.filter(p => p.done).length, 0) + ' / 12']]
       .forEach(([k, v]) => { const t = el('div', 'me-tile'); t.append(el('span', '', k), el('b', '', v)); sum.append(t); });
@@ -62,13 +63,14 @@
       const grid = el('div', 'me-papers');
       x.papers.forEach(p => {
         const c = el('div', 'me-paper p-' + p.k);
-        c.append(el('span', '', p.name + ' · ' + p.code), el('b', '', p.score !== null ? String(p.score) : p.done ? 'Done' : '—'), el('small', '', p.score !== null ? '/ 90' : p.done ? 'no score saved' : 'not yet'));
+        c.append(el('span', '', p.name + ' · ' + p.code), el('b', '', p.score !== null ? String(p.score) : p.done ? 'Done' : '—'), el('small', '', p.provisional ? '/ 90 · automatic estimate, awaiting lecturer mark' : p.score !== null ? '/ 90' : p.done ? 'no score saved' : 'not yet'));
+        if (p.provisional) c.classList.add('is-estimate');
         const bar = el('i'); bar.style.setProperty('--w', (p.score || 0) / 90 * 100 + '%'); c.append(bar);
         grid.append(c);
       });
       const foot = el('div', 'me-level-foot');
       foot.append(el('span', 'me-chip', x.papers.filter(p => p.done).length + ' / 4 papers'),
-        el('b', '', x.complete ? 'Practice ' + x.band[1] + ' (CEFR ' + x.band[2] + ')' : x.scoredCount ? 'Finish all 4 papers for a band' : 'No results yet'));
+        el('b', '', x.complete ? (x.provisional ? 'Provisional ' : 'Practice ') + x.band[1] + ' (CEFR ' + x.band[2] + ')' + (x.provisional ? ' · Speaking is an estimate until your lecturer marks it' : '') : x.scoredCount ? 'Finish all 4 papers for a band' : 'No results yet'));
       const go = el('a', 'me-go', x.complete ? 'Review ' + x.name + ' ↗' : 'Open ' + x.name + ' ↗');
       go.href = '../vault/' + (x.id === 'v1' ? 'vault1' : x.id === 'v2' ? 'vault2' : 'mock1') + '.html';
       foot.append(go);

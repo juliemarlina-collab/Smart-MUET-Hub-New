@@ -52,7 +52,8 @@
     const total = preview && s.total == null ? 178 : s.total;
     const b = total ? (BANDS.find(([min]) => total >= min) || [0, '—', '—']) : null;
     $('cert-total').textContent = total ? total + ' / 360' : '—';
-    $('cert-band').textContent = b ? b[1] : '—';
+    const spk = window.MUETSpeaking ? window.MUETSpeaking.get('mock1') : null, waiting = !preview && !total && spk && spk.provisional;
+    $('cert-band').textContent = b ? b[1] : waiting ? 'Awaiting lecturer Speaking mark' : '—';
     $('cert-cefr').textContent = b ? b[2] : '—';
     $('cert-xp').textContent = preview && !s.xp ? '1,240' : s.xp.toLocaleString('en-GB');
     const dt = cert ? new Date(cert.date + 'T00:00:00') : new Date();

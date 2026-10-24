@@ -107,3 +107,4 @@ html.smh-shell .pd-wk-body li,html.smh-shell .pd-wk-body a{font-size:15px!import
 .pd-wk-body,.pd-wk-b{box-sizing:border-box;max-width:100%}
 .pd-wk-body a{overflow-wrap:anywhere}
 @media (max-width:860px){.pd-wk-b{grid-template-columns:52px minmax(0,1fr) auto!important;padding-right:10px}}
+.me-paper.is-estimate{outline:2px dashed #ff754a;outline-offset:-2px}.me-paper.is-estimate small{color:#b2470f;font-weight:700}

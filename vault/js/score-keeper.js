@@ -30,6 +30,10 @@
 
   function onComplete() {
     let s = computeScore();
+    if (s !== null && paper === 'speaking') { /* automatic estimate: never the Speaking mark */
+      if (window.MUETSpeaking) window.MUETSpeaking.recordAuto(stage, { score90: s }); else try { localStorage.setItem(flagKey + '_auto90', String(s)); } catch {}
+      const off = parseInt(raw(flagKey + '_score90'), 10); card(Number.isFinite(off) ? off : s, !Number.isFinite(off)); return;
+    }
     if (s !== null) { try { localStorage.setItem(flagKey + '_score90', String(s)); } catch {} }
     else { const v = parseInt(raw(flagKey + '_score90'), 10); s = Number.isFinite(v) ? v : null; }
     card(s);
@@ -63,18 +67,18 @@
 @media (prefers-reduced-motion:reduce){.sk-card{animation:none}}`;
   document.head.append(css);
 
-  function card(score) {
+  function card(score, estimate) {
     document.querySelector('.sk-card')?.remove();
     const done = ['listening', 'speaking', 'reading', 'writing'].filter(c => raw('muet_' + stage + '_' + c) === 'true').length;
     const c = document.createElement('div'); c.className = 'sk-card'; c.setAttribute('role', 'dialog'); c.setAttribute('aria-label', P + ' paper complete');
-    const msg = score === null ? 'Your paper is saved. Its score appears on your Me page when marking is ready.'
+    const msg = estimate ? 'Automatic estimate only: words, pace and pauses from your recording. Your Speaking mark comes from your lecturer\u2019s rubric on the Me page.' : score === null ? 'Your paper is saved. Its score appears on your Me page when marking is ready.'
       : score >= 72 ? 'Excellent work! That is a strong practice score.' : score >= 54 ? 'Great effort! You are building solid control.' : 'Well done for finishing. Review the feedback and try again to lift your score.';
     c.innerHTML = '<span class="sk-tag"></span><h2></h2><div class="sk-big"></div><p class="sk-msg"></p><div class="sk-dots" aria-hidden="true"></div><p class="sk-count"></p><div class="sk-row"><a href="../me.html#res-title">See my results ↗</a><button type="button">Keep reviewing</button></div>';
     c.querySelector('.sk-tag').textContent = NAME + ' · ' + P;
     c.querySelector('h2').textContent = P + ' paper complete!';
     const big = c.querySelector('.sk-big');
     if (score === null) big.textContent = '✓';
-    else { big.textContent = String(score); const s = document.createElement('small'); s.textContent = ' / 90'; big.append(s); }
+    else { big.textContent = String(score); const s = document.createElement('small'); s.textContent = estimate ? ' / 90 est.' : ' / 90'; big.append(s); }
     c.querySelector('.sk-msg').textContent = msg;
     const dots = c.querySelector('.sk-dots');
     for (let i = 0; i < 4; i++) { const d = document.createElement('i'); if (i < done) d.className = 'on'; dots.append(d); }
@@ -99,5 +103,5 @@
   }
 
   /* Speaking and Writing papers finished before this update: work out their score once */
-  if (raw(flagKey) === 'true' && !raw(flagKey + '_score90')) { const s = computeScore(); if (s !== null) try { localStorage.setItem(flagKey + '_score90', String(s)); } catch {} }
+  if (raw(flagKey) === 'true' && paper !== 'speaking' && !raw(flagKey + '_score90')) { const s = computeScore(); if (s !== null) try { localStorage.setItem(flagKey + '_score90', String(s)); } catch {} }
 })();
