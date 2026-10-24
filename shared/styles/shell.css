@@ -460,7 +460,7 @@ html.smh-shell .hero-collage .smh-photo-pair img+img{bottom:0;left:2%;rotate:-3d
    ===================================================================== */
 .p-listening{--pc:#ffcc33;--pf:#142b68}.p-speaking{--pc:#4cc9a6;--pf:#142b68}.p-reading{--pc:#ff754a;--pf:#142b68}.p-writing{--pc:#e0479e;--pf:#fff}.p-book{--pc:#3b5bff;--pf:#fff}
 .me-tag{display:inline-block;font:700 11px/1 var(--s-body);letter-spacing:.14em;text-transform:uppercase;background:#142b68;color:#fff;border-radius:99px;padding:6px 10px}
-.me-profile{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0 6px}
+.me-profile{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:18px 0 6px}
 .me-profile label{display:grid;gap:6px;font:700 13px var(--s-body);letter-spacing:.06em;text-transform:uppercase;color:#44507a}
 .me-profile :is(input,select){font:600 16px var(--s-body);min-height:48px;border:2px solid #142b68;border-radius:14px;padding:0 14px;background:#fff;color:#142b68;text-transform:none;letter-spacing:0}
 .me-summary{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin:16px 0}
@@ -512,7 +512,7 @@ html.smh-shell .hero-collage .smh-photo-pair img+img{bottom:0;left:2%;rotate:-3d
 .me-history .history .card{background:#fff;border-radius:18px;padding:14px 16px;margin:0 0 10px;border:0;box-shadow:0 3px 0 #142b6814}
 .me-actions-end{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
 .me-print-head{display:none}
-@media (max-width:1000px){.me-summary{grid-template-columns:repeat(3,minmax(0,1fr))}.me-records{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:1000px){.me-profile{grid-template-columns:repeat(2,minmax(0,1fr))}.me-summary{grid-template-columns:repeat(3,minmax(0,1fr))}.me-records{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:700px){
   .me-profile{grid-template-columns:1fr}
   .me-summary{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -757,3 +757,34 @@ html.smh-shell .chapter-nav.all-guides a[href="reading.html"]{background:#ff754a
 html.smh-shell .chapter-nav.all-guides a[href="writing.html"]{background:#e0479e!important;color:#fff!important}
 html.smh-shell .chapter-nav.all-guides a[aria-current="page"]{font-weight:800!important;box-shadow:inset 0 -4px 0 #142b68!important}
 html.smh-shell .chapter-nav.all-guides a[href="index.html"][aria-current="page"]{background:#3b5bff!important;color:#fff!important}
+
+/* who is submitting (shared/js/profile.js) on Vault and Mock paper pages */
+.smh-who{display:flex;gap:12px;align-items:flex-start;max-width:1240px;margin:14px auto 0;padding:14px 16px;border-radius:18px;background:#e3f8f1;border:2px solid #9fe1cb;color:#142b68;font-family:"DM Sans",DM,Arial,sans-serif;box-sizing:border-box}
+.smh-who.is-missing{background:#fff4cc;border-color:#ffd65c}
+.smh-who.is-nudge{animation:smh-who-nudge .5s ease 2}
+.smh-who.is-saved{box-shadow:0 0 0 4px #4cc9a666}
+.smh-who-av{flex:none;display:grid;place-items:center;width:38px;height:38px;border-radius:99px;background:#ffcc33;font-size:19px}
+.smh-who-tx{flex:1;min-width:0}
+.smh-who-tx>b{display:block;font:800 16px/1.3 "DM Sans",Arial,sans-serif;margin-bottom:4px}
+.smh-who-view{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px}
+.smh-who-view p{margin:0!important;font-size:15px!important;line-height:1.5!important;color:#33406b;overflow-wrap:anywhere}
+.smh-who-view em{font-style:normal;color:#9a5b00;font-weight:700}
+.smh-who-edit{min-height:36px;padding:0 14px;border-radius:99px;border:2px solid #142b68;background:#fff;color:#142b68;font:800 13px/1 "DM Sans",Arial,sans-serif;cursor:pointer}
+.smh-who-form{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) auto;gap:10px;align-items:end}
+.smh-who-form[hidden],.smh-who-view[hidden]{display:none}
+.smh-who-form label{display:grid;gap:4px;font:700 12px "DM Sans",Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#44507a}
+.smh-who-form input{font:600 16px "DM Sans",Arial,sans-serif;min-height:44px;border:2px solid #142b68;border-radius:12px;padding:0 12px;background:#fff;color:#142b68;min-width:0;text-transform:none;letter-spacing:0}
+.smh-who-save{min-height:44px;padding:0 18px;border-radius:99px;border:2px solid #3b5bff;background:#3b5bff;color:#fff;font:800 14px/1 "DM Sans",Arial,sans-serif;cursor:pointer}
+.smh-who-note{grid-column:1/-1;font-size:13px;color:#44507a}
+.smh-who-note a{color:#3b5bff;font-weight:700}
+.smh-who-msg{margin:0 0 8px!important;font-weight:700;font-size:15px!important;color:#7a3b00}
+.smh-who :focus-visible{outline:3px solid #ff754a;outline-offset:2px}
+@keyframes smh-who-nudge{0%,100%{translate:0 0}25%{translate:-6px 0}75%{translate:6px 0}}
+@media (prefers-reduced-motion:reduce){.smh-who.is-nudge{animation:none}}
+@media (max-width:1000px){.smh-who{margin:12px 20px 0}}
+@media (max-width:760px){.smh-who{margin:10px 15px 0}.smh-who-form{grid-template-columns:1fr}.smh-who-save{width:100%}}
+@media print{.smh-who{display:none!important}}
+html[data-smh-theme="dark"] .smh-who{background:#123a33;border-color:#2a6e60;color:#fff}
+html[data-smh-theme="dark"] .smh-who.is-missing{background:#3a3110;border-color:#7a6420}
+html[data-smh-theme="dark"] .smh-who-view p,html[data-smh-theme="dark"] .smh-who-note,html[data-smh-theme="dark"] .smh-who-form label{color:#d6ddf5}
+html[data-smh-theme="dark"] .smh-who-msg{color:#ffd65c}

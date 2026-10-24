@@ -27,8 +27,8 @@
   }
 
   /* ---------- profile (name, class, target) for the printed record ---------- */
-  const prof = get('smh.me.profile', {}) || {};
-  [['me-name', 'name'], ['me-class', 'cls'], ['me-target', 'target']].forEach(([id, key]) => {
+  const prof = (window.SMHProfile ? window.SMHProfile.get() : get('smh.me.profile', {})) || {};
+  [['me-name', 'name'], ['me-reg', 'regNo'], ['me-class', 'cls'], ['me-target', 'target']].forEach(([id, key]) => {
     const f = $(id); if (!f) return;
     f.value = typeof prof[key] === 'string' ? prof[key] : '';
     f.addEventListener('input', () => { prof[key] = f.value.slice(0, 80); put('smh.me.profile', JSON.stringify(prof)); render(); });

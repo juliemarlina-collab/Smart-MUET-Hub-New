@@ -231,6 +231,12 @@
   }
 })();
 
+/* one student profile for every page (shared/js/profile.js): loaded straight away so Vault and Mock pages send a name */
+(() => {
+  if (document.querySelector('script[src*="profile.js"]')) return;
+  const sc = document.createElement('script'); sc.src = (document.body.dataset.appRoot || '../') + 'shared/js/profile.js?v=20261024b'; document.body.append(sc);
+})();
+
 /* coach: Guide me tour, dialogue boxes (shared/js/coach.js) */
 (() => {
   const r = document.body.dataset.appRoot || '../';
