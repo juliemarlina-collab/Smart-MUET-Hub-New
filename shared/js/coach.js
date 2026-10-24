@@ -44,6 +44,7 @@
     ],
     intro: [
       ['.chapter-nav', 'Pick a paper', 'Overview first, then one guide for each paper.'],
+      ['#know', 'Start here: Know MUET', 'The four papers, marks and your learning route. Save your target band and first skill here.'],
       ['#skills', 'Four learning folders', 'Open a folder to see what the paper tests and a small task to try today.'],
       ['#language', 'Language bank', 'Useful phrases for each paper. Tap to hear them, then use them in the Lab.'],
       ['#traps', 'Trap spotter', 'Common MUET traps. Spot them here so they do not catch you in the test.']

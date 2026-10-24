@@ -133,7 +133,7 @@
       });
     hin.append(nav);
     const last = get('smh.flow.last', {});
-    const cta = safe(last.path) && last.id !== id ? link('Continue →', last.path, 'smh-cta') : link('Start here →', id === 'home' ? 'welcome/index.html' : 'index.html#start', 'smh-cta');
+    const cta = safe(last.path) && last.id !== id ? link('Continue →', last.path, 'smh-cta') : link('Start here →', id === 'home' ? 'learn.html#know' : 'index.html#start', 'smh-cta');
     if (safe(last.path) && last.label) cta.title = 'Continue: ' + last.label;
     hin.append(cta);
   }
@@ -200,7 +200,7 @@
     footer = el('footer', 'smh-footer');
     const fin = el('div', 'in');
     const a = el('div'); const fb = el('b', 'smh-foot-name', 'Smart MUET '); fb.append(el('span', '', 'Hub')); a.append(fb, el('p', '', 'Know the test. Build your skills. Band up. Free MUET practice by the English Language Unit, Jabatan Pengajian Am, Politeknik Port Dickson.'));
-    const b = el('div'); b.append(el('h2', '', 'Your route'), link('Know MUET', 'welcome/index.html'), link('10-minute check', 'labs/diagnostic.html'), link('Learn the skills', 'learn.html'), link('Practice: Labs, Vault & Arcade', 'practice.html'));
+    const b = el('div'); b.append(el('h2', '', 'Your route'), link('Know MUET', 'learn.html#know'), link('10-minute check', 'labs/diagnostic.html'), link('Learn the skills', 'learn.html'), link('Practice: Labs, Vault & Arcade', 'practice.html'));
     const d = el('div'); d.append(el('h2', '', 'More'), link('eBook', 'ebook.html'), link('Arcade', 'arcade/index.html'), link('My progress', 'me.html'), link('My certificate', 'certificate.html'), link('My account', 'account/index.html'));
     const fine = el('p', 'fine', 'Your practice is saved on this device only. © 2027 English Language Unit, JPA, Politeknik Port Dickson.');
     const set = el('div', 'smh-foot-theme'); set.append(el('h2', '', 'Display'), tbtn2); // phone: the theme switch lives here so the header fits

@@ -53,7 +53,7 @@
     const planWeek = n => plan && plan[n] ? plan[n].items.map(it => [it.text, d.planDone.has(it.id), it.href]) : null;
     const lab = k => [NAME[k] + ' ' + TECH[k] + ' Lab', d.per[k].lab, 'labs/' + k + '-lab.html'];
     return [
-      { w: 0, t: 'Start', s: 'Know MUET · 10-minute check', c: 'c0', items: [['Know MUET tour or eBook ch 1', d.know, 'welcome/index.html'], ['10-minute check and 3-week plan', d.check, 'labs/diagnostic.html']] },
+      { w: 0, t: 'Start', s: 'Know MUET · 10-minute check', c: 'c0', items: [['Know MUET tour or eBook ch 1', d.know, 'learn.html#know'], ['10-minute check and 3-week plan', d.check, 'labs/diagnostic.html']] },
       { w: 1, t: 'Learn it', s: 'First paper · I do → We do', c: 'c1', items: planWeek(0) || [['Take the 10-minute check to unlock your week 1 plan', false, 'labs/diagnostic.html'], lab('listening')] },
       { w: 2, t: 'Practise it', s: 'Two more Labs · Vault 1', c: 'c2', items: planWeek(1) || [lab('speaking'), lab('reading')] },
       { w: 3, t: 'Apply it', s: 'Last Lab · Vault 2 · Mock taste', c: 'c3', items: planWeek(2) || [lab('writing'), ['Retake the 10-minute check', false, 'labs/diagnostic.html']] },

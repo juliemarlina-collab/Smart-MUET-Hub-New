@@ -1,0 +1,38 @@
+/* Learn › 00 Know MUET */
+.kn-sec{scroll-margin-top:90px}
+.kn-facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:18px 0}
+.kn-facts div{background:#142b68;color:#fff;border-radius:18px;padding:14px 16px}
+.kn-facts b{display:block;font:400 clamp(30px,3.4vw,44px)/1 Anton,Impact,sans-serif;color:#ffcc33}
+.kn-facts span{font:700 14px/1.3 "DM Sans",Arial,sans-serif}
+.kn-papers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.kn-paper{display:flex;flex-direction:column;gap:6px;padding:16px;border-radius:22px;text-decoration:none!important;color:#142b68!important;transition:transform .2s}
+.kn-paper:hover{transform:translateY(-3px)}
+.kn-paper.p-listening{background:#ffcc33}.kn-paper.p-speaking{background:#4cc9a6}.kn-paper.p-reading{background:#ff754a}.kn-paper.p-writing{background:#e0479e;color:#fff!important}
+.kn-code{font:800 12px/1 "DM Sans",Arial,sans-serif;letter-spacing:.08em}
+.kn-paper b{font:400 clamp(26px,2.6vw,34px)/1 Anton,Impact,sans-serif;text-transform:uppercase}
+.kn-tech{font:800 14px/1 "DM Sans",Arial,sans-serif;letter-spacing:.14em}
+.kn-paper small{font:500 14px/1.45 "DM Sans",Arial,sans-serif}
+.kn-go{margin-top:auto;font:800 14px/1 "DM Sans",Arial,sans-serif}
+.kn-note{margin:14px 0 0!important;font-size:15px;color:#4a5578}
+.kn-note a{color:#3b5bff;font-weight:700}
+.kn-route{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(260px,.9fr);gap:16px;margin-top:22px}
+.kn-steps,.kn-goal{background:#fff;border-radius:22px;padding:18px 20px;box-shadow:0 6px 20px -14px #142b6855}
+.kn-steps ol{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:8px;counter-reset:k}
+.kn-steps li{counter-increment:k}
+.kn-steps li>a,.kn-steps li.on{display:grid;grid-template-columns:40px 1fr;column-gap:12px;align-items:center;padding:10px 12px;border-radius:14px;background:#f5f7ff;color:#142b68!important;text-decoration:none!important}
+.kn-steps li>a::before,.kn-steps li.on::before{content:counter(k);grid-row:span 2;display:grid;place-items:center;width:36px;height:36px;border-radius:99px;background:#e9edff;font:400 18px/1 Anton,Impact,sans-serif}
+.kn-steps li.on{background:#fff4cc;border:2px solid #ffcc33}.kn-steps li.on::before{background:#ffcc33}
+.kn-steps li>a:hover{background:#e9edff}
+.kn-steps b{font:800 16px/1.2 "DM Sans",Arial,sans-serif}.kn-steps span{font-size:14px;color:#4a5578}
+.kn-goal{display:grid;gap:8px;align-content:start;background:#142b68;color:#fff}
+.kn-goal .eyebrow{color:#ffcc33!important}
+.kn-goal h3{margin:0 0 4px;font:400 26px/1.05 Anton,Impact,sans-serif;text-transform:uppercase;color:#fff}
+.kn-goal label{font:800 13px/1 "DM Sans",Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#cdd6f6;margin-top:4px}
+.kn-goal select{min-height:46px;border-radius:12px;border:0;padding:0 12px;font:700 16px "DM Sans",Arial,sans-serif;color:#142b68}
+.kn-goal button{justify-self:start;margin-top:6px}
+.kn-goal small{font-size:13px;line-height:1.5;color:#cdd6f6}
+.kn-saved{margin:0!important;font-weight:700;font-size:15px}.kn-saved a{color:#ffcc33}
+.kn-sec :is(a,button,select):focus-visible{outline:3px solid #ff754a;outline-offset:2px}
+@media (max-width:1000px){.kn-papers{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:760px){.kn-route{grid-template-columns:1fr}.kn-facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.kn-papers{grid-template-columns:1fr}}

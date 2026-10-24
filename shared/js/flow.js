@@ -12,7 +12,7 @@
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const STAGES = [
-    { n: 1, t: 'Know MUET', c: 's1', href: 'welcome/index.html',
+    { n: 1, t: 'Know MUET', c: 's1', href: 'learn.html#know',
       you: 'Read eBook ch 1–2 and set your target band', hub: 'Welcome tour, band and CEFR table', lec: 'Introduces MUET in the first class' },
     { n: 2, t: '10-min check', c: 's2', href: 'labs/diagnostic.html',
       you: 'Answer 20 quick items', hub: 'Explains every answer, builds your 3-week plan', lec: 'Sees your starting paper' },
@@ -108,7 +108,7 @@
     const cl = el('button', 'fv-x', '✕'); cl.type = 'button'; cl.setAttribute('aria-label', 'Close the tour');
     ctl.append(pr, pp, nx, vo);
     const end = el('div', 'fv-end'); end.hidden = true;
-    const go = el('a', 'fv-go', 'Start stage 1 →'); go.href = root + 'welcome/index.html';
+    const go = el('a', 'fv-go', 'Start stage 1 →'); go.href = root + 'learn.html#know';
     const again = el('button', 'fv-again', '↻ Watch again'); again.type = 'button';
     end.append(el('strong', '', 'Ready?'), go, again);
     dlg.append(cl, bars, stage, end, ctl);
