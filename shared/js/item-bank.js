@@ -335,6 +335,219 @@ window.SMHBank = (() => {
       };
     }),
   );
+  /* ---------- SCAN Evidence Hunt (labs/scan-hunt.html) ----------
+     Each passage: paras = arrays of sentences (numbered across the passage, from 0).
+     Each question: type (S step), key (C step: question words that carry the meaning),
+     ev (A step: accepted evidence sentence numbers), options + answer (N step),
+     traps (one per option; the answer's entry is ""), why (full explanation). */
+  const HUNT_TYPES = ["Main idea", "Detail", "Reference", "Word meaning", "Inference", "Writer’s view"];
+  const HUNT_TRAPS = {
+    word: ["Word-Match Trap", "Repeats a word from the text but changes its meaning or context."],
+    own: ["Own-Knowledge Trap", "May be true in real life, but the text does not say it."],
+    far: ["Too-Far Trap", "Goes beyond the evidence, often with always, every, never, best or completely."],
+  };
+  const hunt = {
+    roofs: {
+      title: "Cooling the City from the Roof",
+      level: "MUET Reading · Part 4-style article · about 330 words",
+      paras: [
+        [
+          "On a hot afternoon in Kuala Lumpur, the air just above a dark concrete roof can be several degrees warmer than the air above a park.",
+          "Urban planners call this the heat island effect, and it grows as cities replace trees with buildings and roads.",
+          "One response that is attracting attention is surprisingly simple: covering roofs with plants.",
+        ],
+        [
+          "A rooftop garden works in two ways.",
+          "The soil and leaves absorb sunlight that would otherwise heat the roof, and the water released by the plants cools the surrounding air.",
+          "Residents of a block of flats in Petaling Jaya that installed a garden two years ago say their top-floor units now need the air-conditioner for fewer hours each day.",
+          "However, the building manager admits that the electricity savings are difficult to measure precisely, because the weather has varied so much.",
+        ],
+        [
+          "The idea is not without problems.",
+          "Older buildings may not be strong enough to carry the weight of wet soil, and a structural check can cost more than the garden itself.",
+          "Maintenance is another concern.",
+          "Without regular watering during the dry months, plants die quickly, and a brown roof provides little benefit.",
+        ],
+        [
+          "For this reason, some councils now offer grants only to buildings that agree to a three-year care plan.",
+          "Supporters believe this condition is fair.",
+          "They argue that a garden which is abandoned after one season wastes public money and discourages others from trying.",
+        ],
+        [
+          "Rooftop gardens will not solve the heat island effect on their own.",
+          "Yet, as one planner put it, every green roof is a small step towards a city that people can comfortably walk in.",
+        ],
+      ],
+      questions: [
+        {
+          q: "What is the passage mainly about?",
+          type: "Main idea", key: ["mainly", "about"], ev: [2, 14],
+          options: ["Why Kuala Lumpur is hotter than other cities", "How rooftop gardens can cool cities, and the problems they bring", "How to build a garden on an old building", "Why councils should stop giving grants"],
+          answer: 1,
+          traps: ["Not in the text: many people believe this, but the text never compares Kuala Lumpur with other cities", "", "Word match: “older buildings” appears, but only as one problem", "Opposite: councils give grants with a condition; nobody says stop"],
+          tags: ["own", "", "word", "word"], nameIt: 0,
+          why: "Paragraph 1 introduces green roofs as a response to heat (sentence 3), paragraphs 2–4 give benefits and problems, and the last paragraph weighs them up. Only B covers the whole text.",
+          label: "Evidence Hunt · Roofs: main idea",
+        },
+        {
+          q: "According to paragraph 2, how do the plants cool the air?",
+          type: "Detail", key: ["how", "plants", "cool", "air"], ev: [4],
+          options: ["By blocking wind from the roof", "Through the water they release", "By making the roof darker", "By reducing the use of air-conditioners"],
+          answer: 1,
+          traps: ["Not in the text: plants can block wind in real life, but the text never mentions wind", "", "Opposite: a dark roof is the hotter one", "Cause vs effect: less air-conditioning is a result, not how the cooling happens"],
+          tags: ["own", "", "word", "word"], nameIt: 0,
+          why: "“The water released by the plants cools the surrounding air.” B is a paraphrase of that sentence.",
+          label: "Evidence Hunt · Roofs: how plants cool",
+        },
+        {
+          q: "What does the building manager say about the electricity savings?",
+          type: "Detail", key: ["building", "manager", "electricity", "savings"], ev: [6],
+          options: ["They are large and easy to prove", "They cannot be measured exactly", "They have disappeared because of the weather", "They are bigger than the residents claim"],
+          answer: 1,
+          traps: ["Opposite: he says they are difficult to measure", "", "Word match: “weather” is there, but it makes measuring hard; nothing has disappeared", "Not in the text: he does not compare his view with the residents’"],
+          tags: ["far", "", "word", "far"], nameIt: 2,
+          why: "“The electricity savings are difficult to measure precisely.” Difficult to measure precisely = cannot be measured exactly.",
+          label: "Evidence Hunt · Roofs: electricity savings",
+        },
+        {
+          q: "In paragraph 4, what does “this condition” refer to?",
+          type: "Reference", key: ["this", "condition", "refer"], ev: [11],
+          options: ["The structural check for older buildings", "The three-year care plan needed for a grant", "The dry months", "The heat island effect"],
+          answer: 1,
+          traps: ["Wrong reference: “older buildings” and the check are real words from paragraph 3, but they are not the condition for a grant", "", "Wrong reference: the nearest noun before is not always the answer", "Wrong reference: too far back in the text"],
+          tags: ["word", "", "word", "word"], nameIt: 0,
+          why: "Read the sentence before: grants go “only to buildings that agree to a three-year care plan”. That requirement is the condition supporters think is fair.",
+          label: "Evidence Hunt · Roofs: this condition",
+        },
+        {
+          q: "The word “abandoned” in paragraph 4 is closest in meaning to …",
+          type: "Word meaning", key: ["abandoned", "closest", "meaning"], ev: [13],
+          options: ["left without care", "built too quickly", "paid for by the council", "shared with neighbours"],
+          answer: 0,
+          traps: ["", "Not in the text: speed of building is never discussed", "Word match: “public money” is nearby, but it is not the meaning of the word", "Not in the text: sharing is never mentioned"],
+          tags: ["", "own", "word", "own"], nameIt: 2,
+          why: "The paragraph is about the three-year care plan, and paragraph 3 says unwatered plants die. A garden “abandoned after one season” is one nobody looks after.",
+          label: "Evidence Hunt · Roofs: abandoned",
+        },
+        {
+          q: "What is the writer’s overall attitude towards rooftop gardens?",
+          type: "Writer’s view", key: ["writer’s", "attitude", "towards"], ev: [14, 15],
+          options: ["Strongly against them, because they cost too much", "Cautiously positive: useful, but not a complete solution", "Completely sure they will end the heat island effect", "Not interested, because the evidence is weak"],
+          answer: 1,
+          traps: ["Partly true: costs are mentioned, but the writer is not against them", "", "Too far: the writer says they will not solve it on their own", "Too far: one measurement is uncertain, but the writer still calls them a step forward"],
+          tags: ["word", "", "far", "far"], nameIt: 2,
+          why: "“Will not solve the heat island effect on their own. Yet … every green roof is a small step.” A limit plus a positive = cautiously positive.",
+          label: "Evidence Hunt · Roofs: writer’s attitude",
+        },
+      ],
+    },
+    micro: {
+      title: "Five Minutes a Day: Can Micro-learning Work?",
+      level: "MUET Reading · Part 5-style article · about 320 words",
+      paras: [
+        [
+          "Language apps promise that five minutes a day is enough to learn a new language.",
+          "For busy diploma students who juggle classes, part-time jobs and family duties, the offer is attractive.",
+          "But how much can really be achieved in such short bursts?",
+        ],
+        [
+          "Researchers who study memory say the answer depends less on the length of each session than on how often learners return.",
+          "Short, frequent practice makes the brain retrieve words again and again, and each successful retrieval makes the memory stronger.",
+          "In contrast, a single two-hour session the night before a test often feels productive but is quickly forgotten.",
+        ],
+        [
+          "There is a catch, however.",
+          "Most apps focus on vocabulary and simple sentences, so learners may recognise hundreds of words yet struggle to hold a real conversation.",
+          "A lecturer in Melaka noticed this among her students: they scored well on app quizzes, but froze when asked to explain an idea aloud.",
+        ],
+        [
+          "She now asks students to use the app as a warm-up rather than the whole workout.",
+          "After their five minutes, they must record a one-minute voice note using at least three of the new words.",
+          "At first, many students found the task uncomfortable.",
+          "By the end of the semester, though, most said they felt more confident speaking in class.",
+        ],
+        [
+          "Micro-learning, then, is neither a miracle nor a waste of time.",
+          "It works best as one part of a routine that also includes speaking, writing and reading longer texts.",
+        ],
+      ],
+      questions: [
+        {
+          q: "According to the researchers, what matters most when learning words?",
+          type: "Detail", key: ["researchers", "matters", "most"], ev: [3],
+          options: ["How long each session lasts", "How often learners practise", "Which app learners choose", "Studying the night before a test"],
+          answer: 1,
+          traps: ["Opposite: it depends less on the length", "", "Not in the text: choosing a good app may matter in real life, but the researchers never mention it", "Word match: the night before a test is the example that does not work"],
+          tags: ["word", "", "own", "word"], nameIt: 2,
+          why: "“Depends less on the length of each session than on how often learners return.” How often learners return = how often they practise.",
+          label: "Evidence Hunt · Micro: what matters most",
+        },
+        {
+          q: "The word “retrieve” in paragraph 2 is closest in meaning to …",
+          type: "Word meaning", key: ["retrieve", "closest", "meaning"], ev: [4],
+          options: ["bring back from memory", "translate into English", "forget completely", "write down neatly"],
+          answer: 0,
+          traps: ["", "Not in the text: translation is never mentioned", "Opposite: “forgotten” appears later in the paragraph, but retrieving words makes the memory stronger", "Not in the text: writing is not the point here"],
+          tags: ["", "own", "word", "own"], nameIt: 2,
+          why: "Retrieving words “again and again” makes “the memory stronger”, so retrieve means to bring something back from memory.",
+          label: "Evidence Hunt · Micro: retrieve",
+        },
+        {
+          q: "What can be inferred about a two-hour session the night before a test?",
+          type: "Inference", key: ["inferred", "two-hour", "session"], ev: [5],
+          options: ["It feels useful but does not help long-term memory", "It is the best way to prepare", "Students enjoy it more than apps", "It improves speaking skills"],
+          answer: 0,
+          traps: ["", "Too far: “the best way” goes far beyond the text, which says this session is quickly forgotten", "Too far: enjoyment is never mentioned", "Not in the text: speaking is discussed later, about apps"],
+          tags: ["", "far", "own", "own"], nameIt: 1,
+          why: "It “feels productive but is quickly forgotten”. Feels productive = feels useful; quickly forgotten = no long-term memory.",
+          label: "Evidence Hunt · Micro: two-hour session",
+        },
+        {
+          q: "What problem did the lecturer in Melaka notice?",
+          type: "Detail", key: ["problem", "lecturer", "notice"], ev: [8, 7],
+          options: ["Students could not afford the app", "Students did well on quizzes but could not speak with confidence", "Students did not like vocabulary quizzes", "Students forgot all the new words"],
+          answer: 1,
+          traps: ["Not in the text: cost is never mentioned", "", "Word match: “quizzes” is there, but they scored well on them", "Too far: “all” goes beyond the text; they recognised hundreds of words"],
+          tags: ["own", "", "word", "far"], nameIt: 3,
+          why: "“They scored well on app quizzes, but froze when asked to explain an idea aloud.” Froze = could not speak with confidence.",
+          label: "Evidence Hunt · Micro: lecturer’s problem",
+        },
+        {
+          q: "In paragraph 4, what does “the task” refer to?",
+          type: "Reference", key: ["the", "task", "refer"], ev: [10],
+          options: ["Using the app for five minutes", "Recording a one-minute voice note with new words", "Explaining an idea in class", "Taking the end-of-semester test"],
+          answer: 1,
+          traps: ["Wrong reference: “five minutes” is in the text, but that is the warm-up, not the task they found uncomfortable", "", "Wrong reference: that was the problem in paragraph 3", "Not in the text: no test is mentioned here"],
+          tags: ["word", "", "word", "own"], nameIt: 0,
+          why: "Read the sentence before: students “must record a one-minute voice note using at least three of the new words”. That is the task they found uncomfortable.",
+          label: "Evidence Hunt · Micro: the task",
+        },
+        {
+          q: "Which statement best sums up the writer’s conclusion?",
+          type: "Writer’s view", key: ["sums", "up", "writer’s", "conclusion"], ev: [13, 14],
+          options: ["Micro-learning apps should be banned", "Micro-learning helps most when combined with other practice", "Five minutes a day is enough to become fluent", "Apps are better teachers than lecturers"],
+          answer: 1,
+          traps: ["Too far: “banned” goes far beyond the text, which says it is “not a waste of time”", "", "Word match + too far: the first line is the apps’ promise, not the writer’s view", "Not in the text: apps and lecturers are not compared"],
+          tags: ["far", "", "word", "own"], nameIt: 0,
+          why: "“Neither a miracle nor a waste of time … works best as one part of a routine.” B says the same.",
+          label: "Evidence Hunt · Micro: writer’s conclusion",
+        },
+      ],
+    },
+  };
+  Object.entries(hunt).forEach(([pid, p]) => {
+    const flat = p.paras.flat();
+    p.questions.forEach((q, i) => {
+      const para = p.paras.find((pa) => pa.includes(flat[q.ev[0]]));
+      items["reading:hunt-" + pid + "-q" + (i + 1)] = {
+        context: textCtx(p.title, [para.join(" ")]),
+        q: q.q,
+        options: q.options,
+        answer: q.answer,
+        why: q.why,
+      };
+    });
+  });
   matchItems.forEach((m, i) => {
     items["listening:p3-" + (i + 1)] = {
       context: audioCtx("Three students talk about part-time jobs", extracts.p3),
@@ -633,7 +846,7 @@ window.SMHBank = (() => {
   });
   const skillOf = (id) => id.split(":")[0];
   return {
-    reading: { foodBank, passages },
+    reading: { foodBank, passages, hunt, huntTypes: HUNT_TYPES, huntTraps: HUNT_TRAPS },
     listening: { model, extracts, matchOptions, matchItems, mcq },
     arcade,
     item: (id) => (items[id] ? { id, skill: skillOf(id), ...items[id] } : null),

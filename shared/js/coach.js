@@ -71,6 +71,7 @@
       ['#begin', 'Ready?', 'Tap Start when you are ready. There is no timer.']
     ],
     listeninglab: lab, speakinglab: lab, readinglab: lab, writinglab: lab,
+    scanhunt: [['#sh-cards', 'Pick a passage', 'Each passage has six questions. Every question runs Study, Circle, Analyse, Nail, then Name the trap.'], ['.sh-mantras', 'The SCAN mantras', 'Say the mantra for each step. The last one matters most: prove it with evidence, not memory.']],
     review: [['main', 'Review again', 'These are questions you missed earlier. Answer them again; the explanation shows after each one.']],
     listening: [['.step-nav', 'Numbered steps', 'Work through the steps in order. The coach box under the steps tells you what to do.'], ['#lesson', 'Your lesson', 'Each step opens here. Mark it done to move on.']],
     vault1: [['#level-ring', 'Your level', 'Four papers make one level. The ring fills as you finish each one.'], ['#level-cards', 'Four paper folders', 'Tap a paper to see how to try it, then start. Listening first is a good order.']],

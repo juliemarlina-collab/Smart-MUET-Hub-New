@@ -37,6 +37,7 @@
     listeninglab:[[vault, ['Listening CLUE Lab']], 'activity', 'practice.html', 'vault', 'Lab · 800/1'],
     speakinglab: [[vault, ['Speaking PREP Lab']], 'activity', 'practice.html', 'vault', 'Lab · 800/2'],
     readinglab:  [[vault, ['Reading SCAN Lab']], 'activity', 'practice.html', 'vault', 'Lab · 800/3'],
+    scanhunt:    [[vault, L('Reading SCAN Lab', 'labs/reading-lab.html'), ['Evidence Hunt']], 'activity', 'labs/reading-lab.html', 'vault', 'Lab · 800/3'],
     writinglab:  [[vault, ['Writing PEEL Lab']], 'activity', 'practice.html', 'vault', 'Lab · 800/4'],
     review:      [[vault, ['Review again']], 'activity', 'practice.html', 'vault', 'Daily'],
     vault1:      [[vault, ['Vault 1 · Guided']], 'hub', '', 'vault', 'Level 1'],
