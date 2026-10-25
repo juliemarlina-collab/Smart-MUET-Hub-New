@@ -1,6 +1,8 @@
-/* Smart MUET Arcade · Grab & Throw (PEEL / PREP sort).
-   Grab each sentence and throw it into the right bucket: Point, Explain, Example, Link
+/* Smart MUET Arcade · Grab & Throw (PEEL / PREP sort, and Reading Trap sort).
+   Paragraph builder: grab each sentence and throw it into the right bucket: Point, Explain, Example, Link
    (or PREP: Point, Reason, Example, Point again).
+   Trap sort (Reading SCAN): each round is one SCAN Evidence Hunt question; throw every wrong option into
+   the Word-Match, Own-Knowledge or Too-Far bucket. Content: SMHBank.reading.hunt.
    Play by: drag-and-throw, tap card then tap bucket, keyboard (Enter), or camera (pinch to grab). */
 (() => {
   "use strict";
@@ -20,6 +22,35 @@
       PEEL: ["Point: the one main idea.", "Explain: why the point is true.", "Example: a specific case.", "Link: back to the question."],
       PREP: ["Point: your answer.", "Reason: why you think so.", "Example: a real case.", "Point again: close the answer."],
     };
+
+  const MODE_KEY = "smh.arcade.gt.mode",
+    TRAP_IDS = ["word", "own", "far"],
+    TRAP_COL = ["#ff754a", "#3b5bff", "#e0a800"],
+    TRAP_LETTER = ["W", "O", "F"];
+  let mode = (() => { try { return localStorage.getItem(MODE_KEY) === "trap" ? "trap" : "build"; } catch { return "build"; } })();
+  const TR = () => (Bank.reading && Bank.reading.huntTraps) || {};
+  const trapText = (s) => { const x = s.replace(/^[^:]+:\s*/, ""); return x.charAt(0).toUpperCase() + x.slice(1); };
+  /* one round per Evidence Hunt question: cards = its wrong options, ans = trap bucket index */
+  function trapRounds(hard) {
+    const out = [];
+    Object.entries((Bank.reading && Bank.reading.hunt) || {}).forEach(([pid, p]) => {
+      if (hard && p.stage === "start") return;
+      const flat = p.paras.flat();
+      p.questions.forEach((q, qi) => {
+        const wrong = q.options.map((o, i) => i).filter((i) => i !== q.answer);
+        out.push({
+          kind: "trap", skill: "reading", tech: "TRAPS", id: "hunt-" + pid + "-q" + (qi + 1),
+          topic: q.q, evidence: flat[q.ev[0]], right: q.options[q.answer], passage: p.title,
+          parts: TRAP_IDS.map((k) => (TR()[k] || [k])[0]),
+          lines: wrong.map((i) => q.options[i]),
+          ans: wrong.map((i) => TRAP_IDS.indexOf(q.tags[i])),
+          why: wrong.map((i) => trapText(q.traps[i])),
+        });
+      });
+    });
+    return out;
+  }
+  const slotOf = (r, line) => (r.ans ? r.ans[line] : line);
 
   let rounds = [],
     ri = 0,
@@ -73,22 +104,42 @@
     go.dataset.handPress = "";
     go.onclick = start;
     const info = el("span", "eyebrow light"),
+      h2 = el("h2", ""),
       tip = el("p", ""),
+      modes = el("div", "tier-row gt-modes"),
       paint = () => {
         const t = A.tier();
         info.textContent = "5 ROUNDS · 3 LIVES · " + Math.round(ROUND_TIME * t.time) + " SECONDS A ROUND";
-        tip.textContent = t.hard
-          ? "Harder paragraphs with no easy signal words, plus one off-topic sentence in every round: throw it in the bin. Clean throws build a combo."
-          : "Throw each sentence into the right bucket. First-try answers score 10, quick rounds earn a time bonus.";
+        h2.textContent = mode === "trap" ? "Name the trap." : "Build the paragraph.";
+        tip.textContent = mode === "trap"
+          ? "Reading SCAN: read the question, the evidence and the right answer, then throw each wrong option into its trap: Word-Match, Own-Knowledge or Too-Far." + (t.hard ? " MUET-level passages only." : "")
+          : t.hard
+            ? "Harder paragraphs with no easy signal words, plus one off-topic sentence in every round: throw it in the bin. Clean throws build a combo."
+            : "Throw each sentence into the right bucket. First-try answers score 10, quick rounds earn a time bonus.";
       };
+    modes.setAttribute("role", "group");
+    modes.setAttribute("aria-label", "Game");
+    [["build", "Paragraph builder · PEEL / PREP"], ["trap", "Trap sort · Reading SCAN"]].forEach(([m, label]) => {
+      const b = el("button", "tier", label);
+      b.type = "button";
+      b.dataset.handPress = "";
+      b.setAttribute("aria-pressed", String(mode === m));
+      b.onclick = () => {
+        mode = m;
+        try { localStorage.setItem(MODE_KEY, m); } catch {}
+        modes.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+        paint();
+      };
+      modes.append(b);
+    });
     paint();
-    showOverlay([info, el("h2", "", "Build the paragraph."), tip, A.tierPicker(paint), go]);
+    showOverlay([info, modes, h2, tip, A.tierPicker(paint), go]);
   }
 
   function start() {
     T = A.tier();
     combo = A.combo();
-    rounds = (T.hard ? A.shuffle(Bank.arcade.sortHard) : A.shuffle(Bank.arcade.sort)).slice(0, 5);
+    rounds = (mode === "trap" ? A.shuffle(trapRounds(T.hard)) : T.hard ? A.shuffle(Bank.arcade.sortHard) : A.shuffle(Bank.arcade.sort)).slice(0, 5);
     ri = 0;
     hearts = 3;
     score = 0;
@@ -105,23 +156,41 @@
     const r = rounds[ri];
     firstTry = {};
     selected = null;
-    banner.replaceChildren(
-      el("span", "gt-tech", r.tech + (r.skill === "writing" ? " · WRITING" : " · SPEAKING")),
-      el("b", "", r.topic),
-    );
-    const slots = T.hard ? r.parts.concat(["Off-topic"]) : r.parts;
-    buckets.classList.toggle("has-bin", T.hard);
+    const trap = r.kind === "trap";
+    if (trap) {
+      const ev = el("p", "gt-ev"), ok = el("p", "gt-ok");
+      ev.append(el("b", "", "Text: "), "“" + r.evidence + "”");
+      ok.append(el("b", "", "Right answer: "), r.right);
+      banner.replaceChildren(el("span", "gt-tech", "READING · SCAN TRAPS"), el("b", "", r.topic), ev, ok);
+    } else
+      banner.replaceChildren(
+        el("span", "gt-tech", r.tech + (r.skill === "writing" ? " · WRITING" : " · SPEAKING")),
+        el("b", "", r.topic),
+      );
+    banner.classList.toggle("is-trap", trap);
+    hint.textContent = trap ? "Grab a wrong option below and throw it into its trap ↑" : "Grab a sentence below and throw it into its bucket ↑";
+    const slots = trap ? r.parts : T.hard ? r.parts.concat(["Off-topic"]) : r.parts;
+    buckets.classList.toggle("has-bin", !trap && T.hard);
+    buckets.classList.toggle("is-trap", trap);
     buckets.replaceChildren(
       ...slots.map((p, i) => {
         const b = el("button", "bucket");
         b.type = "button";
         b.dataset.slot = i;
         b.dataset.handPress = "";
-        const bin = i === 4;
+        const bin = !trap && i === 4;
         if (bin) b.classList.add("bin");
-        b.style.setProperty("--c", bin ? "#3a3550" : LETTER_COL[r.tech][i]);
-        b.append(el("span", "b-letter", bin ? "✕" : p === "Point again" ? "P" : p[0]), el("span", "b-name", bin ? "Off-topic bin" : p), el("span", "b-fill"));
-        b.setAttribute("aria-label", (bin ? "Off-topic bin. For a sentence that does not support this answer." : p + " bucket. " + WHAT[r.tech][i]));
+        if (trap) {
+          const d = TR()[TRAP_IDS[i]] || [p, ""];
+          b.style.setProperty("--c", TRAP_COL[i]);
+          b.append(el("span", "b-letter", TRAP_LETTER[i]), el("span", "b-name", p), el("span", "b-fill"));
+          b.setAttribute("aria-label", p + " bucket. " + d[1]);
+          b.title = d[1];
+        } else {
+          b.style.setProperty("--c", bin ? "#3a3550" : LETTER_COL[r.tech][i]);
+          b.append(el("span", "b-letter", bin ? "✕" : p === "Point again" ? "P" : p[0]), el("span", "b-name", bin ? "Off-topic bin" : p), el("span", "b-fill"));
+          b.setAttribute("aria-label", (bin ? "Off-topic bin. For a sentence that does not support this answer." : p + " bucket. " + WHAT[r.tech][i]));
+        }
         b.onclick = () => {
           if (selected) drop(selected, i);
         };
@@ -129,7 +198,7 @@
       }),
     );
     tray.replaceChildren(
-      ...A.shuffle((T.hard ? r.lines : r.lines.slice(0, 4)).map((t, i) => [t, i])).map(([t, i]) => {
+      ...A.shuffle((trap || T.hard ? r.lines : r.lines.slice(0, 4)).map((t, i) => [t, i])).map(([t, i]) => {
         const c = el("button", "s-card", t);
         c.type = "button";
         c.dataset.line = i;
@@ -295,12 +364,13 @@
       py = br.top - sr.top + br.height + 10;
     selected = null;
     card.setAttribute("aria-pressed", "false");
-    if (line === slot) {
+    const trap = r.kind === "trap";
+    if (slotOf(r, line) === slot) {
       const first = firstTry[line] === undefined;
       firstTry[line] = firstTry[line] ?? true;
       const mult = first ? combo.hit() : 1,
         pts = (first ? 10 : 5) * mult,
-        name = slot === 4 ? "Off-topic" : r.parts[slot];
+        name = !trap && slot === 4 ? "Off-topic" : r.parts[slot];
       if (!first) combo.miss();
       score += pts;
       H.set({ score });
@@ -308,10 +378,16 @@
       A.pop(stage, px, py, "+" + pts + " · " + name + (mult > 1 ? " · combo ×" + mult : ""), "good");
       card.classList.add("placed");
       card.disabled = true;
-      bucket.classList.add("done");
-      bucket.querySelector(".b-fill").textContent = "✓";
-      bucket.disabled = true;
-      status.textContent = slot === 4 ? "Correct: that sentence does not support the answer." : "Correct: " + WHAT[r.tech][slot];
+      if (trap) {
+        const f = bucket.querySelector(".b-fill");
+        f.textContent = (f.textContent || "") + "✓";
+        status.textContent = "Correct, a " + r.parts[slot] + ". " + r.why[line] + ".";
+      } else {
+        bucket.classList.add("done");
+        bucket.querySelector(".b-fill").textContent = "✓";
+        bucket.disabled = true;
+        status.textContent = slot === 4 ? "Correct: that sentence does not support the answer." : "Correct: " + WHAT[r.tech][slot];
+      }
       if (!tray.querySelector(".s-card:not(.placed)")) roundDone(false);
     } else {
       noteMiss(line);
@@ -322,21 +398,30 @@
       bucket.classList.remove("shake");
       void bucket.offsetWidth;
       bucket.classList.add("shake");
-      const wrong = slot === 4 ? "bin" : r.parts[slot];
-      A.pop(stage, px, py, slot === 4 ? "It belongs in the paragraph" : "Not the " + wrong, "bad");
-      status.textContent = slot === 4 ? "That sentence supports the answer, so it is not off-topic. Try a bucket." : "Not the " + wrong + ". Remember: " + WHAT[r.tech][slot] + " Try another bucket.";
+      if (trap) {
+        const d = TR()[TRAP_IDS[slot]] || [r.parts[slot], ""];
+        A.pop(stage, px, py, "Not a " + d[0], "bad");
+        status.textContent = "Not a " + d[0] + ". That trap " + d[1].charAt(0).toLowerCase() + d[1].slice(1) + " Compare the option with the text, then try another bucket.";
+      } else {
+        const wrong = slot === 4 ? "bin" : r.parts[slot];
+        A.pop(stage, px, py, slot === 4 ? "It belongs in the paragraph" : "Not the " + wrong, "bad");
+        status.textContent = slot === 4 ? "That sentence supports the answer, so it is not off-topic. Try a bucket." : "Not the " + wrong + ". Remember: " + WHAT[r.tech][slot] + " Try another bucket.";
+      }
       if (hearts <= 0) roundDone(true);
     }
   }
 
   function roundDone(failed) {
     clearInterval(timer);
-    const r = rounds[ri];
-    const used = T.hard ? r.lines : r.lines.slice(0, 4);
+    const r = rounds[ri], trap = r.kind === "trap";
+    const used = trap || T.hard ? r.lines : r.lines.slice(0, 4);
     used.forEach((t, i) => {
       total++;
       if (firstTry[i] === true) correct++;
-      else {
+      else if (trap) {
+        missed.push("“" + t.slice(0, 60) + (t.length > 60 ? "…" : "") + "” → " + r.parts[r.ans[i]]);
+        A.miss("reading:" + r.id, "reading", "Trap sort: " + r.topic.slice(0, 50), "Arcade · Grab & Throw");
+      } else {
         const part = i === 4 ? "Off-topic" : r.parts[i];
         missed.push("“" + t.slice(0, 60) + (t.length > 60 ? "…" : "") + "” → " + part);
         A.miss(r.skill + ":arcade-" + r.id + "-" + (i + 1), r.skill, r.tech + " sort: " + part, "Arcade · Grab & Throw");
@@ -349,11 +434,18 @@
       bonus && A.pop(stage, stage.clientWidth / 2, 70, "Time bonus +" + bonus, "good");
     }
     const ol = el("ol", "built");
-    r.lines.slice(0, 4).forEach((t, i) => {
-      const li = el("li");
-      li.append(el("b", "", r.parts[i] + ": "), document.createTextNode(t));
-      ol.append(li);
-    });
+    if (trap)
+      r.lines.forEach((t, i) => {
+        const li = el("li");
+        li.append(el("b", "", "“" + t + "” · " + r.parts[r.ans[i]] + ". "), document.createTextNode(r.why[i] + "."));
+        ol.append(li);
+      });
+    else
+      r.lines.slice(0, 4).forEach((t, i) => {
+        const li = el("li");
+        li.append(el("b", "", r.parts[i] + ": "), document.createTextNode(t));
+        ol.append(li);
+      });
     const last = hearts <= 0 || ri === rounds.length - 1,
       next = el("button", "primary big", last ? "See my results ▸" : "Next round ▸");
     next.type = "button";
@@ -367,8 +459,8 @@
       }
     };
     showOverlay([
-      el("span", "eyebrow light", hearts <= 0 ? "OUT OF LIVES" : failed ? "TIME UP" : "PARAGRAPH BUILT"),
-      el("h2", "", r.tech === "PEEL" ? "Read your PEEL paragraph." : "Read your PREP answer aloud."),
+      el("span", "eyebrow light", hearts <= 0 ? "OUT OF LIVES" : failed ? "TIME UP" : trap ? "TRAPS NAMED" : "PARAGRAPH BUILT"),
+      el("h2", "", trap ? "Why each option is wrong." : r.tech === "PEEL" ? "Read your PEEL paragraph." : "Read your PREP answer aloud."),
       ol,
       next,
     ]);
@@ -378,7 +470,7 @@
     // rounds not reached count as not attempted (not as misses)
     A.results({
       game: "grab-throw",
-      title: "Grab & Throw · " + T.name,
+      title: "Grab & Throw · " + (mode === "trap" ? "Trap sort · " : "") + T.name,
       score,
       correct,
       total,
