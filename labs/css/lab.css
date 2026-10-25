@@ -6,3 +6,17 @@
 .section-heading .lab-steps-list li::marker,.section-heading .model-instructions li::marker{font-weight:800;color:#3b5bff}
 /* step tabs line up with the edges of the step card */
 @media(min-width:1001px){.steps{padding:0}}
+
+/* Step headings share the columns of the cards below them, so the numbered instructions
+   (or the short note) start at the same edge as the text in the right-hand card. */
+@media (min-width: 701px) {
+  .section-heading { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: end; }
+  .section-heading > :last-child:not(:first-child) { justify-self: start; margin: 0 0 6px 28px; max-width: 520px; }
+  [data-panel]:has(> .split) > .section-heading { grid-template-columns: 1.05fr 1fr; }
+  .sh-pick .section-heading { gap: 18px; }
+  .sh-pick .section-heading > :last-child:not(:first-child) { margin-left: 24px; }
+}
+@media (min-width: 701px) and (max-width: 1000px) {
+  [data-panel]:has(> .split) > .section-heading { display: block; }
+  [data-panel]:has(> .split) > .section-heading > :last-child:not(:first-child) { margin: 6px 0 0; }
+}

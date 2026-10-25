@@ -214,3 +214,4 @@ details summary { cursor: pointer; font-weight: 700; min-height: 44px; display: 
 fieldset.question legend { float: left; width: 100%; margin-bottom: 6px; }
 fieldset.question legend + * { clear: both; }
 .purple button { color: #142b68; }
+
