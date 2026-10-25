@@ -13,8 +13,6 @@
   .section-heading { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: end; }
   .section-heading > :last-child:not(:first-child) { justify-self: start; margin: 0 0 6px 28px; max-width: 520px; }
   [data-panel]:has(> .split) > .section-heading { grid-template-columns: 1.05fr 1fr; }
-  .sh-pick .section-heading { gap: 18px; }
-  .sh-pick .section-heading > :last-child:not(:first-child) { margin-left: 24px; }
 }
 @media (min-width: 701px) and (max-width: 1000px) {
   [data-panel]:has(> .split) > .section-heading { display: block; }

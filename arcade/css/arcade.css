@@ -280,17 +280,3 @@ html.smh-shell .stage-overlay .eyebrow,html.smh-shell .stage-overlay .eyebrow.li
 .stage:has(.gt-buckets.has-bin){height:auto;min-height:640px}
 .stage:has(.gt-buckets.has-bin) .gt-tray{position:static}
 html.smh-shell .stage .eyebrow.light{color:#ffcc33!important}
-/* Grab & Throw · Trap sort (Reading SCAN) */
-.gt-modes{margin:4px 0 6px}
-.gt-banner.is-trap{display:grid;gap:6px;justify-items:start}
-.gt-banner.is-trap b{font-size:19px}
-.gt-ev,.gt-ok{margin:0;max-width:900px;padding:8px 12px;border-radius:12px;font-size:15px;line-height:1.45;color:#142b68}
-.gt-ev{background:#e3f8f1}
-.gt-ok{background:#fff4cc}
-.gt-ev b,.gt-ok b{font:800 13px/1 "DM Sans",Arial,sans-serif;color:#142b68;letter-spacing:.04em;text-transform:uppercase}
-.gt-buckets.is-trap{grid-template-columns:repeat(3,1fr)}
-.gt-buckets.is-trap .b-name{font-size:14px}
-.stage:has(.gt-buckets.is-trap){height:auto;min-height:640px}
-.stage:has(.gt-buckets.is-trap) .gt-tray{position:static}
-@media (max-width:700px){.gt-buckets.is-trap{grid-template-columns:repeat(3,1fr)}.gt-buckets.is-trap .b-name{font-size:11px}.gt-ev,.gt-ok{font-size:13.5px}.gt-banner.is-trap b{font-size:16px}}
-.gt-buckets.is-trap ~ .gt-hint{display:none}

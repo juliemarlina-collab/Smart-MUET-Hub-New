@@ -29,7 +29,6 @@
     ["confident-speaker", "Confident Speaker", "Speaking PREP Lab: try all 3 drills and save a reflection", "#1b8f6f"],
     ["speed-reader", "Speed Reader", "Reading SCAN Lab: check a practice text and save a reflection", "#ff754a"],
     ["word-smith", "Word Smith", "Writing PEEL Lab: reach the minimum words on a draft and save a reflection", "#d9b100"],
-    ["evidence-hunter", "Evidence Hunter", "SCAN Evidence Hunt: finish a MUET-level passage with at least 5 of 6 answers proved", "#ff754a"],
     ["quiz-champion", "Quiz Champion", "Finish the eBook Quiz Show (7, pages 46–47)", "#c98a00"],
     ["vault-1-clear", "Vault 1 Clear", "Complete all 4 Vault 1 components", "#2e9d57"],
     ["vault-2-clear", "Vault 2 Clear", "Complete all 4 Vault 2 components", "#1d6f3e"],
@@ -152,8 +151,6 @@
     });
     const ebookQuiz = obj(get("smh.ebook.quiz.v1", {})),
       ebookStars = Object.values(ebookQuiz).reduce((n, r) => n + (r && Number.isFinite(r.best) ? Math.max(0, Math.min(14, r.best)) : 0), 0);
-    const hunt = obj(obj(get("smh.lab.scanhunt.v1", {})).passages);
-    const huntDone = Object.values(hunt).filter((r) => r && r.done).length;
     const trapStars = Object.values(obj(get("smh.learn.trap.v1", {}))).reduce((n, r) => n + (r && Number.isFinite(r.best) ? Math.max(0, Math.min(3, r.best)) : 0), 0);
     const arcadeRounds = Object.values(arcadePerDay).reduce((n, c) => n + Math.min(3, c), 0);
     const streakRuns = runs(app.days);
@@ -171,7 +168,6 @@
       ["Arcade rounds (up to 3 a day)", arcadeRounds, XP.arcade],
       ["eBook game stars (best score)", ebookStars, XP.star],
       ["Trap spotter stars (best score)", trapStars, XP.star],
-      ["SCAN Evidence Hunt passages finished", huntDone, XP.practice],
     ].map(([label, count, each]) => ({ label, count, each, xp: count * each }));
     breakdown.push({ label: "Streak bonuses", count: streakRuns.filter((r) => r >= 3).length, each: null, xp: streakBonus });
     const total = breakdown.reduce((n, b) => n + b.xp, 0);
@@ -182,7 +178,6 @@
       "confident-speaker": Object.values(obj(lab.speaking.drills)).filter((x) => x?.checked).length >= 3 && hasRefl("speaking"),
       "speed-reader": Object.keys(obj(lab.reading.results)).length > 0 && hasRefl("reading"),
       "word-smith": Object.values(obj(lab.writing.results)).some((r) => r && r.score >= r.total) && hasRefl("writing"),
-      "evidence-hunter": Object.values(hunt).some((r) => r && r.best && r.best.answers >= 5),
       "quiz-champion": !!ebookQuiz["7"] || [1, 2, 3, 4, 5].every((p) => actRead.includes("6-" + p)),
       "vault-1-clear": v1 === 4,
       "vault-2-clear": v2 === 4,
