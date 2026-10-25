@@ -341,15 +341,94 @@ window.SMHBank = (() => {
      ev (A step: accepted evidence sentence numbers), options + answer (N step),
      traps (one per option; the answer's entry is ""), why (full explanation). */
   const HUNT_TYPES = ["Main idea", "Detail", "Reference", "Word meaning", "Inference", "Writer’s view"];
+  const HUNT_PLAIN = {
+    "Main idea": "The big idea of the whole text",
+    Detail: "One fact the text states",
+    Reference: "What a word like “this” or “it” points to",
+    "Word meaning": "What a word means here",
+    Inference: "Something the text suggests, not says",
+    "Writer’s view": "What the writer thinks",
+  };
   const HUNT_TRAPS = {
     word: ["Word-Match Trap", "Repeats a word from the text but changes its meaning or context."],
     own: ["Own-Knowledge Trap", "May be true in real life, but the text does not say it."],
     far: ["Too-Far Trap", "Goes beyond the evidence, often with always, every, never, best or completely."],
   };
   const hunt = {
+    campus: {
+      title: "The Campus Bike Share",
+      level: "Starter · short campus text · about 130 words",
+      stage: "start",
+      words: [["hostel", "a building where students live"], ["workshops", "rooms for practical work"], ["council", "a group chosen to make decisions"], ["reminder", "a message that helps you remember"]],
+      paras: [
+        [
+          "Last semester, our polytechnic started a bike share scheme.",
+          "There are now forty bicycles at four stations around the campus.",
+          "Students can borrow a bike for free by scanning their student card.",
+        ],
+        [
+          "Before the scheme, many students walked for fifteen minutes from the hostel to the workshops.",
+          "Now the same trip takes about five minutes.",
+          "Some students say they feel less tired in their morning classes.",
+        ],
+        [
+          "However, there have been a few problems.",
+          "Some riders forget to return the bikes, so the stations are sometimes empty in the evening.",
+          "To solve this, the student council now sends a reminder message if a bike is not returned within two hours.",
+        ],
+        [
+          "The council hopes to add ten more bicycles next year.",
+          "It believes the scheme can make campus life healthier and easier.",
+        ],
+      ],
+      questions: [
+        {
+          q: "How do students borrow a bike?",
+          type: "Detail", key: ["how", "borrow", "bike"], ev: [2],
+          options: ["By paying at the station", "By scanning their student card", "By asking the student council", "By booking one day earlier"],
+          answer: 1,
+          traps: ["Not in the text: many bike shares charge money in real life, but this one is free", "", "Word match: the council is in the text, but it sends reminders; it does not lend bikes", "Not in the text: booking is never mentioned"],
+          tags: ["own", "", "word", "own"], nameIt: 0,
+          why: "“Students can borrow a bike for free by scanning their student card.” B says exactly this.",
+          label: "Evidence Hunt · Bike share: how to borrow",
+        },
+        {
+          q: "The word “scheme” in paragraph 1 is closest in meaning to …",
+          type: "Word meaning", key: ["scheme", "closest", "meaning"], ev: [0, 1],
+          options: ["a plan or programme", "a bicycle shop", "a student card", "a trick to cheat people"],
+          answer: 0,
+          traps: ["", "Word match: bicycles are in the text, but nothing is sold", "Word match: the card is how you borrow, not what a scheme is", "Not in the text: “scheme” can sometimes mean a trick in real life, but here it is a useful service"],
+          tags: ["", "word", "word", "own"], nameIt: 3,
+          why: "The polytechnic “started a bike share scheme” with forty bikes at four stations: an organised plan or programme.",
+          label: "Evidence Hunt · Bike share: scheme",
+        },
+        {
+          q: "In paragraph 3, what does “this” in “To solve this” refer to?",
+          type: "Reference", key: ["this", "refer"], ev: [7],
+          options: ["Stations being empty because bikes are not returned", "Students walking for fifteen minutes", "The reminder message", "Students feeling tired in class"],
+          answer: 0,
+          traps: ["", "Word match: real words from paragraph 2, but that problem was solved by the bikes", "Word match: the message comes after “this”; it is the solution, not the problem", "Word match: from paragraph 2, and it is good news, not a problem"],
+          tags: ["", "word", "word", "word"], nameIt: 2,
+          why: "Read the sentence before: riders forget to return bikes, “so the stations are sometimes empty”. That is the problem the reminder solves.",
+          label: "Evidence Hunt · Bike share: this",
+        },
+        {
+          q: "What is the passage mainly about?",
+          type: "Main idea", key: ["mainly", "about"], ev: [0, 10],
+          options: ["A bike share scheme: how it helps, one problem and a solution", "Why students are always tired in class", "How to repair bicycles", "Why bicycles are better than buses"],
+          answer: 0,
+          traps: ["", "Too far: the text says “some” students feel “less tired”; it never says always", "Not in the text: repairs are never mentioned", "Not in the text: buses are never mentioned"],
+          tags: ["", "far", "own", "own"], nameIt: 1,
+          why: "The text introduces the scheme, gives its benefits, a problem and a solution, then the plan for next year. Only A covers it all.",
+          label: "Evidence Hunt · Bike share: main idea",
+        },
+      ],
+    },
     roofs: {
       title: "Cooling the City from the Roof",
-      level: "MUET Reading · Part 4-style article · about 330 words",
+      level: "MUET level · Part 4-style article · about 270 words",
+      stage: "muet",
+      words: [["heat island effect", "when a city is hotter than the green areas around it"], ["urban planners", "people who plan how a city grows"], ["absorb", "take in"], ["structural check", "an inspection to see if a building is strong enough"], ["maintenance", "looking after something so it keeps working"], ["grant", "money given for a special purpose"], ["council", "the local government of a town or city"]],
       paras: [
         [
           "On a hot afternoon in Kuala Lumpur, the air just above a dark concrete roof can be several degrees warmer than the air above a park.",
@@ -443,7 +522,9 @@ window.SMHBank = (() => {
     },
     micro: {
       title: "Five Minutes a Day: Can Micro-learning Work?",
-      level: "MUET Reading · Part 5-style article · about 320 words",
+      level: "MUET level · Part 5-style article · about 240 words",
+      stage: "muet",
+      words: [["juggle", "try to do many things at the same time"], ["bursts", "short periods"], ["session", "one period of study"], ["productive", "useful; getting a lot done"], ["a catch", "a hidden problem"], ["froze", "suddenly could not speak"], ["routine", "things you do regularly"]],
       paras: [
         [
           "Language apps promise that five minutes a day is enough to learn a new language.",
@@ -846,7 +927,7 @@ window.SMHBank = (() => {
   });
   const skillOf = (id) => id.split(":")[0];
   return {
-    reading: { foodBank, passages, hunt, huntTypes: HUNT_TYPES, huntTraps: HUNT_TRAPS },
+    reading: { foodBank, passages, hunt, huntTypes: HUNT_TYPES, huntPlain: HUNT_PLAIN, huntTraps: HUNT_TRAPS },
     listening: { model, extracts, matchOptions, matchItems, mcq },
     arcade,
     item: (id) => (items[id] ? { id, skill: skillOf(id), ...items[id] } : null),

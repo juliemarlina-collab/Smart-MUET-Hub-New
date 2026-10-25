@@ -9,10 +9,10 @@
 <link rel="stylesheet" href="../shared/styles/tokens.css">
 <link rel="stylesheet" href="css/lab.css?v=20261025b">
 <link rel="stylesheet" href="css/lab-extra.css">
-<link rel="stylesheet" href="css/scan-hunt.css?v=20261025a">
+<link rel="stylesheet" href="css/scan-hunt.css?v=20261025b">
 <link rel="stylesheet" href="../shared/styles/navigation.css">
 <script defer src="../shared/js/item-bank.js"></script>
-<script defer src="js/scan-hunt.js?v=20261025a"></script>
+<script defer src="js/scan-hunt.js?v=20261025b"></script>
 <script defer src="../shared/js/app.js"></script><link rel="stylesheet" href="../shared/styles/shell.css"><script defer src="../shared/js/shell.js?v=20261024b"></script><script defer src="../shared/js/navigation.js"></script>
 </head>
 <body data-page-id="scanhunt" data-app-root="../">
@@ -28,7 +28,7 @@
     <h1>Prove it.<br><span>Don’t match it.</span></h1>
     <p class="lead">Every answer has a home in the text. For each question you will study it, circle the key words, tap the exact evidence, choose the answer and name the trap.</p>
     <div class="tags"><span>S · Study</span><span>C · Circle</span><span>A · Analyse</span><span>N · Nail</span></div>
-    <p class="small">About 15 minutes a passage · 6 questions · Original MUET-style texts</p>
+    <p class="small">Starter passage (4 questions) and two MUET-level passages (6 questions) · Guided help on</p>
   </div>
   <div class="sh-mantras" aria-label="SCAN mantras">
     <div class="sh-m s"><b>S</b><span>Study<small>“What am I actually looking for?”</small></span></div>
@@ -40,9 +40,12 @@
 
 <section class="sh-pick" id="sh-pick" aria-labelledby="pick-title">
   <div class="section-heading"><div><span class="eyebrow">01 / CHOOSE A PASSAGE</span><h2 id="pick-title">Pick a text.<br>Hunt the evidence.</h2></div>
-  <ol class="lab-steps-list"><li>Choose a passage below.</li><li>Answer each question in six short steps.</li><li>Every missed answer goes to Review again.</li></ol></div>
+  <ol class="lab-steps-list"><li>New to SCAN? Start with the Starter passage.</li><li>Answer each question in six short steps.</li><li>Every missed answer goes to Review again.</li></ol></div>
   <div class="sh-cards" id="sh-cards"></div>
-  <label class="sh-pace"><input type="checkbox" id="sh-pace"> Show MUET pace (about 1 min 50 s a question: 75 minutes for 40 questions)</label>
+  <div class="sh-opts-row">
+    <label class="sh-pace"><input type="checkbox" id="sh-guided" checked> <span><b>Guided help</b> · word meanings, key-word hints and which paragraph to look in. Switch off for exam practice.</span></label>
+    <label class="sh-pace"><input type="checkbox" id="sh-pace"> <span><b>MUET pace</b> · show a clock (about 1 min 50 s a question: 75 minutes for 40 questions).</span></label>
+  </div>
 </section>
 
 <section class="sh-play" id="sh-play" hidden aria-label="Evidence hunt">

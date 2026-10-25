@@ -124,3 +124,26 @@ html[data-smh-theme="dark"] .sh-s.is-near{background:#4a3f12}
   .sh-fixed{position:fixed;left:15px;right:15px;bottom:calc(96px + env(safe-area-inset-bottom));z-index:120;box-shadow:0 10px 26px #142b6855}
   .sh-fixed:disabled{opacity:1;background:#8c9be0;border-color:#8c9be0}
 }
+/* starter card, guided help, plain-language choices */
+.sh-cards{grid-template-columns:repeat(3,minmax(0,1fr))}
+.sh-card{position:relative}
+.sh-card.is-start{background:#fff4cc;border-color:#142b68}
+.sh-card-badge{position:absolute;top:-12px;right:18px;padding:5px 12px;border-radius:99px;background:#ff754a;color:#fff;font:800 12px/1 "DM Sans",Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 3px 0 #142b68}
+.sh-opts-row{display:grid;gap:10px;margin-top:18px}
+.sh-opts-row .sh-pace{margin:0;align-items:flex-start;line-height:1.45}
+.sh-opts-row .sh-pace input{flex:none;margin-top:1px}
+.sh-help{margin:4px 0 14px;border-radius:14px;background:#fff8dc;border:1px solid #ffe08a}
+.sh-help summary{cursor:pointer;padding:10px 14px;font-weight:800;font-size:15px}
+.sh-help dl{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:0;padding:0 14px 12px;font-size:14.5px;line-height:1.45}
+.sh-help dt{font-weight:800}
+.sh-help dd{margin:0;color:#33406b}
+.sh-types{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.sh-types .sh-chip{display:grid;justify-items:start;text-align:left;gap:2px;border-radius:14px;padding:10px 14px;min-height:56px}
+.sh-types .sh-chip span{font-weight:700;line-height:1.3}
+.sh-types .sh-chip small{font:800 11px/1.2 "DM Sans",Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#6a7398}
+.sh-hint{margin:6px 0 12px;padding:10px 14px;border-radius:12px;background:#eef1ff;font-size:15px;font-weight:600;color:#22348f}
+@media (max-width:1000px){.sh-cards{grid-template-columns:1fr 1fr}.sh-card.is-start{grid-column:1/-1}}
+@media (max-width:700px){.sh-cards{grid-template-columns:1fr}.sh-types{grid-template-columns:1fr}}
+html[data-smh-theme="dark"] .sh-card.is-start{background:#3a3110}
+html[data-smh-theme="dark"] .sh-help{background:#3a3110;border-color:#7a6420}
+html[data-smh-theme="dark"] .sh-help dd{color:#d6ddf5}

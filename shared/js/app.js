@@ -29,7 +29,7 @@
     ["confident-speaker", "Confident Speaker", "Speaking PREP Lab: try all 3 drills and save a reflection", "#1b8f6f"],
     ["speed-reader", "Speed Reader", "Reading SCAN Lab: check a practice text and save a reflection", "#ff754a"],
     ["word-smith", "Word Smith", "Writing PEEL Lab: reach the minimum words on a draft and save a reflection", "#d9b100"],
-    ["evidence-hunter", "Evidence Hunter", "SCAN Evidence Hunt: finish a passage with at least 5 of 6 answers proved", "#ff754a"],
+    ["evidence-hunter", "Evidence Hunter", "SCAN Evidence Hunt: finish a MUET-level passage with at least 5 of 6 answers proved", "#ff754a"],
     ["quiz-champion", "Quiz Champion", "Finish the eBook Quiz Show (7, pages 46–47)", "#c98a00"],
     ["vault-1-clear", "Vault 1 Clear", "Complete all 4 Vault 1 components", "#2e9d57"],
     ["vault-2-clear", "Vault 2 Clear", "Complete all 4 Vault 2 components", "#1d6f3e"],
